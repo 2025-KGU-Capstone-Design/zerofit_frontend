@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 300;
+    font-display: swap;
+    src: url("assets/fonts/Pretendard-Light.subset.woff2") format("woff2"),
+    url("assets/fonts/Pretendard-Light.subset.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 400;
+    font-display: swap;
+    src: url("assets/fonts/Pretendard-Regular.subset.woff2") format("woff2"),
+    url("assets/fonts/Pretendard-Regular.subset.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 500;
+    font-display: swap;
+    src: url("assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"),
+    url("assets/fonts/Pretendard-Medium.subset.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 700;
+    font-display: swap;
+    src: url("assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"),
+    url("assets/fonts/Pretendard-Bold.subset.woff") format("woff");
+}
+
+
+body {
+    font-family: "Pretendard", sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #000000;
+    background-color: #fafafa;
+}
