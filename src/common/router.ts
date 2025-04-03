@@ -1,15 +1,16 @@
 import {createBrowserRouter} from "react-router-dom";
-import Layout, {layoutLoader} from "@/ui/Layout.tsx";
+import Layout from "@/ui/layout/Layout.tsx";
 import LandingPage from "@/ui/pages/landingPage/LandingPage.tsx";
+import {sampleLoader} from "@/services/SampleService.ts";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: Layout,
-        loader: layoutLoader,
         children: [
             {
                 path: "/home",
+                loader: sampleLoader,
                 Component: LandingPage
             }
         ]
