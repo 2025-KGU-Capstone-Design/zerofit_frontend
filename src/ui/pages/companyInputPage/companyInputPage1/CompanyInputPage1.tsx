@@ -1,13 +1,30 @@
-import { Typography, Stack } from "@mui/material";
+import React from "react";
+import { Container, Stack, Button } from "@mui/material";
+import FormContainer from "../common/FormContainer";
+import IndustryInput from "@/ui/pages/companyInputPage/companyInputPage1/IndustryInput";
+import FacilityInput from "@/ui/pages/companyInputPage/companyInputPage1/FacilityInput";
 
-const CompanyInputPage1 = () => {
+function CompanyInputPage1() {
   return (
-    <Stack sx={{ mt: 10 }}>
-      <Typography variant="subtitle1" fontWeight="bold">
-        기업정보입력 첫번째 페이지입니다.
-      </Typography>
-    </Stack>
+    <Container sx={{ mt: 6 }}>
+      <Stack spacing={4}>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          justifyContent="space-between"
+        >
+          <FormContainer>
+            <IndustryInput />
+            <FacilityInput />
+            <Stack direction="row" justifyContent="flex-end">
+              <Button variant="contained" color="primary" size="large">
+                다음
+              </Button>
+            </Stack>
+          </FormContainer>
+        </Stack>
+      </Stack>
+    </Container>
   );
-};
+}
 
 export default CompanyInputPage1;
