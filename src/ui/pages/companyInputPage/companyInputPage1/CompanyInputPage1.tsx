@@ -4,6 +4,7 @@ import FormContainer from "../common/FormContainer";
 import IndustryInput from "@/ui/pages/companyInputPage/companyInputPage1/IndustryInput";
 import FacilityInput from "@/ui/pages/companyInputPage/companyInputPage1/FacilityInput";
 import StepHeader from "../common/StepHeader";
+import InfoPreviewCard from "../common/InfoPreviewCard";
 
 function CompanyInputPage1() {
   return (
@@ -23,6 +24,7 @@ function CompanyInputPage1() {
               </Button>
             </Stack>
           </FormContainer>
+          <InfoPreviewCard />
         </Stack>
       </Stack>
     </Container>
