@@ -1,8 +1,14 @@
-import {RouterProvider} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 import router from "@/common/router.ts";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "@/ui/theme";
 
 const App = () => {
-    return <RouterProvider router={router}/>
+  return (
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 };
 
 export default App;
