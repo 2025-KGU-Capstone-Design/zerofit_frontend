@@ -3,6 +3,9 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: "#fafafa",
+    },
     primary: {
       main: "#111827", // 페이지 메인 컬러(navy), light/dark 필요하면 추가하면 될 듯
     },
