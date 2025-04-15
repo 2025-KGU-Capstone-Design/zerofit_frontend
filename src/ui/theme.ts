@@ -10,6 +10,14 @@ const theme = createTheme({
       main: "#04D9D9", // sidebar 전환 및 로고 등에 사용되는 컬러(mint)
     },
   },
+  typography: {
+    fontFamily: '"Pretendard", sans-serif',
+    allVariants: {
+      lineHeight: 1.5,
+      fontWeight: 400,
+      color: "#000000",
+    },
+  },
 });
 
 export default theme;
