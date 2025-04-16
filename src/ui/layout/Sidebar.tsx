@@ -4,10 +4,11 @@ import {
   Toolbar,
   List,
   ListItem,
+  ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import ApartmentIcon from "@mui/icons-material/Apartment";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
@@ -29,6 +30,8 @@ const navItems = [
 ];
 
 const Sidebar = () => {
+  const location = useLocation();
+
   return (
     <Drawer
       variant="permanent"
@@ -42,38 +45,52 @@ const Sidebar = () => {
         },
       }}
     >
-      <Toolbar sx={{ mt: 1 }} />
+      <Toolbar />
       <Box sx={{ overflow: "auto" }}>
         <List>
-          {navItems.map((item) => (
-            <ListItem
-              key={item.to}
-              component={Link}
-              to={item.to}
-              sx={{ mb: 1 }}
-            >
-              {item.icon && (
-                <ListItemIcon
+          {navItems.map((item) => {
+            const isSelected = location.pathname.startsWith(item.to);
+            return (
+              <ListItem key={item.to} disablePadding sx={{ mb: 1 }}>
+                <ListItemButton
+                  component={Link}
+                  to={item.to}
+                  selected={isSelected}
                   sx={{
-                    minWidth: 32,
                     color: "white",
+                    "&.Mui-selected": {
+                      backgroundColor: "#1F2937",
+                      "&:hover": {
+                        backgroundColor: "#1F2937",
+                      },
+                      "& .MuiListItemIcon-root, & .MuiTypography-root": {
+                        color: (theme) => theme.palette.secondary.main,
+                      },
+                    },
                   }}
                 >
-                  {item.icon}
-                </ListItemIcon>
-              )}
-              <ListItemText
-                primary={item.label}
-                slotProps={{
-                  primary: {
-                    sx: {
-                      color: "white",
-                    },
-                  },
-                }}
-              />
-            </ListItem>
-          ))}
+                  {item.icon && (
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 32,
+                        color: "inherit",
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                  )}
+                  <ListItemText
+                    primary={item.label}
+                    slotProps={{
+                      primary: {
+                        sx: { color: "inherit" },
+                      },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
     </Drawer>
