@@ -19,6 +19,7 @@ const LandingPageHeader = () => {
           sx={{
             color: "inherit",
             fontWeight: "bold",
+            textDecoration: "none",
           }}
         >
           <Box component="span">Zero</Box>
