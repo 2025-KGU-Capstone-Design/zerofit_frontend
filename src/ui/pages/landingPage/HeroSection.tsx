@@ -1,28 +1,84 @@
-const HeroSection = () => {
-    return (
-        <section className="flex flex-col items-center justify-center text-center px-6 py-20">
-            <h1 className="text-7xl font-bold text-mainmint mb-4">Zero-Fit</h1>
-            <h2 className="text-5xl font-semibold mb-10">
-                당신의 기업에 딱 맞는 Net-Zero 솔루션
-            </h2>
-            <p className="text-gray-300 mt-4 mb-8 max-w-2xl">
-                Zero-Fit은 기업의 산업군, 설비, 예산을 반영해 최적의 온실가스 감축
-                솔루션을 추천하고, 감축 효과를 분석해 탄소 중립(Net-Zero) 목표 달성을
-                지원합니다.
-            </p>
-            <p className="text-lg font-bold text-gray-300 mt-4 mb-6 max-w-2xl">
-                탄소 중립을 향한 여정, Zero-Fit과 함께 시작하세요!
-            </p>
+import { Stack, Typography, Box } from "@mui/material";
 
-            <p className="mt-6 text-4xl font-semibold">
-                <span className="text-secondmint">Net-</span>
-                <span className="text-white">Zero</span>
-                <span className="text-secondmint">, Let's </span>
-                <span className="text-white">Zero</span>
-                <span className="text-secondmint">!</span>
-            </p>
-        </section>
-    );
-};
+const HeroSection = () => (
+  <Stack alignItems="center" textAlign="center" px={3} py={10}>
+    <Typography
+      variant="h1"
+      fontWeight="bold"
+      color="secondary.main"
+      sx={{
+        fontSize: "5rem",
+      }}
+    >
+      Zero-Fit
+    </Typography>
+
+    <Typography
+      variant="h2"
+      fontWeight={600}
+      color="white"
+      sx={{
+        fontSize: "3rem",
+        mb: 4,
+      }}
+    >
+      당신의 기업에 딱 맞는 Net-Zero 솔루션
+    </Typography>
+
+    <Typography
+      variant="body1"
+      color="grey.300"
+      sx={{
+        fontSize: "1rem",
+        mt: 1,
+        mb: 2,
+        maxWidth: "40rem",
+      }}
+    >
+      Zero-Fit은 기업의 산업군, 설비, 예산을 반영해 최적의 온실가스 감축
+      솔루션을 추천하고, 감축 효과를 분석해 탄소 중립(Net-Zero) 목표 달성을
+      지원합니다.
+    </Typography>
+
+    <Typography
+      variant="body1"
+      fontWeight="bold"
+      color="grey.300"
+      sx={{
+        fontSize: "1.125rem",
+        mt: 2,
+        mb: 3,
+        maxWidth: "40rem",
+      }}
+    >
+      탄소 중립을 향한 여정, Zero-Fit과 함께 시작하세요!
+    </Typography>
+
+    <Typography
+      variant="h4"
+      fontWeight={600}
+      sx={{
+        fontSize: "2.25rem",
+        mt: 3,
+      }}
+    >
+      <Box component="span" color="secondary.main">
+        Net-
+      </Box>
+      <Box component="span" color="white">
+        Zero
+      </Box>
+      <Box component="span" color="secondary.main">
+        , Let&apos;s{" "}
+      </Box>
+      <Box component="span" color="white">
+        Zero
+      </Box>
+      <Box component="span" color="secondary.main">
+        !
+      </Box>
+    </Typography>
+  </Stack>
+);
 
 export default HeroSection;
