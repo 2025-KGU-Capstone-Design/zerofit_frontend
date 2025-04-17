@@ -1,6 +1,6 @@
 import { Stack, Card, CardContent, Typography } from "@mui/material";
 
-function InfoPreviewCard() {
+const InfoPreviewCard = () => {
   return (
     <Stack flex={1} sx={{ maxWidth: "260px" }}>
       <Card sx={{ p: 2 }}>
@@ -18,6 +18,6 @@ function InfoPreviewCard() {
       </Card>
     </Stack>
   );
-}
+};
 
 export default InfoPreviewCard;

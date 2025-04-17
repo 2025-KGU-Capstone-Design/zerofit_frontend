@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { industries } from "@/constants/industries";
 
-function IndustryInput() {
+const IndustryInput = () => {
   return (
     <>
       <Typography variant="subtitle1" fontWeight="bold">
@@ -28,6 +28,6 @@ function IndustryInput() {
       </FormControl>
     </>
   );
-}
+};
 
 export default IndustryInput;

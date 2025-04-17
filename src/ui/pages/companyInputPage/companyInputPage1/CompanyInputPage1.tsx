@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, Stack, Button } from "@mui/material";
 import FormContainer from "../common/FormContainer";
 import IndustryInput from "@/ui/pages/companyInputPage/companyInputPage1/IndustryInput";
@@ -6,7 +5,7 @@ import FacilityInput from "@/ui/pages/companyInputPage/companyInputPage1/Facilit
 import StepHeader from "../common/StepHeader";
 import InfoPreviewCard from "../common/InfoPreviewCard";
 
-function CompanyInputPage1() {
+const CompanyInputPage1 = () => {
   return (
     <Container sx={{ mt: 14 }}>
       <Stack spacing={4}>
@@ -29,6 +28,6 @@ function CompanyInputPage1() {
       </Stack>
     </Container>
   );
-}
+};
 
 export default CompanyInputPage1;

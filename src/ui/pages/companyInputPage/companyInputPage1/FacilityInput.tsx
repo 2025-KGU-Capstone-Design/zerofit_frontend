@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import { facilities } from "@/constants/facilities";
 
-function FacilityInput() {
+const FacilityInput = () => {
   return (
     <>
       <Typography variant="subtitle1" fontWeight="bold">
@@ -28,6 +28,6 @@ function FacilityInput() {
       </FormGroup>
     </>
   );
-}
+};
 
 export default FacilityInput;
