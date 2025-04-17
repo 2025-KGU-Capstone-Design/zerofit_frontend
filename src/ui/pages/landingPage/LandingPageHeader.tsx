@@ -1,19 +1,53 @@
-import {Link} from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Stack,
+  Box,
+  Link as MUILink,
+} from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const LandingPageHeader = () => {
-    return <>
-        <header className="w-full bg-mainnavy py-4 px-8 flex justify-start items-center shadow-md">
-            <h1 className="text-2xl font-bold">
-                <span>Zero</span>
-                <span className="text-mainmint">Fit</span>
-            </h1>
-            <nav className="px-14 md:flex gap-6 text-gray-300">
-                <Link to="/company-info/step1" className="hover:text-white transition">
-                    컨설팅
-                </Link>
-            </nav>
-        </header>
-    </>
-}
+  return (
+    <AppBar position="static" color="primary">
+      <Toolbar>
+        <Typography
+          variant="h5"
+          component={RouterLink}
+          to="/"
+          sx={{
+            color: "inherit",
+            fontWeight: "bold",
+            textDecoration: "none",
+          }}
+        >
+          <Box component="span">Zero</Box>
+          <Box component="span" color="secondary.main">
+            Fit
+          </Box>
+        </Typography>
+
+        <Stack
+          sx={{
+            ml: 6,
+          }}
+        >
+          <MUILink
+            component={RouterLink}
+            to="/company-info/step1"
+            underline="none"
+            sx={{
+              color: "grey.300", // theme?
+              "&:hover": { color: "white" },
+            }}
+          >
+            컨설팅
+          </MUILink>
+        </Stack>
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default LandingPageHeader;
