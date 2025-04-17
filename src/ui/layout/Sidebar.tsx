@@ -59,7 +59,7 @@ const Sidebar = () => {
                   sx={{
                     color: "white",
                     "&.Mui-selected": {
-                      backgroundColor: "#1F2937",
+                      backgroundColor: "#1F2937", // theme으로 뺄까?
                       "&:hover": {
                         backgroundColor: "#1F2937",
                       },
