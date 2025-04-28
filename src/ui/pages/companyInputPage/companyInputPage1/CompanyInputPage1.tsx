@@ -1,10 +1,10 @@
 import {useNavigate} from 'react-router-dom'
 import {Container, Stack, Button} from '@mui/material'
-import FormContainer from '../common/FormContainer'
+import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import IndustryInput from '@/ui/pages/companyInputPage/companyInputPage1/IndustryInput'
 import FacilityInput from '@/ui/pages/companyInputPage/companyInputPage1/FacilityInput'
-import StepHeader from '../common/StepHeader'
-import InfoPreviewCard from '../common/InfoPreviewCard'
+import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
+import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 
 const CompanyInputPage1 = () => {
     const navigate = useNavigate()

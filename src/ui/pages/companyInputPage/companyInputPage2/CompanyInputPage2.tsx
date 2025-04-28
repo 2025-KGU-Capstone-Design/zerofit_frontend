@@ -1,7 +1,7 @@
 import {Container, Stack, Button} from '@mui/material'
-import FormContainer from '../common/FormContainer'
-import StepHeader from '../common/StepHeader'
-import InfoPreviewCard from '../common/InfoPreviewCard'
+import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
+import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
+import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/InvestmentInput'
 
 const CompanyInputPage2 = () => {
