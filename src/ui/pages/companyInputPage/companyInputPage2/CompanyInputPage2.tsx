@@ -2,6 +2,7 @@ import {Container, Stack, Button} from '@mui/material'
 import FormContainer from '../common/FormContainer'
 import StepHeader from '../common/StepHeader'
 import InfoPreviewCard from '../common/InfoPreviewCard'
+import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/InvestmentInput'
 
 const CompanyInputPage2 = () => {
     return (
@@ -13,6 +14,7 @@ const CompanyInputPage2 = () => {
                     justifyContent='space-between'
                 >
                     <FormContainer>
+                        <InvestmentInput />
                         <Stack direction='row' justifyContent='flex-end'>
                             <Button
                                 variant='contained'
