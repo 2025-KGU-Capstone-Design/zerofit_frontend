@@ -21,6 +21,7 @@ const CompanyInputPage2 = () => {
                             placeholder='현재배출량을 입력하세요'
                             unitLabel='단위: tCO2eq'
                             type='number'
+                            disableNumberSpinner
                         />
                         <Stack direction='row' justifyContent='flex-end'>
                             <Button
