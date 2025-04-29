@@ -3,6 +3,7 @@ import Layout from '@/ui/layout/Layout.tsx'
 import LandingPage from '@/ui/pages/landingPage/LandingPage.tsx'
 import {sampleLoader} from '@/services/SampleService.ts'
 import CompanyInputPage1 from '@/ui/pages/companyInputPage/companyInputPage1/CompanyInputPage1'
+import CompanyInputPage2 from '@/ui/pages/companyInputPage/companyInputPage2/CompanyInputPage2'
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                     {
                         path: 'company-info/step1',
                         Component: CompanyInputPage1,
+                    },
+                    {
+                        path: 'company-info/step2',
+                        Component: CompanyInputPage2,
                     },
                 ],
             },

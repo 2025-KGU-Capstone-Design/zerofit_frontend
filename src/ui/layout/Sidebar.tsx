@@ -20,6 +20,7 @@ const navItems = [
     {
         label: '기업 정보 입력',
         to: '/company-info/step1',
+        match: '/company-info',
         icon: <ApartmentIcon />,
     },
     {
@@ -49,7 +50,8 @@ const Sidebar = () => {
             <Box sx={{overflow: 'auto'}}>
                 <List>
                     {navItems.map((item) => {
-                        const isSelected = location.pathname.startsWith(item.to)
+                        const base = item.match ?? item.to
+                        const isSelected = location.pathname.startsWith(base)
                         return (
                             <ListItem key={item.to} disablePadding sx={{mb: 1}}>
                                 <ListItemButton
