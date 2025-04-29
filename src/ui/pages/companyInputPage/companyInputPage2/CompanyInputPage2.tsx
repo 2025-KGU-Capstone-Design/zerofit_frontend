@@ -3,6 +3,7 @@ import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/InvestmentInput'
+import CommonInput from '@/ui/CommonInput'
 
 const CompanyInputPage2 = () => {
     return (
@@ -15,6 +16,12 @@ const CompanyInputPage2 = () => {
                 >
                     <FormContainer>
                         <InvestmentInput />
+                        <CommonInput
+                            label='현재 배출량'
+                            placeholder='현재배출량을 입력하세요'
+                            unitLabel='단위: tCO2eq'
+                            type='number'
+                        />
                         <Stack direction='row' justifyContent='flex-end'>
                             <Button
                                 variant='contained'
