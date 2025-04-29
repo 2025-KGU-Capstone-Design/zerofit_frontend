@@ -1,3 +1,4 @@
+import {useNavigate} from 'react-router-dom'
 import {Container, Stack, Button} from '@mui/material'
 import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
@@ -6,6 +7,7 @@ import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/Inves
 import CommonInput from '@/ui/CommonInput'
 
 const CompanyInputPage2 = () => {
+    const navigate = useNavigate()
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -23,11 +25,25 @@ const CompanyInputPage2 = () => {
                             type='number'
                             disableNumberSpinner
                         />
-                        <Stack direction='row' justifyContent='flex-end'>
+                        <Stack direction='row' justifyContent='space-between'>
+                            <Button
+                                variant='contained'
+                                size='large'
+                                onClick={() => navigate('/company-info/step1')}
+                                sx={{
+                                    bgcolor: 'white',
+                                    color: 'black',
+                                    border: '1px solid',
+                                    borderColor: 'grey.400',
+                                }}
+                            >
+                                이전
+                            </Button>
                             <Button
                                 variant='contained'
                                 color='primary'
                                 size='large'
+                                onClick={() => navigate('/company-info/step3')}
                             >
                                 다음
                             </Button>
