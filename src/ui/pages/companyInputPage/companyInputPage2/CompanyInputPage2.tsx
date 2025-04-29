@@ -19,7 +19,7 @@ const CompanyInputPage2 = () => {
                     <FormContainer>
                         <InvestmentInput />
                         <CommonInput
-                            label='현재 배출량'
+                            label='현재배출량 입력'
                             placeholder='현재배출량을 입력하세요'
                             unitLabel='단위: tCO2eq'
                             type='number'

@@ -4,7 +4,7 @@ const InvestmentInput = () => {
     return (
         <>
             <Typography variant='subtitle1' fontWeight='bold'>
-                투자가능 금액
+                투자가능금액 입력
             </Typography>
 
             <Slider
