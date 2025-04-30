@@ -3,7 +3,7 @@ import {Container, Stack, Button} from '@mui/material'
 import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
-import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/InvestmentInput'
+import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
 
 const CompanyInputPage2 = () => {
@@ -17,7 +17,13 @@ const CompanyInputPage2 = () => {
                     justifyContent='space-between'
                 >
                     <FormContainer>
-                        <InvestmentInput />
+                        <BaseSliderInput
+                            label='투자가능금액 입력'
+                            unit='백만 원'
+                            defaultValue={50}
+                            min={0}
+                            max={100}
+                        />
                         <CommonInput
                             label='현재배출량 입력'
                             placeholder='현재배출량을 입력하세요'

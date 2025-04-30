@@ -3,7 +3,7 @@ import {Container, Stack, Button} from '@mui/material'
 import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
-import TargetROIInput from '@/ui/pages/companyInputPage/companyInputPage3/TargetROIInput'
+import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
 
 const CompanyInputPage3 = () => {
@@ -24,7 +24,15 @@ const CompanyInputPage3 = () => {
                             type='number'
                             disableNumberSpinner
                         />
-                        <TargetROIInput />
+                        <BaseSliderInput
+                            label='목표ROI기간 입력'
+                            unit='년'
+                            defaultValue={2.5}
+                            min={0}
+                            max={5}
+                            step={0.1}
+                            valueLabelFormat={(value) => value.toFixed(1)}
+                        />
                         <Stack direction='row' justifyContent='space-between'>
                             <Button
                                 variant='contained'
