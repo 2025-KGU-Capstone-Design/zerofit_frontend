@@ -3,7 +3,7 @@ import {Container, Stack, Button} from '@mui/material'
 import FormContainer from '@/ui/pages/companyInputPage/common/FormContainer'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
-import InvestmentInput from '@/ui/pages/companyInputPage/companyInputPage2/InvestmentInput'
+import TargetROIInput from '@/ui/pages/companyInputPage/companyInputPage3/TargetROIInput'
 import CommonInput from '@/ui/CommonInput'
 
 const CompanyInputPage3 = () => {
@@ -24,7 +24,7 @@ const CompanyInputPage3 = () => {
                             type='number'
                             disableNumberSpinner
                         />
-                        <InvestmentInput />
+                        <TargetROIInput />
                         <Stack direction='row' justifyContent='space-between'>
                             <Button
                                 variant='contained'
@@ -43,7 +43,7 @@ const CompanyInputPage3 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => navigate('/company-info/step3')}
+                                onClick={() => navigate('/solution')}
                             >
                                 분석
                             </Button>
