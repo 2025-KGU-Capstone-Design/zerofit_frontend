@@ -14,6 +14,7 @@ const TargetROIInput = () => {
                 step={0.1}
                 valueLabelDisplay='on'
                 aria-label='목표ROI기간'
+                valueLabelFormat={(value) => value.toFixed(1)}
                 sx={{
                     '& .MuiSlider-rail': {bgcolor: 'grey.400'},
                     '& .MuiSlider-valueLabel': {
