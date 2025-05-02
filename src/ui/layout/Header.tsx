@@ -1,5 +1,6 @@
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {Link} from 'react-router-dom'
+import Logo from '@/assets/icons/logo1.png'
 
 const drawerWidth = 240
 
@@ -14,6 +15,7 @@ const Header = () => {
             }}
         >
             <Toolbar
+                disableGutters
                 sx={{
                     backgroundColor: (theme) => theme.palette.primary.main,
                     width: drawerWidth,
@@ -24,17 +26,22 @@ const Header = () => {
                     component={Link}
                     to='/'
                     sx={{
-                        textDecoration: 'none',
                         color: 'inherit',
                         fontWeight: 'bold',
+                        textDecoration: 'none',
+                        ml: 2,
                     }}
                 >
-                    {'Zero'}
-                    <Box
-                        component='span'
-                        sx={{color: (theme) => theme.palette.secondary.main}}
-                    >
-                        Fit
+                    <Box display='flex' alignItems='center'>
+                        <Box
+                            component='img'
+                            src={Logo}
+                            sx={{width: 27, height: 27, mr: 0.3}}
+                        />
+                        <Box component='span'>Zero</Box>
+                        <Box component='span' color='secondary.main'>
+                            Fit
+                        </Box>
                     </Box>
                 </Typography>
             </Toolbar>
