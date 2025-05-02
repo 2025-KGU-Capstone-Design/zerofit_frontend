@@ -7,6 +7,7 @@ import {
     Link as MUILink,
 } from '@mui/material'
 import {Link as RouterLink} from 'react-router-dom'
+import Logo from '@/assets/icons/logo1.png'
 
 const LandingPageHeader = () => {
     return (
@@ -22,9 +23,16 @@ const LandingPageHeader = () => {
                         textDecoration: 'none',
                     }}
                 >
-                    <Box component='span'>Zero</Box>
-                    <Box component='span' color='secondary.main'>
-                        Fit
+                    <Box display='flex' alignItems='center'>
+                        <Box
+                            component='img'
+                            src={Logo}
+                            sx={{width: 29, height: 29, mr: 0.3}}
+                        />
+                        <Box component='span'>Zero</Box>
+                        <Box component='span' color='secondary.main'>
+                            Fit
+                        </Box>
                     </Box>
                 </Typography>
 
