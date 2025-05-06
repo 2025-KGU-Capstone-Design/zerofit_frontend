@@ -30,7 +30,7 @@ const CompanyInputPage1 = () => {
                             </Button>
                         </Stack>
                     </FormContainer>
-                    <InfoPreviewCard />
+                    <InfoPreviewCard step={1} />
                 </Stack>
             </Stack>
         </Container>

@@ -1,8 +1,15 @@
 import {Stack, Card, CardContent, Typography} from '@mui/material'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
-const InfoPreviewCard = () => {
+interface InfoPreviewCardProps {
+    step: number
+}
+
+const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
+    const industry = useCompanyInputStore((state) => state.industry)
+
     return (
-        <Stack flex={1} sx={{maxWidth: '260px'}}>
+        <Stack flex={1} sx={{maxWidth: 260}}>
             <Card sx={{p: 2}}>
                 <CardContent>
                     <Typography
@@ -12,12 +19,14 @@ const InfoPreviewCard = () => {
                     >
                         입력된 정보
                     </Typography>
-                    <Typography variant='body1' sx={{mb: 2}}>
-                        산업군: 없음
-                    </Typography>
-                    <Typography variant='body1' sx={{mb: 2}}>
-                        보유설비: 없음
-                    </Typography>
+
+                    {step >= 1 && (
+                        <>
+                            <Typography variant='body1' sx={{mb: 2}}>
+                                산업군: {industry || '선택 안됨'}
+                            </Typography>
+                        </>
+                    )}
                 </CardContent>
             </Card>
         </Stack>
