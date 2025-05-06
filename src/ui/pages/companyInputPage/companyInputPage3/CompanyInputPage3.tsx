@@ -9,6 +9,7 @@ import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage3 = () => {
     const navigate = useNavigate()
+    const resetState = useCompanyInputStore((state) => state.resetState)
 
     const targetEmission = useCompanyInputStore((state) => state.targetEmission)
     const setTargetEmission = useCompanyInputStore(
@@ -68,7 +69,10 @@ const CompanyInputPage3 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => navigate('/solution')}
+                                onClick={() => {
+                                    resetState()
+                                    navigate('/solution')
+                                }}
                             >
                                 분석
                             </Button>

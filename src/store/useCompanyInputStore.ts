@@ -9,6 +9,7 @@ type CompanyInputStore = CompanyInput & {
     setCurrentEmission: (currentEmission: number) => void
     setTargetEmission: (targetEmission: number) => void
     setTargetRoiPeriod: (targetRoiPeriod?: number) => void
+    resetState: () => void
 }
 
 const useCompanyInputStore = create<CompanyInputStore>()(
