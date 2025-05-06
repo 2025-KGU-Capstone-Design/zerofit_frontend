@@ -17,6 +17,10 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const currentEmission = useCompanyInputStore(
         (state) => state.currentEmission
     )
+    const targetEmission = useCompanyInputStore((state) => state.targetEmission)
+    const targetRoiPeriod = useCompanyInputStore(
+        (state) => state.targetRoiPeriod
+    )
 
     const facilitiesDisplay = useMemo(
         () =>
@@ -62,6 +66,25 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                                 현재배출량:{' '}
                                 {currentEmission
                                     ? `${currentEmission.toLocaleString()} tCO₂`
+                                    : '입력되지 않음'}
+                            </Typography>
+                        </>
+                    )}
+
+                    {step >= 3 && (
+                        <>
+                            <Typography variant='body1' sx={{mb: 2}}>
+                                목표배출량:{' '}
+                                {targetEmission
+                                    ? `${targetEmission.toLocaleString()} tCO₂`
+                                    : '입력되지 않음'}
+                            </Typography>
+                            <Typography variant='body1'>
+                                목표ROI기간:{' '}
+                                {targetRoiPeriod != null
+                                    ? targetRoiPeriod
+                                        ? `${targetRoiPeriod} 년`
+                                        : '0년'
                                     : '입력되지 않음'}
                             </Typography>
                         </>
