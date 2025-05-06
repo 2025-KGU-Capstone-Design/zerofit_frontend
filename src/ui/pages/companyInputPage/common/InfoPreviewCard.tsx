@@ -1,3 +1,4 @@
+import {useMemo} from 'react'
 import {Stack, Card, CardContent, Typography} from '@mui/material'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 
@@ -7,7 +8,17 @@ interface InfoPreviewCardProps {
 
 const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const industry = useCompanyInputStore((state) => state.industry)
+    const ownedFacilities = useCompanyInputStore(
+        (state) => state.ownedFacilities
+    )
 
+    const facilitiesDisplay = useMemo(
+        () =>
+            ownedFacilities.length > 0
+                ? ownedFacilities.join(', ')
+                : '입력된 설비 없음',
+        [ownedFacilities]
+    )
     return (
         <Stack flex={1} sx={{maxWidth: 260}}>
             <Card sx={{p: 2}}>
@@ -24,6 +35,9 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                         <>
                             <Typography variant='body1' sx={{mb: 2}}>
                                 산업군: {industry || '선택 안됨'}
+                            </Typography>
+                            <Typography variant='body1' sx={{mb: 2}}>
+                                보유설비: {facilitiesDisplay}
                             </Typography>
                         </>
                     )}
