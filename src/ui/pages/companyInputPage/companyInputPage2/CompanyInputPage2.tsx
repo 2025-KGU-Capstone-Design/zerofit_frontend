@@ -15,6 +15,12 @@ const CompanyInputPage2 = () => {
     const setCurrentEmission = useCompanyInputStore(
         (state) => state.setCurrentEmission
     )
+    const investmentBudget = useCompanyInputStore(
+        (state) => state.investmentBudget
+    )
+    const setInvestmentBudget = useCompanyInputStore(
+        (state) => state.setInvestmentBudget
+    )
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -27,9 +33,10 @@ const CompanyInputPage2 = () => {
                         <BaseSliderInput
                             label='투자가능금액 입력'
                             unit='백만 원'
-                            defaultValue={50}
                             min={0}
                             max={100}
+                            value={investmentBudget}
+                            onChange={setInvestmentBudget}
                         />
                         <CommonInput
                             label='현재배출량 입력'
