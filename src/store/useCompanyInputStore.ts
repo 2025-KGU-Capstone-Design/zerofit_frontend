@@ -29,6 +29,17 @@ const useCompanyInputStore = create<CompanyInputStore>()(
             setCurrentEmission: (currentEmission) => set({currentEmission}),
             setTargetEmission: (targetEmission) => set({targetEmission}),
             setTargetRoiPeriod: (targetRoiPeriod) => set({targetRoiPeriod}),
+
+            // 상태 초기화
+            resetState: () =>
+                set({
+                    industry: '',
+                    ownedFacilities: [],
+                    investmentBudget: undefined,
+                    currentEmission: 0,
+                    targetEmission: 0,
+                    targetRoiPeriod: undefined,
+                }),
         }),
         {
             name: 'company-input', // localStorage key
