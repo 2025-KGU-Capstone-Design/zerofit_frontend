@@ -47,7 +47,7 @@ const BaseSliderInput = ({
 
     return (
         <Box sx={{width: '100%', mb: 2}}>
-            <Typography variant='subtitle1' fontWeight='bold' gutterBottom>
+            <Typography variant='subtitle1' fontWeight='bold' sx={{mb: 5}}>
                 {label}
             </Typography>
             <StyledSlider
@@ -60,7 +60,7 @@ const BaseSliderInput = ({
                 valueLabelFormat={valueLabelFormat}
                 aria-label={label}
             />
-            <Typography variant='body2' color='text.secondary'>
+            <Typography variant='body2' color='text.secondary' sx={{mt: 1}}>
                 단위: {unit}
             </Typography>
         </Box>
