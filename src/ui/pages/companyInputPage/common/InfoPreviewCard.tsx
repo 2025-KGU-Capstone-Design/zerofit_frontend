@@ -11,6 +11,9 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const ownedFacilities = useCompanyInputStore(
         (state) => state.ownedFacilities
     )
+    const currentEmission = useCompanyInputStore(
+        (state) => state.currentEmission
+    )
 
     const facilitiesDisplay = useMemo(
         () =>
@@ -38,6 +41,17 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                             </Typography>
                             <Typography variant='body1' sx={{mb: 2}}>
                                 보유설비: {facilitiesDisplay}
+                            </Typography>
+                        </>
+                    )}
+
+                    {step >= 2 && (
+                        <>
+                            <Typography variant='body1' sx={{mb: 2}}>
+                                현재배출량:{' '}
+                                {currentEmission
+                                    ? `${currentEmission.toLocaleString()} tCO₂`
+                                    : '입력되지 않음'}
                             </Typography>
                         </>
                     )}

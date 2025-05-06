@@ -5,9 +5,16 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage2 = () => {
     const navigate = useNavigate()
+    const currentEmission = useCompanyInputStore(
+        (state) => state.currentEmission
+    )
+    const setCurrentEmission = useCompanyInputStore(
+        (state) => state.setCurrentEmission
+    )
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -30,6 +37,10 @@ const CompanyInputPage2 = () => {
                             unitLabel='단위: tCO2eq'
                             type='number'
                             disableNumberSpinner
+                            value={currentEmission}
+                            onChange={(e) =>
+                                setCurrentEmission(Number(e.target.value))
+                            }
                         />
                         <Stack direction='row' justifyContent='space-between'>
                             <Button
@@ -55,7 +66,7 @@ const CompanyInputPage2 = () => {
                             </Button>
                         </Stack>
                     </FormContainer>
-                    <InfoPreviewCard />
+                    <InfoPreviewCard step={2} />
                 </Stack>
             </Stack>
         </Container>
