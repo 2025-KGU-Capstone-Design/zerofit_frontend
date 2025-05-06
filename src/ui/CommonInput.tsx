@@ -6,6 +6,8 @@ export interface CommonInputProps {
     unitLabel?: string
     type?: React.HTMLInputTypeAttribute
     disableNumberSpinner?: boolean
+    value: string | number
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const CommonInput = ({
@@ -14,6 +16,8 @@ const CommonInput = ({
     unitLabel = '',
     type = 'text',
     disableNumberSpinner = false,
+    value,
+    onChange,
 }: CommonInputProps) => (
     <Stack spacing={1} sx={{width: '100%'}}>
         <Typography variant='subtitle1' fontWeight='bold'>
@@ -23,6 +27,8 @@ const CommonInput = ({
             variant='outlined'
             placeholder={placeholder}
             type={type}
+            value={value}
+            onChange={onChange}
             sx={{
                 ...(disableNumberSpinner && type === 'number'
                     ? {
