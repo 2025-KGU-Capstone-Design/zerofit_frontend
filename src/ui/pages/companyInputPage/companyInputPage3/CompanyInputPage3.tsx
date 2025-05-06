@@ -5,9 +5,22 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage3 = () => {
     const navigate = useNavigate()
+    const resetState = useCompanyInputStore((state) => state.resetState)
+
+    const targetEmission = useCompanyInputStore((state) => state.targetEmission)
+    const setTargetEmission = useCompanyInputStore(
+        (state) => state.setTargetEmission
+    )
+    const targetRoiPeriod = useCompanyInputStore(
+        (state) => state.targetRoiPeriod
+    )
+    const setTargetRoiPeriod = useCompanyInputStore(
+        (state) => state.setTargetRoiPeriod
+    )
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -23,14 +36,19 @@ const CompanyInputPage3 = () => {
                             unitLabel='단위: tCO2eq'
                             type='number'
                             disableNumberSpinner
+                            value={targetEmission}
+                            onChange={(e) =>
+                                setTargetEmission(Number(e.target.value))
+                            }
                         />
                         <BaseSliderInput
                             label='목표ROI기간 입력'
                             unit='년'
-                            defaultValue={2.5}
                             min={0}
                             max={5}
                             step={0.1}
+                            value={targetRoiPeriod}
+                            onChange={(value) => setTargetRoiPeriod(value)}
                             valueLabelFormat={(value) => value.toFixed(1)}
                         />
                         <Stack direction='row' justifyContent='space-between'>
@@ -51,13 +69,16 @@ const CompanyInputPage3 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => navigate('/solution')}
+                                onClick={() => {
+                                    resetState()
+                                    navigate('/solution')
+                                }}
                             >
                                 분석
                             </Button>
                         </Stack>
                     </FormContainer>
-                    <InfoPreviewCard />
+                    <InfoPreviewCard step={3} />
                 </Stack>
             </Stack>
         </Container>

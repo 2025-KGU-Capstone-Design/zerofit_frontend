@@ -1,10 +1,12 @@
 import {AppBar, Toolbar, Typography, Box} from '@mui/material'
 import {Link} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const drawerWidth = 240
 
 const Header = () => {
+    const resetState = useCompanyInputStore((state) => state.resetState)
     return (
         <AppBar
             position='fixed'
@@ -25,6 +27,7 @@ const Header = () => {
                     variant='h6'
                     component={Link}
                     to='/'
+                    onClick={resetState}
                     sx={{
                         color: 'inherit',
                         fontWeight: 'bold',

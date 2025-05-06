@@ -5,9 +5,22 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage2 = () => {
     const navigate = useNavigate()
+    const currentEmission = useCompanyInputStore(
+        (state) => state.currentEmission
+    )
+    const setCurrentEmission = useCompanyInputStore(
+        (state) => state.setCurrentEmission
+    )
+    const investmentBudget = useCompanyInputStore(
+        (state) => state.investmentBudget
+    )
+    const setInvestmentBudget = useCompanyInputStore(
+        (state) => state.setInvestmentBudget
+    )
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -20,9 +33,10 @@ const CompanyInputPage2 = () => {
                         <BaseSliderInput
                             label='투자가능금액 입력'
                             unit='백만 원'
-                            defaultValue={50}
                             min={0}
                             max={100}
+                            value={investmentBudget}
+                            onChange={setInvestmentBudget}
                         />
                         <CommonInput
                             label='현재배출량 입력'
@@ -30,6 +44,10 @@ const CompanyInputPage2 = () => {
                             unitLabel='단위: tCO2eq'
                             type='number'
                             disableNumberSpinner
+                            value={currentEmission}
+                            onChange={(e) =>
+                                setCurrentEmission(Number(e.target.value))
+                            }
                         />
                         <Stack direction='row' justifyContent='space-between'>
                             <Button
@@ -55,7 +73,7 @@ const CompanyInputPage2 = () => {
                             </Button>
                         </Stack>
                     </FormContainer>
-                    <InfoPreviewCard />
+                    <InfoPreviewCard step={2} />
                 </Stack>
             </Stack>
         </Container>
