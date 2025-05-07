@@ -1,5 +1,4 @@
 import {Box, Typography} from '@mui/material'
-import Container from '@mui/material/Container'
 import SolutionTab from './SoutionTab'
 
 const SolutionRecommend = () => {

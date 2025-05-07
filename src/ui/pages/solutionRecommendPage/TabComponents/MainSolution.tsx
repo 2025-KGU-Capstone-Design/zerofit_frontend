@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Typography, Box, Stack, Grid} from '@mui/material'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
-import Ranking from '../shared/Ranking'
+import Ranking from '../common/Ranking'
 
 const MainSolution = () => {
     const [bookmarked, setBookmarked] = useState(false)
