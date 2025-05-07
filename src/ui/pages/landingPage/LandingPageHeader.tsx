@@ -8,8 +8,10 @@ import {
 } from '@mui/material'
 import {Link as RouterLink} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const LandingPageHeader = () => {
+    const resetState = useCompanyInputStore((state) => state.resetState)
     return (
         <AppBar position='static' color='primary'>
             <Toolbar>
@@ -44,6 +46,7 @@ const LandingPageHeader = () => {
                     <MUILink
                         component={RouterLink}
                         to='/company-info/step1'
+                        onClick={resetState}
                         underline='none'
                         sx={{
                             color: 'grey.300', // theme?
