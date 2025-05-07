@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import {Typography, Box, Stack} from '@mui/material'
+import {Typography, Box, Stack, Grid} from '@mui/material'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
-import Ranking from './Ranking'
+import Ranking from '../shared/Ranking'
 
 const MainSolution = () => {
     const [bookmarked, setBookmarked] = useState(false)
@@ -30,7 +30,7 @@ const MainSolution = () => {
                         sx={{
                             width: '40px',
                             height: '40px',
-                            borderRadius: '7px',
+                            borderRadius: '8px',
                             border: '1px solid',
                             borderColor: '#E5E7EB',
                             display: 'flex',
@@ -47,28 +47,146 @@ const MainSolution = () => {
                         )}
                     </Box>
                 </Stack>
-
                 <Box
                     sx={{
                         bgcolor: '#F9FAFB',
-                        borderRadius: '16px',
-                        my: '31px',
+                        borderRadius: '8px',
                         padding: '24px',
-                        display: 'flex',
-                        justifyContent: 'space-between',
+                        my: '31px',
                     }}
                 >
-                    <Box>
-                        <Typography sx={{fontWeight: 700, fontSize: '20px'}}>
-                            개선 구분: (개선 구분)
-                        </Typography>
-                        <Typography
-                            sx={{pt: '8px', color: '#4B5563', fontSize: '14px'}}
-                        >
-                            (산업군)
-                        </Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Box>
+                            <Typography
+                                sx={{fontWeight: 700, fontSize: '20px'}}
+                            >
+                                개선 구분: (개선 구분)
+                            </Typography>
+                            <Typography
+                                sx={{
+                                    pt: '8px',
+                                    color: '#4B5563',
+                                    fontSize: '14px',
+                                }}
+                            >
+                                (산업군)
+                            </Typography>
+                        </Box>
+                        <Ranking />
                     </Box>
-                    <Ranking />
+                    <Stack
+                        direction='row'
+                        spacing={3}
+                        sx={{
+                            mt: '25px',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                대상 설비
+                            </Typography>
+                            <Typography sx={{fontSize: 16}}>
+                                (대상 설비)
+                            </Typography>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                대상 설비
+                            </Typography>
+                            <Typography sx={{fontSize: 16}}>
+                                (대상 설비)
+                            </Typography>
+                        </Box>
+                    </Stack>
+                    <Stack
+                        direction='row'
+                        spacing={3}
+                        sx={{
+                            mt: '25px',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                연간 온실가스 감축량
+                            </Typography>
+                            <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
+                                (감축량) tCO₂
+                            </Typography>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                연간 절감액
+                            </Typography>
+                            <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
+                                (1.0) 백만 원
+                            </Typography>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                투자 회수 기간
+                            </Typography>
+                            <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
+                                (기간) 년
+                            </Typography>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: '16px',
+                                bgcolor: '#FFFFFF',
+                                borderRadius: '8px',
+                                flex: 1,
+                            }}
+                        >
+                            <Typography sx={{color: '#4B5563', fontSize: 14}}>
+                                투자 비용
+                            </Typography>
+                            <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
+                                (비용) 백만 원
+                            </Typography>
+                        </Box>
+                    </Stack>
                 </Box>
             </Box>
         </Box>
