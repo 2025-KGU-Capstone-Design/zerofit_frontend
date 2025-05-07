@@ -29,6 +29,10 @@ const router = createBrowserRouter([
                         path: 'company-info/step1',
                         Component: CompanyInputPage1,
                     },
+                    {
+                        path: 'solution',
+                        Component: SolutionRecommend,
+                    },
                 ],
             },
         ],
