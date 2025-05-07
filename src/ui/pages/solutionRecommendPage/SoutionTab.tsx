@@ -2,7 +2,7 @@ import * as React from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
-import SolutionContents from './SolutionContents'
+import SolutionContents from './TabComponents/SolutionContents'
 
 interface TabPanelProps {
     children?: React.ReactNode

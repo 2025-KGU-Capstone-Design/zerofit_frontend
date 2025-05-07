@@ -1,12 +1,13 @@
-import {Typography, Box, Stack} from '@mui/material'
-import React from 'react'
-import MainSolution from './TabComponents/MainSolution'
+import {Box, Stack} from '@mui/material'
+import MainSolution from './MainSolution'
 
 const SolutionContents = () => {
     return (
         <Stack sx={{mt: '43px'}}>
             <Stack direction='row' spacing='31px' sx={{height: '476px'}}>
+                {/* 종합 최적 솔루션 */}
                 <MainSolution />
+                {/* 종합 최적 솔루션 비교 */}
                 <Box
                     sx={{
                         bgcolor: '#FFFFFF',
