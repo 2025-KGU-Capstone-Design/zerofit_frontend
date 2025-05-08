@@ -1,22 +1,15 @@
-import {useState} from 'react'
 import {Typography, Box, Stack, Grid} from '@mui/material'
-import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
-import BookmarkIcon from '@mui/icons-material/Bookmark'
-import Ranking from '../shared/Ranking'
+
+import Ranking from '../common/Ranking'
+import Bookmark from '../common/Bookmark'
 
 const MainSolution = () => {
-    const [bookmarked, setBookmarked] = useState(false)
-
-    const handleBookmark = () => {
-        setBookmarked((prev) => !prev)
-    }
-
     return (
         <Box
             sx={{
                 bgcolor: '#FFFFFF',
                 width: '907px',
-                borderRadius: '16px',
+                borderRadius: '8px',
                 border: '1px solid',
                 borderColor: '#E5E7EB',
             }}
@@ -26,26 +19,7 @@ const MainSolution = () => {
                     <Typography sx={{fontSize: '18px'}}>
                         종합 최적 솔루션
                     </Typography>
-                    <Box
-                        sx={{
-                            width: '40px',
-                            height: '40px',
-                            borderRadius: '8px',
-                            border: '1px solid',
-                            borderColor: '#E5E7EB',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        {bookmarked ? (
-                            <BookmarkIcon onClick={handleBookmark} />
-                        ) : (
-                            <BookmarkBorderOutlinedIcon
-                                onClick={handleBookmark}
-                            />
-                        )}
-                    </Box>
+                    <Bookmark />
                 </Stack>
                 <Box
                     sx={{

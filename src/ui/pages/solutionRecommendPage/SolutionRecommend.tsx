@@ -1,10 +1,9 @@
 import {Box, Typography} from '@mui/material'
-import Container from '@mui/material/Container'
 import SolutionTab from './SoutionTab'
 
 const SolutionRecommend = () => {
     return (
-        <Box sx={{mt: 14, width: 1376, mx: 'auto'}}>
+        <Box sx={{my: 14, width: 1376, mx: 'auto'}}>
             <Box>
                 <Typography
                     sx={{fontWeight: 700, fontSize: 24, textAlign: 'center'}}
