@@ -1,5 +1,6 @@
-import {Box, Stack} from '@mui/material'
+import {Box, Stack, Typography} from '@mui/material'
 import MainSolution from './MainSolution'
+import RadarChart from './RadarChart'
 
 const SolutionContents = () => {
     return (
@@ -17,7 +18,12 @@ const SolutionContents = () => {
                         borderColor: '#E5E7EB',
                     }}
                 >
-                    hi
+                    <Box sx={{padding: '24px'}}>
+                        <Typography sx={{fontSize: '18px'}}>
+                            종합 최적 솔루션 비교
+                        </Typography>
+                        <RadarChart />
+                    </Box>
                 </Box>
             </Stack>
         </Stack>
