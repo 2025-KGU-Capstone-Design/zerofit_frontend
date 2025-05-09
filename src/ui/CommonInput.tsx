@@ -6,7 +6,7 @@ export interface CommonInputProps {
     unitLabel?: string
     type?: React.HTMLInputTypeAttribute
     disableNumberSpinner?: boolean
-    value: string | number
+    value?: string | number
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -27,7 +27,7 @@ const CommonInput = ({
             variant='outlined'
             placeholder={placeholder}
             type={type}
-            value={value}
+            value={value ?? ''}
             onChange={onChange}
             sx={{
                 ...(disableNumberSpinner && type === 'number'

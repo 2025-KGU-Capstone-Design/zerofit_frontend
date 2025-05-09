@@ -32,14 +32,19 @@ const CompanyInputPage3 = () => {
                     <FormContainer>
                         <CommonInput
                             label='목표배출량 입력'
-                            placeholder='목표배출량을 입력하세요'
+                            placeholder='목표배출량을 입력하세요.'
                             unitLabel='단위: tCO2eq'
                             type='number'
                             disableNumberSpinner
                             value={targetEmission}
-                            onChange={(e) =>
-                                setTargetEmission(Number(e.target.value))
-                            }
+                            onChange={(e) => {
+                                const v = e.target.value
+                                if (v === '') {
+                                    setTargetEmission(undefined)
+                                } else {
+                                    setTargetEmission(Number(v))
+                                }
+                            }}
                         />
                         <BaseSliderInput
                             label='목표ROI기간 입력'

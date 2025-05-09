@@ -5,10 +5,10 @@ import {CompanyInput} from '@/types/companyInput'
 type CompanyInputStore = CompanyInput & {
     setIndustry: (industry: string) => void
     setOwnedFacilities: (ownedFacilities: string[]) => void
-    setInvestmentBudget: (investmentBudget?: number) => void
-    setCurrentEmission: (currentEmission: number) => void
-    setTargetEmission: (targetEmission: number) => void
-    setTargetRoiPeriod: (targetRoiPeriod?: number) => void
+    setInvestmentBudget: (investmentBudget: number) => void
+    setCurrentEmission: (currentEmission?: number) => void
+    setTargetEmission: (targetEmission?: number) => void
+    setTargetRoiPeriod: (targetRoiPeriod: number) => void
     resetState: () => void
 }
 
@@ -18,10 +18,10 @@ const useCompanyInputStore = create<CompanyInputStore>()(
             // 초기값
             industry: '',
             ownedFacilities: [],
-            investmentBudget: undefined,
-            currentEmission: 0,
-            targetEmission: 0,
-            targetRoiPeriod: undefined,
+            investmentBudget: 50,
+            currentEmission: undefined,
+            targetEmission: undefined,
+            targetRoiPeriod: 2.5,
 
             // 액션
             setIndustry: (industry) => set({industry}),
@@ -36,10 +36,10 @@ const useCompanyInputStore = create<CompanyInputStore>()(
                 set({
                     industry: '',
                     ownedFacilities: [],
-                    investmentBudget: undefined,
-                    currentEmission: 0,
-                    targetEmission: 0,
-                    targetRoiPeriod: undefined,
+                    investmentBudget: 50,
+                    currentEmission: undefined,
+                    targetEmission: undefined,
+                    targetRoiPeriod: 2.5,
                 }),
         }),
         {

@@ -40,14 +40,19 @@ const CompanyInputPage2 = () => {
                         />
                         <CommonInput
                             label='현재배출량 입력'
-                            placeholder='현재배출량을 입력하세요'
+                            placeholder='현재배출량을 입력하세요.'
                             unitLabel='단위: tCO2eq'
                             type='number'
                             disableNumberSpinner
                             value={currentEmission}
-                            onChange={(e) =>
-                                setCurrentEmission(Number(e.target.value))
-                            }
+                            onChange={(e) => {
+                                const v = e.target.value
+                                if (v === '') {
+                                    setCurrentEmission(undefined)
+                                } else {
+                                    setCurrentEmission(Number(v))
+                                }
+                            }}
                         />
                         <Stack direction='row' justifyContent='space-between'>
                             <Button

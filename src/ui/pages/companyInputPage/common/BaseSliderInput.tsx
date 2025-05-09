@@ -15,8 +15,7 @@ const StyledSlider = styled(Slider)(({theme}) => ({
 interface BaseSliderInputProps {
     label: string
     unit: string
-    /** 슬라이더 값 (undefined일 때 최소값 사용) */
-    value?: number
+    value: number
     /** 값 변경 시 호출, 새로운 값이 인자로 넘어옴 */
     onChange: (value: number) => void
     min: number
@@ -51,7 +50,7 @@ const BaseSliderInput = ({
                 {label}
             </Typography>
             <StyledSlider
-                value={value ?? min}
+                value={value}
                 onChange={handleChange}
                 min={min}
                 max={max}
