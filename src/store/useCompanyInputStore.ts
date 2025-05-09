@@ -6,8 +6,8 @@ type CompanyInputStore = CompanyInput & {
     setIndustry: (industry: string) => void
     setOwnedFacilities: (ownedFacilities: string[]) => void
     setInvestmentBudget: (investmentBudget: number) => void
-    setCurrentEmission: (currentEmission: number) => void
-    setTargetEmission: (targetEmission: number) => void
+    setCurrentEmission: (currentEmission?: number) => void
+    setTargetEmission: (targetEmission?: number) => void
     setTargetRoiPeriod: (targetRoiPeriod: number) => void
     resetState: () => void
 }
@@ -19,8 +19,8 @@ const useCompanyInputStore = create<CompanyInputStore>()(
             industry: '',
             ownedFacilities: [],
             investmentBudget: 50,
-            currentEmission: 0,
-            targetEmission: 0,
+            currentEmission: undefined,
+            targetEmission: undefined,
             targetRoiPeriod: 2.5,
 
             // 액션
@@ -37,8 +37,8 @@ const useCompanyInputStore = create<CompanyInputStore>()(
                     industry: '',
                     ownedFacilities: [],
                     investmentBudget: 50,
-                    currentEmission: 0,
-                    targetEmission: 0,
+                    currentEmission: undefined,
+                    targetEmission: undefined,
                     targetRoiPeriod: 2.5,
                 }),
         }),
