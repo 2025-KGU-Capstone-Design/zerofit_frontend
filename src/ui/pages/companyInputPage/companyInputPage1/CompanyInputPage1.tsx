@@ -5,9 +5,29 @@ import IndustryInput from '@/ui/pages/companyInputPage/companyInputPage1/Industr
 import FacilityInput from '@/ui/pages/companyInputPage/companyInputPage1/FacilityInput'
 import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
+import {useSnackbar} from '@/ui/CommonSnackbar'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage1 = () => {
     const navigate = useNavigate()
+    const openSnackbar = useSnackbar()
+
+    const industry = useCompanyInputStore((state) => state.industry)
+    const ownedFacilities = useCompanyInputStore(
+        (state) => state.ownedFacilities
+    )
+
+    const handleNext = () => {
+        if (!industry) {
+            openSnackbar(' 산업군을 선택해주세요.', 'error')
+            return
+        }
+        if (ownedFacilities.length === 0) {
+            openSnackbar(' 하나 이상의 설비를 선택해주세요.', 'error')
+            return
+        }
+        navigate('/company-info/step2')
+    }
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -24,7 +44,7 @@ const CompanyInputPage1 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => navigate('/company-info/step2')}
+                                onClick={handleNext}
                             >
                                 다음
                             </Button>
