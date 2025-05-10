@@ -77,6 +77,7 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
                         px: 2.5,
                         py: 1.5,
                         fontSize: '1.1rem',
+                        fontWeight: 'bold',
                     }}
                 >
                     {message}

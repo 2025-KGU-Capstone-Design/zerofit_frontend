@@ -5,11 +5,13 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage3 = () => {
     const navigate = useNavigate()
     const resetState = useCompanyInputStore((state) => state.resetState)
+    const {openSnackbar, closeSnackbar} = useSnackbar()
 
     const targetEmission = useCompanyInputStore((state) => state.targetEmission)
     const setTargetEmission = useCompanyInputStore(
@@ -21,6 +23,16 @@ const CompanyInputPage3 = () => {
     const setTargetRoiPeriod = useCompanyInputStore(
         (state) => state.setTargetRoiPeriod
     )
+
+    const handleNext = () => {
+        if (targetEmission === undefined || targetEmission === null) {
+            openSnackbar(' 목표 배출량을 입력해주세요.', 'error')
+            return
+        }
+        closeSnackbar()
+        resetState()
+        navigate('/solution')
+    }
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -74,10 +86,7 @@ const CompanyInputPage3 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => {
-                                    resetState()
-                                    navigate('/solution')
-                                }}
+                                onClick={handleNext}
                             >
                                 분석
                             </Button>

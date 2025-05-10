@@ -5,10 +5,13 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage2 = () => {
     const navigate = useNavigate()
+    const {openSnackbar, closeSnackbar} = useSnackbar()
+
     const currentEmission = useCompanyInputStore(
         (state) => state.currentEmission
     )
@@ -21,6 +24,15 @@ const CompanyInputPage2 = () => {
     const setInvestmentBudget = useCompanyInputStore(
         (state) => state.setInvestmentBudget
     )
+
+    const handleNext = () => {
+        if (currentEmission === undefined || currentEmission === null) {
+            openSnackbar(' 현재 배출량을 입력해주세요.', 'error')
+            return
+        }
+        closeSnackbar()
+        navigate('/company-info/step3')
+    }
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
@@ -72,7 +84,7 @@ const CompanyInputPage2 = () => {
                                 variant='contained'
                                 color='primary'
                                 size='large'
-                                onClick={() => navigate('/company-info/step3')}
+                                onClick={handleNext}
                             >
                                 다음
                             </Button>
