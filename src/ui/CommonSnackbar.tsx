@@ -71,7 +71,13 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
                 <Alert
                     severity={severity}
                     onClose={handleClose}
-                    sx={{width: '100%'}}
+                    sx={{
+                        width: 'auto',
+                        minWidth: 360,
+                        px: 2.5,
+                        py: 1.5,
+                        fontSize: '1.1rem',
+                    }}
                 >
                     {message}
                 </Alert>
