@@ -10,7 +10,7 @@ import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const CompanyInputPage1 = () => {
     const navigate = useNavigate()
-    const openSnackbar = useSnackbar()
+    const {openSnackbar, closeSnackbar} = useSnackbar()
 
     const industry = useCompanyInputStore((state) => state.industry)
     const ownedFacilities = useCompanyInputStore(
@@ -26,6 +26,7 @@ const CompanyInputPage1 = () => {
             openSnackbar(' 하나 이상의 설비를 선택해주세요.', 'error')
             return
         }
+        closeSnackbar()
         navigate('/company-info/step2')
     }
     return (

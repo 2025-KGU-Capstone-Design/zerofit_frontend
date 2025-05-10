@@ -14,6 +14,7 @@ interface SnackbarContextType {
         severity?: AlertColor,
         duration?: number
     ) => void
+    closeSnackbar: () => void
 }
 
 const SnackbarContext = createContext<SnackbarContextType | undefined>(
@@ -52,8 +53,12 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
         []
     )
 
+    const closeSnackbar = useCallback(() => {
+        setOpen(false)
+    }, [])
+
     return (
-        <SnackbarContext.Provider value={{openSnackbar}}>
+        <SnackbarContext.Provider value={{openSnackbar, closeSnackbar}}>
             {children}
             <Snackbar
                 open={open}
@@ -75,10 +80,10 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
     )
 }
 
-export const useSnackbar = (): SnackbarContextType['openSnackbar'] => {
+export const useSnackbar = (): SnackbarContextType => {
     const context = useContext(SnackbarContext)
     if (!context) {
         throw new Error('useSnackbar must be used within a SnackbarProvider')
     }
-    return context.openSnackbar
+    return context
 }
