@@ -40,15 +40,28 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
         []
     )
 
+    const handleClose = useCallback(
+        (_event?: React.SyntheticEvent | Event, reason?: string) => {
+            if (reason === 'clickaway') return
+            setOpen(false)
+        },
+        []
+    )
+
     return (
         <SnackbarContext.Provider value={{openSnackbar}}>
             {children}
             <Snackbar
                 open={open}
+                onClose={handleClose}
                 autoHideDuration={autoHideDuration}
                 anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
             >
-                <Alert severity={severity} sx={{width: '100%'}}>
+                <Alert
+                    severity={severity}
+                    onClose={handleClose}
+                    sx={{width: '100%'}}
+                >
                     {message}
                 </Alert>
             </Snackbar>
