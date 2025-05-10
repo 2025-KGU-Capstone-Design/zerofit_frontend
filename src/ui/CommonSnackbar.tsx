@@ -6,7 +6,7 @@ import {
     useCallback,
     ReactNode,
 } from 'react'
-import {Snackbar, Alert, AlertColor} from '@mui/material'
+import {Snackbar, Alert, AlertColor, Slide, SlideProps} from '@mui/material'
 
 interface SnackbarContextType {
     openSnackbar: (
@@ -22,6 +22,10 @@ const SnackbarContext = createContext<SnackbarContextType | undefined>(
 
 interface SnackbarProviderProps {
     children: ReactNode
+}
+
+const SlideUp = (props: SlideProps) => {
+    return <Slide {...props} direction='up' />
 }
 
 export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
@@ -56,6 +60,8 @@ export const SnackbarProvider = ({children}: SnackbarProviderProps) => {
                 onClose={handleClose}
                 autoHideDuration={autoHideDuration}
                 anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                TransitionComponent={SlideUp}
+                transitionDuration={{enter: 400, exit: 300}}
             >
                 <Alert
                     severity={severity}
