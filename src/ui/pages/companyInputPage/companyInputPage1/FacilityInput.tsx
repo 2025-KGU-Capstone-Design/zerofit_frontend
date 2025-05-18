@@ -4,22 +4,22 @@ import {facilities} from '@/constants/facilities'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const FacilityInput = () => {
-    const ownedFacilities = useCompanyInputStore(
-        (state) => state.ownedFacilities
+    const targetFacilities = useCompanyInputStore(
+        (state) => state.targetFacilities
     )
-    const setOwnedFacilities = useCompanyInputStore(
-        (state) => state.setOwnedFacilities
+    const setTargetFacilities = useCompanyInputStore(
+        (state) => state.setTargetFacilities
     )
 
     const handleCheckboxChange = useCallback(
         (facility: string) => {
-            setOwnedFacilities(
-                ownedFacilities.includes(facility)
-                    ? ownedFacilities.filter((f) => f !== facility)
-                    : [...ownedFacilities, facility]
+            setTargetFacilities(
+                targetFacilities.includes(facility)
+                    ? targetFacilities.filter((f) => f !== facility)
+                    : [...targetFacilities, facility]
             )
         },
-        [ownedFacilities, setOwnedFacilities]
+        [targetFacilities, setTargetFacilities]
     )
     return (
         <>
@@ -37,7 +37,7 @@ const FacilityInput = () => {
                         key={facility}
                         control={
                             <Checkbox
-                                checked={ownedFacilities.includes(facility)}
+                                checked={targetFacilities.includes(facility)}
                                 onChange={() => handleCheckboxChange(facility)}
                             />
                         }

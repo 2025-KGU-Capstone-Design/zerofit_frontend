@@ -13,8 +13,8 @@ const CompanyInputPage1 = () => {
     const {openSnackbar, closeSnackbar} = useSnackbar()
 
     const industry = useCompanyInputStore((state) => state.industry)
-    const ownedFacilities = useCompanyInputStore(
-        (state) => state.ownedFacilities
+    const targetFacilities = useCompanyInputStore(
+        (state) => state.targetFacilities
     )
 
     const handleNext = () => {
@@ -22,7 +22,7 @@ const CompanyInputPage1 = () => {
             openSnackbar(' 산업군을 선택해주세요.', 'error')
             return
         }
-        if (ownedFacilities.length === 0) {
+        if (targetFacilities.length === 0) {
             openSnackbar(' 하나 이상의 설비를 선택해주세요.', 'error')
             return
         }
