@@ -15,8 +15,8 @@ interface InfoPreviewCardProps {
 
 const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const industry = useCompanyInputStore((state) => state.industry)
-    const ownedFacilities = useCompanyInputStore(
-        (state) => state.ownedFacilities
+    const targetFacilities = useCompanyInputStore(
+        (state) => state.targetFacilities
     )
     const investmentBudget = useCompanyInputStore(
         (state) => state.investmentBudget
@@ -31,10 +31,10 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
 
     const facilitiesDisplay = useMemo(
         () =>
-            ownedFacilities.length > 0
-                ? ownedFacilities.join(', ')
+            targetFacilities.length > 0
+                ? targetFacilities.join(', ')
                 : '입력된 설비 없음',
-        [ownedFacilities]
+        [targetFacilities]
     )
 
     return (
@@ -63,7 +63,7 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                             </List>
 
                             <Typography variant='body2' fontWeight='bold'>
-                                보유설비
+                                대상설비
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>

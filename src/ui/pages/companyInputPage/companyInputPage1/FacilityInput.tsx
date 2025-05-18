@@ -3,28 +3,37 @@ import {Typography, FormGroup, FormControlLabel, Checkbox} from '@mui/material'
 import {facilities} from '@/constants/facilities'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 
+const MAX_SELECTION = 5
+
 const FacilityInput = () => {
-    const ownedFacilities = useCompanyInputStore(
-        (state) => state.ownedFacilities
+    const targetFacilities = useCompanyInputStore(
+        (state) => state.targetFacilities
     )
-    const setOwnedFacilities = useCompanyInputStore(
-        (state) => state.setOwnedFacilities
+    const setTargetFacilities = useCompanyInputStore(
+        (state) => state.setTargetFacilities
     )
 
     const handleCheckboxChange = useCallback(
         (facility: string) => {
-            setOwnedFacilities(
-                ownedFacilities.includes(facility)
-                    ? ownedFacilities.filter((f) => f !== facility)
-                    : [...ownedFacilities, facility]
+            const isSelected = targetFacilities.includes(facility)
+
+            if (!isSelected && targetFacilities.length >= MAX_SELECTION) {
+                return
+            }
+
+            setTargetFacilities(
+                isSelected
+                    ? targetFacilities.filter((f) => f !== facility)
+                    : [...targetFacilities, facility]
             )
         },
-        [ownedFacilities, setOwnedFacilities]
+        [targetFacilities, setTargetFacilities]
     )
+
     return (
         <>
             <Typography variant='subtitle1' fontWeight='bold'>
-                보유설비 입력
+                대상설비 입력 (최대 {MAX_SELECTION}개)
             </Typography>
             <FormGroup
                 sx={{
@@ -32,18 +41,27 @@ const FacilityInput = () => {
                     gridTemplateColumns: 'repeat(3, 1fr)',
                 }}
             >
-                {facilities.map((facility) => (
-                    <FormControlLabel
-                        key={facility}
-                        control={
-                            <Checkbox
-                                checked={ownedFacilities.includes(facility)}
-                                onChange={() => handleCheckboxChange(facility)}
-                            />
-                        }
-                        label={facility}
-                    />
-                ))}
+                {facilities.map((facility) => {
+                    const isChecked = targetFacilities.includes(facility)
+                    const isDisabled =
+                        !isChecked && targetFacilities.length >= MAX_SELECTION
+
+                    return (
+                        <FormControlLabel
+                            key={facility}
+                            control={
+                                <Checkbox
+                                    checked={isChecked}
+                                    disabled={isDisabled}
+                                    onChange={() =>
+                                        handleCheckboxChange(facility)
+                                    }
+                                />
+                            }
+                            label={facility}
+                        />
+                    )
+                })}
             </FormGroup>
         </>
     )

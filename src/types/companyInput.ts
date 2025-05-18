@@ -1,6 +1,6 @@
 type CompanyInput = {
     industry: string
-    ownedFacilities: string[]
+    targetFacilities: string[]
     investmentBudget: number
     currentEmission?: number
     targetEmission?: number
