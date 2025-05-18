@@ -63,7 +63,7 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                             </List>
 
                             <Typography variant='body2' fontWeight='bold'>
-                                보유설비
+                                대상설비
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>

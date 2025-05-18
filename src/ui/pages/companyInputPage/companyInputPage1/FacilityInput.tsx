@@ -24,7 +24,7 @@ const FacilityInput = () => {
     return (
         <>
             <Typography variant='subtitle1' fontWeight='bold'>
-                보유설비 입력
+                대상설비 입력
             </Typography>
             <FormGroup
                 sx={{

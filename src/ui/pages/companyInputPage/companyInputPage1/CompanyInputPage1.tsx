@@ -32,7 +32,7 @@ const CompanyInputPage1 = () => {
     return (
         <Container sx={{mt: 14}}>
             <Stack spacing={4}>
-                <StepHeader title='산업군 및 보유설비 선택' step={1} />
+                <StepHeader title='산업군 및 대상설비 선택' step={1} />
                 <Stack
                     direction={{xs: 'column', md: 'row'}}
                     justifyContent='space-between'
