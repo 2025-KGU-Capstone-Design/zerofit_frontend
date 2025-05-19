@@ -1,9 +1,16 @@
-import {Typography, Box, Stack, Grid} from '@mui/material'
+import {Typography, Box, Stack} from '@mui/material'
 
 import Ranking from '../common/Ranking'
 import Bookmark from '../common/Bookmark'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
+import {SolutionItem} from '@/types/solution'
 
-const MainSolution = () => {
+interface TopSolutionProps {
+    solution: SolutionItem
+}
+
+const MainSolution = ({solution}: TopSolutionProps) => {
+    const industry = useCompanyInputStore((state) => state.industry)
     return (
         <Box
             sx={{
@@ -39,7 +46,7 @@ const MainSolution = () => {
                             <Typography
                                 sx={{fontWeight: 700, fontSize: '20px'}}
                             >
-                                개선 구분: (개선 구분)
+                                개선 구분: {solution.improvementType}
                             </Typography>
                             <Typography
                                 sx={{
@@ -48,10 +55,10 @@ const MainSolution = () => {
                                     fontSize: '14px',
                                 }}
                             >
-                                (산업군)
+                                {industry}
                             </Typography>
                         </Box>
-                        <Ranking />
+                        <Ranking rank={solution.rank} />
                     </Box>
                     <Stack
                         direction='row'
@@ -73,7 +80,7 @@ const MainSolution = () => {
                                 대상 설비
                             </Typography>
                             <Typography sx={{fontSize: 16}}>
-                                (대상 설비)
+                                {solution.facility}
                             </Typography>
                         </Box>
                         <Box
@@ -85,10 +92,10 @@ const MainSolution = () => {
                             }}
                         >
                             <Typography sx={{color: '#4B5563', fontSize: 14}}>
-                                대상 설비
+                                개선 활동명
                             </Typography>
                             <Typography sx={{fontSize: 16}}>
-                                (대상 설비)
+                                {solution.activity}
                             </Typography>
                         </Box>
                     </Stack>
@@ -112,7 +119,7 @@ const MainSolution = () => {
                                 연간 온실가스 감축량
                             </Typography>
                             <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
-                                (감축량) tCO₂
+                                {solution.emissionReduction} tCO₂
                             </Typography>
                         </Box>
                         <Box
@@ -127,7 +134,7 @@ const MainSolution = () => {
                                 연간 절감액
                             </Typography>
                             <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
-                                (1.0) 백만 원
+                                {solution.costSaving} 백만 원
                             </Typography>
                         </Box>
                         <Box
@@ -142,7 +149,7 @@ const MainSolution = () => {
                                 투자 회수 기간
                             </Typography>
                             <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
-                                (기간) 년
+                                {solution.roiPeriod} 년
                             </Typography>
                         </Box>
                         <Box
@@ -157,7 +164,7 @@ const MainSolution = () => {
                                 투자 비용
                             </Typography>
                             <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>
-                                (비용) 백만 원
+                                {solution.investmentCost} 백만 원
                             </Typography>
                         </Box>
                     </Stack>

@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Box from '@mui/material/Box'
 import SolutionContents from './TabComponents/SolutionContents'
+import {solutionCategories} from '@/constants/solutionCategories'
 
 interface TabPanelProps {
     children?: React.ReactNode
@@ -27,24 +28,17 @@ export default function BasicTabs() {
         <Box sx={{width: '100%', mt: '54px'}}>
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange}>
-                    <Tab label='종합 최적 솔루션' sx={{fontSize: '17px'}} />
-                    <Tab label='감축량 최적 솔루션' sx={{fontSize: '17px'}} />
-                    <Tab label='절감액 최적 솔루션' sx={{fontSize: '17px'}} />
-                    <Tab label='ROI 최적 솔루션' sx={{fontSize: '17px'}} />
+                    {solutionCategories.map((category) => (
+                        <Tab label={category.label} sx={{fontSize: '17px'}} />
+                    ))}
                 </Tabs>
             </Box>
-            <CustomTabPanel value={value} index={0}>
-                <SolutionContents />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={1}>
-                감축량 최적 솔루션
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                절감액 최적 솔루션
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={3}>
-                ROI 최적 솔루션
-            </CustomTabPanel>
+
+            {solutionCategories.map((category, index) => (
+                <CustomTabPanel value={value} index={index}>
+                    <SolutionContents category={category.key} />
+                </CustomTabPanel>
+            ))}
         </Box>
     )
 }

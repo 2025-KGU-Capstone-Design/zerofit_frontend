@@ -15,5 +15,3 @@ export type SolutionGroup = {
     cost_saving: SolutionItem[]
     roi: SolutionItem[]
 }
-
-export type SolutionType = keyof SolutionGroup

@@ -14,6 +14,7 @@ const initialSolutions: SolutionGroup = {
     cost_saving: [],
     roi: [],
 }
+
 const useSolutionStore = create<SolutionStore>()(
     persist(
         (set) => ({
