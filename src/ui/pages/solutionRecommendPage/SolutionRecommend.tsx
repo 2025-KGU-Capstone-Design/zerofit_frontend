@@ -1,9 +1,11 @@
 import {Box, Typography} from '@mui/material'
 import SolutionTab from './SoutionTab'
+import SolutionLoader from './SolutionLoader'
 
 const SolutionRecommend = () => {
     return (
         <Box sx={{my: 14, width: 1376, mx: 'auto'}}>
+            <SolutionLoader />
             <Box>
                 <Typography
                     sx={{fontWeight: 700, fontSize: 24, textAlign: 'center'}}
