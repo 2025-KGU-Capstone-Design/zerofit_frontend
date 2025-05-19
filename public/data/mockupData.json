@@ -1,0 +1,170 @@
+{
+    "total_optimization": [
+        {
+            "rank": 1,
+            "improvementType": "설비 개선",
+            "facility": "보일러",
+            "activity": "고효율 보일러 교체",
+            "emissionReduction": 120.5,
+            "costSaving": 3000,
+            "roiPeriod": 2.5,
+            "investmentCost": 750
+        },
+        {
+            "rank": 2,
+            "improvementType": "공정 개선",
+            "facility": "냉동기",
+            "activity": "효율적인 냉각 시스템 도입",
+            "emissionReduction": 100,
+            "costSaving": 2500,
+            "roiPeriod": 3,
+            "investmentCost": 600
+        },
+        {
+            "rank": 3,
+            "improvementType": "설비 개선",
+            "facility": "보일러",
+            "activity": "연료 전환",
+            "emissionReduction": 90,
+            "costSaving": 2200,
+            "roiPeriod": 3.5,
+            "investmentCost": 500
+        },
+        {
+            "rank": 4,
+            "improvementType": "프로세스 최적화",
+            "facility": "냉동기",
+            "activity": "스마트 모니터링 도입",
+            "emissionReduction": 80,
+            "costSaving": 2000,
+            "roiPeriod": 4,
+            "investmentCost": 450
+        }
+    ],
+    "emission_reduction": [
+        {
+            "rank": 1,
+            "improvementType": "공정 개선",
+            "facility": "압축기",
+            "activity": "고효율 압축기 설치",
+            "emissionReduction": 150,
+            "costSaving": 2700,
+            "roiPeriod": 3.2,
+            "investmentCost": 700
+        },
+        {
+            "rank": 2,
+            "improvementType": "에너지 전환",
+            "facility": "공조 시스템",
+            "activity": "재생에너지 연동",
+            "emissionReduction": 130,
+            "costSaving": 2600,
+            "roiPeriod": 2.8,
+            "investmentCost": 680
+        },
+        {
+            "rank": 3,
+            "improvementType": "설비 개선",
+            "facility": "보일러",
+            "activity": "배열 개선",
+            "emissionReduction": 110,
+            "costSaving": 2100,
+            "roiPeriod": 3,
+            "investmentCost": 500
+        },
+        {
+            "rank": 4,
+            "improvementType": "에너지 관리",
+            "facility": "공정 전체",
+            "activity": "에너지 모니터링 시스템 구축",
+            "emissionReduction": 95,
+            "costSaving": 1900,
+            "roiPeriod": 4.5,
+            "investmentCost": 400
+        }
+    ],
+    "cost_saving": [
+        {
+            "rank": 1,
+            "improvementType": "설비 개선",
+            "facility": "냉방기",
+            "activity": "인버터 설치",
+            "emissionReduction": 90,
+            "costSaving": 3500,
+            "roiPeriod": 2.3,
+            "investmentCost": 800
+        },
+        {
+            "rank": 2,
+            "improvementType": "공정 최적화",
+            "facility": "전체 공정",
+            "activity": "자동화 시스템 도입",
+            "emissionReduction": 85,
+            "costSaving": 3200,
+            "roiPeriod": 2.7,
+            "investmentCost": 850
+        },
+        {
+            "rank": 3,
+            "improvementType": "조명 개선",
+            "facility": "조명",
+            "activity": "LED 교체",
+            "emissionReduction": 60,
+            "costSaving": 2800,
+            "roiPeriod": 2,
+            "investmentCost": 300
+        },
+        {
+            "rank": 4,
+            "improvementType": "설비 개선",
+            "facility": "펌프",
+            "activity": "고효율 펌프 도입",
+            "emissionReduction": 70,
+            "costSaving": 2500,
+            "roiPeriod": 3.1,
+            "investmentCost": 400
+        }
+    ],
+    "roi": [
+        {
+            "rank": 1,
+            "improvementType": "공정 최적화",
+            "facility": "열교환기",
+            "activity": "스마트 제어기 도입",
+            "emissionReduction": 80,
+            "costSaving": 2400,
+            "roiPeriod": 1.8,
+            "investmentCost": 400
+        },
+        {
+            "rank": 2,
+            "improvementType": "에너지 관리",
+            "facility": "전체 공정",
+            "activity": "에너지 대시보드 구축",
+            "emissionReduction": 75,
+            "costSaving": 2200,
+            "roiPeriod": 2,
+            "investmentCost": 350
+        },
+        {
+            "rank": 3,
+            "improvementType": "조명 개선",
+            "facility": "창고",
+            "activity": "센서 조명 시스템",
+            "emissionReduction": 65,
+            "costSaving": 2000,
+            "roiPeriod": 2.2,
+            "investmentCost": 320
+        },
+        {
+            "rank": 4,
+            "improvementType": "설비 개선",
+            "facility": "펌프",
+            "activity": "인버터 펌프 교체",
+            "emissionReduction": 60,
+            "costSaving": 1800,
+            "roiPeriod": 2.5,
+            "investmentCost": 300
+        }
+    ]
+}

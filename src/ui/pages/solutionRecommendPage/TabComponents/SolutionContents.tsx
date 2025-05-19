@@ -1,15 +1,27 @@
 import {Box, Stack, Typography} from '@mui/material'
 import MainSolution from './MainSolution'
 import RadarChart from './RadarChart'
-import Solution from '../common/Solution'
+import SolutionCard from '../common/SolutionCard'
+import {SolutionType} from '@/constants/solutionCategories'
+import useSolutionStore from '@/store/useSolutionStore'
 
-const SolutionContents = () => {
+interface CategoryProps {
+    category: SolutionType
+}
+
+const SolutionContents = ({category}: CategoryProps) => {
+    const solutions = useSolutionStore((state) => state.solutions)
+    const solutionsList = solutions[category]
+
+    const topSolution = solutionsList.find((item) => item.rank === 1)
+    const otherSolutions = solutionsList.filter((item) => item.rank !== 1)
+
     return (
         <Box>
             <Stack sx={{my: '43px'}}>
                 <Stack direction='row' spacing='31px' sx={{height: '476px'}}>
                     {/* 종합 최적 솔루션 */}
-                    <MainSolution />
+                    {topSolution && <MainSolution solution={topSolution} />}
                     {/* 종합 최적 솔루션 비교 */}
                     <Box
                         sx={{
@@ -46,9 +58,9 @@ const SolutionContents = () => {
                     spacing='19px'
                     sx={{display: 'flex', justifyContent: 'center'}}
                 >
-                    <Solution />
-                    <Solution />
-                    <Solution />
+                    {otherSolutions.map((item) => (
+                        <SolutionCard solution={item} />
+                    ))}
                 </Stack>
             </Box>
         </Box>

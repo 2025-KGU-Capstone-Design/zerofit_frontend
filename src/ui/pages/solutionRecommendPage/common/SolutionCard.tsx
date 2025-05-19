@@ -6,8 +6,13 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn'
+import {SolutionItem} from '@/types/solution'
 
-const Solution = () => {
+interface SolutionProps {
+    solution: SolutionItem
+}
+
+const SolutionCard = ({solution}: SolutionProps) => {
     return (
         <Box
             sx={{
@@ -28,10 +33,10 @@ const Solution = () => {
             >
                 <Box>
                     <Typography sx={{fontSize: '18px'}}>
-                        개선 구분: (개선 구분)
+                        개선 구분: {solution.improvementType}
                     </Typography>
                 </Box>
-                <Ranking />
+                <Ranking rank={solution.rank} />
             </Box>
 
             <Stack spacing={'16px'} sx={{my: '36px'}}>
@@ -50,7 +55,7 @@ const Solution = () => {
                             }}
                         />
                         <Typography sx={{fontSize: '16px', fontWeight: 700}}>
-                            연간 5억 원
+                            {solution.costSaving} 백만 원
                         </Typography>
                     </Stack>
                 </Box>
@@ -63,7 +68,7 @@ const Solution = () => {
                             sx={{width: 20, height: 20, marginRight: '8px'}}
                         />
                         <Typography sx={{fontSize: '16px', fontWeight: 700}}>
-                            2.5년 내 회수
+                            {solution.roiPeriod} 년 내 회수
                         </Typography>
                     </Stack>
                 </Box>
@@ -82,7 +87,7 @@ const Solution = () => {
                             }}
                         />
                         <Typography sx={{fontSize: '16px', fontWeight: 700}}>
-                            200 tCO₂
+                            {solution.emissionReduction} tCO₂
                         </Typography>
                     </Stack>
                 </Box>
@@ -100,7 +105,7 @@ const Solution = () => {
                             }}
                         />
                         <Typography sx={{fontSize: '16px', fontWeight: 700}}>
-                            3억 원
+                            {solution.investmentCost} 백만 원
                         </Typography>
                     </Stack>
                 </Box>
@@ -123,4 +128,4 @@ const Solution = () => {
     )
 }
 
-export default Solution
+export default SolutionCard
