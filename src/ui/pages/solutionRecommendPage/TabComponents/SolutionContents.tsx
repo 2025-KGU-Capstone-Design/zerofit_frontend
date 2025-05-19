@@ -21,7 +21,7 @@ const SolutionContents = ({category}: CategoryProps) => {
             <Stack sx={{my: '43px'}}>
                 <Stack direction='row' spacing='31px' sx={{height: '476px'}}>
                     {/* 종합 최적 솔루션 */}
-                    <MainSolution solution={topSolution} />
+                    {topSolution && <MainSolution solution={topSolution} />}
                     {/* 종합 최적 솔루션 비교 */}
                     <Box
                         sx={{
