@@ -36,7 +36,7 @@ const SolutionContents = ({category}: CategoryProps) => {
                             <Typography sx={{fontSize: '18px'}}>
                                 종합 최적 솔루션 비교
                             </Typography>
-                            <RadarChart />
+                            <RadarChart solution={solutionsList} />
                         </Box>
                     </Box>
                 </Stack>
