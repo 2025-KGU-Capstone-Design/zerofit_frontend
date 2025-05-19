@@ -1,6 +1,9 @@
 import {Box, Typography} from '@mui/material'
 
-const Ranking = () => {
+type RankingProps = {
+    rank: number
+}
+const Ranking = ({rank}: RankingProps) => {
     return (
         <Box>
             <Box
@@ -15,7 +18,7 @@ const Ranking = () => {
                 }}
             >
                 <Typography fontSize='16px' sx={{color: '#FFFFFF'}}>
-                    Top 1
+                    Top {rank}
                 </Typography>
             </Box>
         </Box>
