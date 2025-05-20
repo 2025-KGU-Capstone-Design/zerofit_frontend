@@ -12,6 +12,7 @@ import {useLocation, Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const drawerWidth = 240
 
@@ -32,6 +33,7 @@ const navItems = [
 
 const Sidebar = () => {
     const location = useLocation()
+    const resetState = useCompanyInputStore((state) => state.resetState)
 
     return (
         <Drawer
@@ -60,6 +62,9 @@ const Sidebar = () => {
                                 <ListItemButton
                                     component={Link}
                                     to={item.to}
+                                    onClick={
+                                        item.to === '/' ? resetState : undefined
+                                    }
                                     selected={isSelected}
                                     sx={{
                                         color: 'white',
