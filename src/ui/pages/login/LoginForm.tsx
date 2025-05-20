@@ -31,6 +31,7 @@ const LoginForm = () => {
         console.log('로그인 시도:', form)
     }
 
+    const isValid = form.userId.trim() !== '' && form.password.trim() !== ''
     return (
         <Box
             component='form'
@@ -101,6 +102,7 @@ const LoginForm = () => {
                             variant='contained'
                             size='large'
                             sx={{py: 1}}
+                            disabled={!isValid}
                         >
                             로그인
                         </Button>
