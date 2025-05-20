@@ -1,3 +1,8 @@
+type LoginForm = {
+    userId: string
+    password: string
+}
+
 type UserData = {
     userId: string
     password: string
@@ -6,4 +11,4 @@ type UserData = {
     companyName: string
 }
 
-export type {UserData}
+export type {LoginForm, UserData}

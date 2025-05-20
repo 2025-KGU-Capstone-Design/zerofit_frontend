@@ -14,16 +14,14 @@ import CommonInput from '@/ui/CommonInput'
 import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
 import {useSnackbar} from '@/ui/CommonSnackbar'
-import type {UserData} from '@/types/user'
-
-type LoginFormData = Pick<UserData, 'userId' | 'password'>
+import type {LoginForm} from '@/types/auth'
 
 const LoginForm = () => {
-    const [form, setForm] = useState<LoginFormData>({userId: '', password: ''})
+    const [form, setForm] = useState<LoginForm>({userId: '', password: ''})
     const {openSnackbar} = useSnackbar()
 
     const handleChange =
-        (field: keyof LoginFormData) => (e: ChangeEvent<HTMLInputElement>) => {
+        (field: keyof LoginForm) => (e: ChangeEvent<HTMLInputElement>) => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
         }
 
@@ -33,7 +31,7 @@ const LoginForm = () => {
             openSnackbar('아이디와 비밀번호를 모두 입력해주세요.', 'warning')
             return
         }
-        // TODO: 로그인 API 호출
+        // 로그인 API 호출
         console.log('로그인 시도:', form)
     }
 
