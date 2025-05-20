@@ -13,12 +13,14 @@ import {Link} from 'react-router-dom'
 import CommonInput from '@/ui/CommonInput'
 import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {UserData} from '@/types/user'
 
 type LoginFormData = Pick<UserData, 'userId' | 'password'>
 
 const LoginForm = () => {
     const [form, setForm] = useState<LoginFormData>({userId: '', password: ''})
+    const {openSnackbar} = useSnackbar()
 
     const handleChange =
         (field: keyof LoginFormData) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +29,14 @@ const LoginForm = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-        // 로그인 API 호출
+        if (form.userId.trim() === '' || form.password.trim() === '') {
+            openSnackbar('아이디와 비밀번호를 모두 입력해주세요.', 'warning')
+            return
+        }
+        // TODO: 로그인 API 호출
         console.log('로그인 시도:', form)
     }
 
-    const isValid = form.userId.trim() !== '' && form.password.trim() !== ''
     return (
         <Box
             component='form'
@@ -102,7 +107,6 @@ const LoginForm = () => {
                             variant='contained'
                             size='large'
                             sx={{py: 1}}
-                            disabled={!isValid}
                         >
                             로그인
                         </Button>
