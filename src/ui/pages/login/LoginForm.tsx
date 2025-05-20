@@ -20,11 +20,30 @@ const LoginForm = () => (
             justifyContent: 'center',
         }}
     >
-        <Card sx={{width: 400, p: 3}}>
+        <Card sx={{width: 450, p: 3}}>
             <CardContent>
-                <Typography variant='h5' align='center' gutterBottom>
-                    ZeroFit
+                <Typography variant='h4' align='center' gutterBottom>
+                    <Box
+                        component='span'
+                        sx={{
+                            WebkitTextStroke: (theme) =>
+                                `1px ${theme.palette.secondary.main}`,
+                            WebkitTextFillColor: 'transparent',
+                        }}
+                    >
+                        Zero
+                    </Box>
+                    <Box
+                        component='span'
+                        sx={{
+                            fontWeight: 'bold',
+                            color: (theme) => theme.palette.secondary.main,
+                        }}
+                    >
+                        Fit
+                    </Box>
                 </Typography>
+
                 <Stack spacing={2} sx={{mt: 2}}>
                     <CommonInput
                         label='아이디'
