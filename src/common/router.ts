@@ -2,6 +2,7 @@ import {createBrowserRouter} from 'react-router-dom'
 import Layout from '@/ui/layout/Layout.tsx'
 import LandingPage from '@/ui/pages/landingPage/LandingPage.tsx'
 import LoginPage from '@/ui/pages/login/LoginPage'
+import SignupPage from '@/ui/pages/signup/SignupPage'
 import CompanyInputPage1 from '@/ui/pages/companyInputPage/companyInputPage1/CompanyInputPage1'
 import CompanyInputPage2 from '@/ui/pages/companyInputPage/companyInputPage2/CompanyInputPage2'
 import CompanyInputPage3 from '@/ui/pages/companyInputPage/companyInputPage3/CompanyInputPage3'
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: LoginPage,
+            },
+            {
+                path: 'signup',
+                Component: SignupPage,
             },
 
             {

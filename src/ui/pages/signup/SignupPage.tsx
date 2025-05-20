@@ -1,15 +1,15 @@
 import {Box} from '@mui/material'
 import LandingPageHeader from '@/ui/pages/landingPage/LandingPageHeader'
-import LoginForm from '@/ui/pages/login/LoginForm'
+import SignupForm from '@/ui/pages/signup/SignupForm'
 
-const LoginPage = () => (
+const SignupPage = () => (
     <Box
         component='section'
         sx={{height: '100vh', display: 'flex', flexDirection: 'column'}}
     >
         <LandingPageHeader />
-        <LoginForm />
+        <SignupForm />
     </Box>
 )
 
-export default LoginPage
+export default SignupPage

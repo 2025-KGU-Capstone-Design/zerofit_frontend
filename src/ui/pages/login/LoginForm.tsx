@@ -46,7 +46,7 @@ const LoginForm = () => {
                 justifyContent: 'center',
             }}
         >
-            <Card sx={{width: 450, p: 3}}>
+            <Card sx={{width: 500, p: 3}}>
                 <CardContent>
                     <Typography variant='h4' align='center' gutterBottom>
                         <Box
@@ -104,7 +104,7 @@ const LoginForm = () => {
                             type='submit'
                             variant='contained'
                             size='large'
-                            sx={{py: 1}}
+                            sx={{py: 1.5}}
                         >
                             로그인
                         </Button>
