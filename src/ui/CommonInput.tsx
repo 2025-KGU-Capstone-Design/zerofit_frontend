@@ -9,6 +9,8 @@ export interface CommonInputProps {
     value?: string | number
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     InputProps?: TextFieldProps['InputProps']
+    error?: boolean
+    helperText?: React.ReactNode
 }
 
 const CommonInput = ({
@@ -20,6 +22,8 @@ const CommonInput = ({
     value,
     onChange,
     InputProps,
+    error = false,
+    helperText,
 }: CommonInputProps) => (
     <Stack spacing={1} sx={{width: '100%'}}>
         <Typography variant='subtitle1' fontWeight='bold'>
@@ -32,6 +36,8 @@ const CommonInput = ({
             value={value ?? ''}
             onChange={onChange}
             InputProps={InputProps}
+            error={error}
+            helperText={helperText}
             sx={{
                 ...(disableNumberSpinner && type === 'number'
                     ? {
