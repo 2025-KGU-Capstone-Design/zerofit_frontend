@@ -12,11 +12,12 @@ import {useLocation, Link} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
+import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const drawerWidth = 240
 
 const navItems = [
-    {label: 'Home', to: '/home', icon: <HomeIcon />},
+    {label: 'Home', to: '/', icon: <HomeIcon />},
     {
         label: '기업 정보 입력',
         to: '/company-info/step1',
@@ -32,6 +33,7 @@ const navItems = [
 
 const Sidebar = () => {
     const location = useLocation()
+    const resetState = useCompanyInputStore((state) => state.resetState)
 
     return (
         <Drawer
@@ -51,12 +53,18 @@ const Sidebar = () => {
                 <List>
                     {navItems.map((item) => {
                         const base = item.match ?? item.to
-                        const isSelected = location.pathname.startsWith(base)
+                        const isSelected =
+                            item.to === '/'
+                                ? location.pathname === '/'
+                                : location.pathname.startsWith(base)
                         return (
                             <ListItem key={item.to} disablePadding sx={{mb: 1}}>
                                 <ListItemButton
                                     component={Link}
                                     to={item.to}
+                                    onClick={
+                                        item.to === '/' ? resetState : undefined
+                                    }
                                     selected={isSelected}
                                     sx={{
                                         color: 'white',
