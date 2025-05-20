@@ -41,6 +41,10 @@ const SignupForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
 
+    const phoneRegex = /^\d{10,11}$/
+    const isPhoneInvalid =
+        form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
 
@@ -56,7 +60,7 @@ const SignupForm = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                py: 8,
+                py: 6,
             }}
         >
             <Card sx={{width: 500, p: 3, my: 4}}>
@@ -146,6 +150,12 @@ const SignupForm = () => {
                             placeholder='전화번호를 입력하세요'
                             value={form.phoneNumber}
                             onChange={handleChange('phoneNumber')}
+                            error={isPhoneInvalid}
+                            helperText={
+                                isPhoneInvalid
+                                    ? '전화번호는 숫자만 10~11자리여야 합니다.'
+                                    : ''
+                            }
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
