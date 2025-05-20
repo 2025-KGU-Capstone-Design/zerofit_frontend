@@ -16,7 +16,7 @@ import QueryStatsIcon from '@mui/icons-material/QueryStats'
 const drawerWidth = 240
 
 const navItems = [
-    {label: 'Home', to: '/home', icon: <HomeIcon />},
+    {label: 'Home', to: '/', icon: <HomeIcon />},
     {
         label: '기업 정보 입력',
         to: '/company-info/step1',
@@ -51,7 +51,10 @@ const Sidebar = () => {
                 <List>
                     {navItems.map((item) => {
                         const base = item.match ?? item.to
-                        const isSelected = location.pathname.startsWith(base)
+                        const isSelected =
+                            item.to === '/'
+                                ? location.pathname === '/'
+                                : location.pathname.startsWith(base)
                         return (
                             <ListItem key={item.to} disablePadding sx={{mb: 1}}>
                                 <ListItemButton
