@@ -12,9 +12,11 @@ import useCompanyInputStore from '@/store/useCompanyInputStore'
 
 const LandingPageHeader = () => {
     const resetState = useCompanyInputStore((state) => state.resetState)
+
     return (
         <AppBar position='static' color='primary'>
             <Toolbar>
+                {/* 좌측 로고 */}
                 <Typography
                     variant='h5'
                     component={RouterLink}
@@ -38,22 +40,44 @@ const LandingPageHeader = () => {
                     </Box>
                 </Typography>
 
-                <Stack
+                <MUILink
+                    component={RouterLink}
+                    to='/company-info/step1'
+                    onClick={resetState}
+                    underline='none'
                     sx={{
                         ml: 6,
+                        color: 'grey.300',
+                        '&:hover': {color: 'white'},
                     }}
                 >
+                    컨설팅
+                </MUILink>
+
+                <Box sx={{flexGrow: 1}} />
+
+                <Stack direction='row' spacing={4} sx={{mr: 2}}>
                     <MUILink
                         component={RouterLink}
-                        to='/company-info/step1'
-                        onClick={resetState}
+                        to='/login'
                         underline='none'
                         sx={{
-                            color: 'grey.300', // theme?
+                            color: 'grey.300',
                             '&:hover': {color: 'white'},
                         }}
                     >
-                        컨설팅
+                        로그인
+                    </MUILink>
+                    <MUILink
+                        component={RouterLink}
+                        to='/signup'
+                        underline='none'
+                        sx={{
+                            color: 'grey.300',
+                            '&:hover': {color: 'white'},
+                        }}
+                    >
+                        회원가입
                     </MUILink>
                 </Stack>
             </Toolbar>
