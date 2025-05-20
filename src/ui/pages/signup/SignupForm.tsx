@@ -16,11 +16,13 @@ import LockIcon from '@mui/icons-material/Lock'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {UserData} from '@/types/auth'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
 const SignupForm = () => {
+    const {openSnackbar} = useSnackbar()
     const [form, setForm] = useState<SignupFormData>({
         userId: '',
         password: '',
@@ -47,6 +49,25 @@ const SignupForm = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+
+        for (const value of Object.values(form)) {
+            if (value.trim() === '') {
+                openSnackbar('모든 필드를 입력해주세요.', 'warning')
+                return
+            }
+        }
+        if (isPasswordMismatch) {
+            openSnackbar('비밀번호가 일치하지 않습니다.', 'warning')
+            return
+        }
+        if (form.email.trim() === '' || isEmailInvalid) {
+            openSnackbar('올바른 이메일 주소를 입력해주세요.', 'warning')
+            return
+        }
+        if (form.phoneNumber.trim() === '' || isPhoneInvalid) {
+            openSnackbar('전화번호 형식이 올바르지 않습니다.', 'warning')
+            return
+        }
 
         // 회원가입 API 호출
         console.log('회원가입 시도:', form)
