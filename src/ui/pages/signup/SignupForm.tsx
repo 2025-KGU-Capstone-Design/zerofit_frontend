@@ -1,3 +1,4 @@
+// src/ui/pages/signup/SignupForm.tsx
 import React, {useState, ChangeEvent, FormEvent} from 'react'
 import {
     Box,
@@ -16,13 +17,11 @@ import LockIcon from '@mui/icons-material/Lock'
 import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
-import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {UserData} from '@/types/auth'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
 const SignupForm = () => {
-    const {openSnackbar} = useSnackbar()
     const [form, setForm] = useState<SignupFormData>({
         userId: '',
         password: '',
@@ -37,41 +36,88 @@ const SignupForm = () => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
         }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const phoneRegex = /^\d{10,11}$/
+
+    // 유효성 검사
+    const isEmpty = Object.values(form).some((v) => v.trim() === '')
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
-
-    const phoneRegex = /^\d{10,11}$/
     const isPhoneInvalid =
         form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
 
+    // 모든 검증 통과 여부
+    const isFormValid =
+        !isEmpty && !isPasswordMismatch && !isEmailInvalid && !isPhoneInvalid
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
-
-        for (const value of Object.values(form)) {
-            if (value.trim() === '') {
-                openSnackbar('모든 필드를 입력해주세요.', 'warning')
-                return
-            }
-        }
-        if (isPasswordMismatch) {
-            openSnackbar('비밀번호가 일치하지 않습니다.', 'warning')
-            return
-        }
-        if (form.email.trim() === '' || isEmailInvalid) {
-            openSnackbar('올바른 이메일 주소를 입력해주세요.', 'warning')
-            return
-        }
-        if (form.phoneNumber.trim() === '' || isPhoneInvalid) {
-            openSnackbar('전화번호 형식이 올바르지 않습니다.', 'warning')
-            return
-        }
-
         // 회원가입 API 호출
         console.log('회원가입 시도:', form)
     }
+
+    const fields: {
+        name: keyof SignupFormData
+        label: string
+        placeholder: string
+        type?: React.HTMLInputTypeAttribute
+        icon: React.ReactNode
+        error?: boolean
+        helperText?: string
+    }[] = [
+        {
+            name: 'userId',
+            label: '아이디',
+            placeholder: '아이디를 입력하세요',
+            icon: <PersonIcon color='action' />,
+        },
+        {
+            name: 'password',
+            label: '비밀번호',
+            placeholder: '비밀번호를 입력하세요',
+            type: 'password',
+            icon: <LockIcon color='action' />,
+        },
+        {
+            name: 'passwordConfirm',
+            label: '비밀번호 확인',
+            placeholder: '비밀번호를 다시 입력하세요',
+            type: 'password',
+            icon: <LockIcon color='action' />,
+            error: isPasswordMismatch,
+            helperText: isPasswordMismatch
+                ? '비밀번호가 일치하지 않습니다.'
+                : undefined,
+        },
+        {
+            name: 'email',
+            label: '이메일',
+            placeholder: '이메일을 입력하세요',
+            icon: <EmailIcon color='action' />,
+            error: isEmailInvalid,
+            helperText: isEmailInvalid
+                ? '올바른 이메일 주소를 입력해주세요.'
+                : undefined,
+        },
+        {
+            name: 'phoneNumber',
+            label: '연락처',
+            placeholder: '전화번호를 입력하세요',
+            icon: <PhoneIcon color='action' />,
+            error: isPhoneInvalid,
+            helperText: isPhoneInvalid
+                ? '전화번호는 숫자만 10~11자리여야 합니다.'
+                : undefined,
+        },
+        {
+            name: 'companyName',
+            label: '업체명',
+            placeholder: '업체명을 입력하세요',
+            icon: <BusinessIcon color='action' />,
+        },
+    ]
+
     return (
         <Box
             component='form'
@@ -96,115 +142,42 @@ const SignupForm = () => {
                     </Typography>
 
                     <Stack spacing={2} sx={{mt: 2}}>
-                        <CommonInput
-                            label='아이디'
-                            placeholder='아이디를 입력하세요'
-                            value={form.userId}
-                            onChange={handleChange('userId')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <PersonIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label='비밀번호'
-                            type='password'
-                            placeholder='비밀번호를 입력하세요'
-                            value={form.password}
-                            onChange={handleChange('password')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <LockIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label='비밀번호 확인'
-                            type='password'
-                            placeholder='비밀번호를 다시 입력하세요'
-                            value={form.passwordConfirm}
-                            onChange={handleChange('passwordConfirm')}
-                            error={isPasswordMismatch}
-                            helperText={
-                                isPasswordMismatch
-                                    ? '비밀번호가 일치하지 않습니다.'
-                                    : ''
-                            }
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <LockIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label='이메일'
-                            placeholder='이메일을 입력하세요'
-                            value={form.email}
-                            onChange={handleChange('email')}
-                            error={isEmailInvalid}
-                            helperText={
-                                isEmailInvalid
-                                    ? '올바른 이메일 주소를 입력해주세요.'
-                                    : ''
-                            }
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <EmailIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label='연락처'
-                            placeholder='전화번호를 입력하세요'
-                            value={form.phoneNumber}
-                            onChange={handleChange('phoneNumber')}
-                            error={isPhoneInvalid}
-                            helperText={
-                                isPhoneInvalid
-                                    ? '전화번호는 숫자만 10~11자리여야 합니다.'
-                                    : ''
-                            }
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <PhoneIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label='업체명'
-                            placeholder='업체명을 입력하세요'
-                            value={form.companyName}
-                            onChange={handleChange('companyName')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <BusinessIcon color='action' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
+                        {fields.map(
+                            ({
+                                name,
+                                label,
+                                placeholder,
+                                type,
+                                icon,
+                                error,
+                                helperText,
+                            }) => (
+                                <CommonInput
+                                    key={name}
+                                    label={label}
+                                    placeholder={placeholder}
+                                    type={type}
+                                    value={form[name]}
+                                    onChange={handleChange(name)}
+                                    error={error}
+                                    helperText={helperText}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position='start'>
+                                                {icon}
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                            )
+                        )}
 
                         <Button
                             type='submit'
                             variant='contained'
                             size='large'
                             sx={{py: 1.5}}
+                            disabled={!isFormValid}
                         >
                             회원가입
                         </Button>
