@@ -89,17 +89,11 @@ const LoginForm = () => (
                         <MuiLink
                             component={Link}
                             to='/find-password'
-                            underline='none'
                             variant='body2'
                         >
                             비밀번호 찾기
                         </MuiLink>
-                        <MuiLink
-                            component={Link}
-                            to='/signup'
-                            underline='none'
-                            variant='body2'
-                        >
+                        <MuiLink component={Link} to='/signup' variant='body2'>
                             회원가입
                         </MuiLink>
                     </Stack>
