@@ -38,6 +38,9 @@ const SignupForm = () => {
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
 
@@ -123,6 +126,12 @@ const SignupForm = () => {
                             placeholder='이메일을 입력하세요'
                             value={form.email}
                             onChange={handleChange('email')}
+                            error={isEmailInvalid}
+                            helperText={
+                                isEmailInvalid
+                                    ? '올바른 이메일 주소를 입력해주세요.'
+                                    : ''
+                            }
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
