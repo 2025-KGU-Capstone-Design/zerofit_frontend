@@ -1,4 +1,3 @@
-// src/ui/pages/signup/SignupForm.tsx
 import React, {useState, ChangeEvent, FormEvent} from 'react'
 import {
     Box,
@@ -39,7 +38,6 @@ const SignupForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const phoneRegex = /^\d{10,11}$/
 
-    // 유효성 검사
     const isEmpty = Object.values(form).some((v) => v.trim() === '')
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
@@ -47,7 +45,6 @@ const SignupForm = () => {
     const isPhoneInvalid =
         form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
 
-    // 모든 검증 통과 여부
     const isFormValid =
         !isEmpty && !isPasswordMismatch && !isEmailInvalid && !isPhoneInvalid
 
@@ -69,7 +66,7 @@ const SignupForm = () => {
         {
             name: 'userId',
             label: '아이디',
-            placeholder: '아이디를 입력하세요',
+            placeholder: '아이디를 입력하세요', // 아이디 중복 여부 검사 필요
             icon: <PersonIcon color='action' />,
         },
         {
@@ -136,7 +133,7 @@ const SignupForm = () => {
                         variant='h4'
                         align='center'
                         gutterBottom
-                        sx={{fontWeight: 'bold'}}
+                        sx={{fontWeight: 'bold', color: 'primary.main'}}
                     >
                         회원가입
                     </Typography>
