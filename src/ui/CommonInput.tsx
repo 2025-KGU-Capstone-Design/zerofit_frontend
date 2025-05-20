@@ -1,4 +1,4 @@
-import {Stack, Typography, TextField} from '@mui/material'
+import {Stack, Typography, TextField, TextFieldProps} from '@mui/material'
 
 export interface CommonInputProps {
     label: string
@@ -8,6 +8,7 @@ export interface CommonInputProps {
     disableNumberSpinner?: boolean
     value?: string | number
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    InputProps?: TextFieldProps['InputProps']
 }
 
 const CommonInput = ({
@@ -18,6 +19,7 @@ const CommonInput = ({
     disableNumberSpinner = false,
     value,
     onChange,
+    InputProps,
 }: CommonInputProps) => (
     <Stack spacing={1} sx={{width: '100%'}}>
         <Typography variant='subtitle1' fontWeight='bold'>
@@ -29,6 +31,7 @@ const CommonInput = ({
             type={type}
             value={value ?? ''}
             onChange={onChange}
+            InputProps={InputProps}
             sx={{
                 ...(disableNumberSpinner && type === 'number'
                     ? {

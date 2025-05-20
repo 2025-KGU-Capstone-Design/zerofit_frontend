@@ -1,4 +1,3 @@
-// src/ui/pages/login/LoginForm.tsx
 import {
     Box,
     Card,
@@ -7,9 +6,12 @@ import {
     Button,
     Stack,
     Link as MuiLink,
+    InputAdornment,
 } from '@mui/material'
 import {Link} from 'react-router-dom'
 import CommonInput from '@/ui/CommonInput'
+import PersonIcon from '@mui/icons-material/Person'
+import LockIcon from '@mui/icons-material/Lock'
 
 const LoginForm = () => (
     <Box
@@ -50,17 +52,39 @@ const LoginForm = () => (
                         placeholder='아이디를 입력하세요'
                         value=''
                         onChange={() => {}}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position='start'>
+                                    <PersonIcon color='action' />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
+
                     <CommonInput
                         label='비밀번호'
                         placeholder='비밀번호를 입력하세요'
                         type='password'
                         value=''
                         onChange={() => {}}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position='start'>
+                                    <LockIcon color='action' />
+                                </InputAdornment>
+                            ),
+                        }}
                     />
-                    <Button type='button' variant='contained' size='large'>
+
+                    <Button
+                        type='button'
+                        variant='contained'
+                        size='large'
+                        sx={{py: 1}}
+                    >
                         로그인
                     </Button>
+
                     <Stack direction='row' justifyContent='space-between'>
                         <MuiLink
                             component={Link}
