@@ -1,15 +1,15 @@
 import {
-    Box,
     Card,
     CardContent,
     Avatar,
     Typography,
-    Button,
     Stack,
+    Link as MuiLink,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import BusinessIcon from '@mui/icons-material/Business'
 import EmailIcon from '@mui/icons-material/Email'
+import {Link as RouterLink} from 'react-router-dom'
 
 const mockUser = {
     userId: 'onsilonsil',
@@ -59,18 +59,23 @@ const UserInfoSection = () => {
                                     {user.email}
                                 </Typography>
                             </Stack>
+                            <Stack>
+                                <MuiLink
+                                    component={RouterLink}
+                                    to='/mypage/edit'
+                                    underline='hover'
+                                    sx={{
+                                        mt: 1,
+                                        fontWeight: 'medium',
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <EditIcon fontSize='small' sx={{mr: 1}} />
+                                    회원 정보 수정
+                                </MuiLink>
+                            </Stack>
                         </Stack>
-
-                        <Box sx={{flexGrow: 1, textAlign: 'right'}}>
-                            <Button
-                                variant='outlined'
-                                startIcon={<EditIcon />}
-                                component='a'
-                                href='/mypage/edit'
-                            >
-                                회원 정보 수정
-                            </Button>
-                        </Box>
                     </Stack>
                 </CardContent>
             </Card>
