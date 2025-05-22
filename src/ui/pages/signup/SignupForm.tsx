@@ -50,8 +50,11 @@ const SignupForm = () => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const {passwordConfirm, ...signupData} = form
         // 회원가입 API 호출
-        console.log('회원가입 시도:', form)
+        console.log('회원가입 시도:', signupData)
     }
 
     const fields: {
