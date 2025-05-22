@@ -21,27 +21,42 @@ const UserInfoSection = () => {
     const user = mockUser
 
     return (
-        <Stack sx={{mt: 2}} spacing={2}>
+        <Stack>
             <Card>
                 <CardContent>
-                    <Stack direction='row' spacing={3} alignItems='center'>
-                        <Avatar sx={{width: 64, height: 64, fontSize: 24}}>
+                    <Stack
+                        direction='row'
+                        spacing={6}
+                        alignItems='center'
+                        sx={{ml: 2}}
+                    >
+                        <Avatar
+                            sx={{
+                                width: 80,
+                                height: 80,
+                                fontSize: 36,
+                                bgcolor: 'primary.main',
+                                color: 'white',
+                            }}
+                        >
                             {user.userId.charAt(0).toUpperCase()}
                         </Avatar>
 
                         <Stack spacing={0.5}>
-                            <Typography variant='h6'>{user.userId}</Typography>
+                            <Typography
+                                variant='h6'
+                                sx={{fontWeight: 'medium'}}
+                            >
+                                {user.userId}
+                            </Typography>
 
                             <Stack
                                 direction='row'
                                 alignItems='center'
                                 spacing={1}
                             >
-                                <BusinessIcon fontSize='small' color='action' />
-                                <Typography
-                                    variant='body2'
-                                    color='text.secondary'
-                                >
+                                <BusinessIcon fontSize='small' />
+                                <Typography variant='body2'>
                                     {user.companyName}
                                 </Typography>
                             </Stack>
@@ -51,11 +66,8 @@ const UserInfoSection = () => {
                                 alignItems='center'
                                 spacing={1}
                             >
-                                <EmailIcon fontSize='small' color='action' />
-                                <Typography
-                                    variant='body2'
-                                    color='text.secondary'
-                                >
+                                <EmailIcon fontSize='small' />
+                                <Typography variant='body2'>
                                     {user.email}
                                 </Typography>
                             </Stack>
@@ -63,7 +75,6 @@ const UserInfoSection = () => {
                                 <MuiLink
                                     component={RouterLink}
                                     to='/mypage/edit'
-                                    underline='hover'
                                     sx={{
                                         mt: 1,
                                         fontWeight: 'medium',
