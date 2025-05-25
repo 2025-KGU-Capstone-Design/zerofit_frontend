@@ -29,6 +29,14 @@ const mockRows: CompanyInput[] = [
         targetEmission: 10000,
         targetRoiPeriod: 3,
     },
+    {
+        industry: '화학/석유화학',
+        targetFacilities: ['펌프', '환풍기', '일반 생산 전력 설비'],
+        investmentBudget: 50,
+        currentEmission: 8000,
+        targetEmission: 4000,
+        targetRoiPeriod: 2,
+    },
 ]
 
 const SearchHistorySection = () => (
@@ -42,11 +50,11 @@ const SearchHistorySection = () => (
                 borderCollapse: 'collapse',
                 '& th, & td': {
                     borderBottom: (theme) =>
-                        `2px solid ${theme.palette.divider}`,
+                        `3px solid ${theme.palette.divider}`,
                 },
                 '& thead th': {
                     borderBottom: (theme) =>
-                        `3px solid ${theme.palette.divider}`,
+                        `4px solid ${theme.palette.divider}`,
                 },
             }}
         >
@@ -55,12 +63,12 @@ const SearchHistorySection = () => (
                     {tableHeaders.map(({key, label}) => (
                         <TableCell
                             key={key}
-                            sx={{fontWeight: 'bold', fontSize: 16}}
+                            sx={{fontWeight: 'bold', fontSize: 14}}
                         >
                             {label}
                         </TableCell>
                     ))}
-                    <TableCell sx={{fontWeight: 'bold', fontSize: 16}}>
+                    <TableCell sx={{fontWeight: 'bold', fontSize: 14}}>
                         솔루션 보기
                     </TableCell>
                 </TableRow>
