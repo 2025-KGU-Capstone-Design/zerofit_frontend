@@ -37,7 +37,19 @@ const SearchHistorySection = () => (
             솔루션 분석 히스토리
         </Typography>
 
-        <Table>
+        <Table
+            sx={{
+                borderCollapse: 'collapse',
+                '& th, & td': {
+                    borderBottom: (theme) =>
+                        `2px solid ${theme.palette.divider}`,
+                },
+                '& thead th': {
+                    borderBottom: (theme) =>
+                        `3px solid ${theme.palette.divider}`,
+                },
+            }}
+        >
             <TableHead>
                 <TableRow>
                     {tableHeaders.map(({key, label}) => (
