@@ -1,5 +1,6 @@
 import {Stack, Typography, Container, Divider} from '@mui/material'
 import UserInfoSection from '@/ui/pages/myPage/viewSearchHistory/UserInfoSection'
+import SearchHistorySection from '@/ui/pages/myPage/viewSearchHistory/SearchHistorySection'
 
 const ViewSearchHistoryPage = () => (
     <Container sx={{mt: 14}}>
@@ -27,11 +28,8 @@ const ViewSearchHistoryPage = () => (
                             사용자 정보
                         </Typography>
                         <UserInfoSection />
-
-                        <Typography variant='h6' fontWeight='bold'>
-                            솔루션 분석 히스토리
-                        </Typography>
                     </Stack>
+                    <SearchHistorySection />
                 </Stack>
             </Stack>
         </Stack>
