@@ -68,7 +68,10 @@ const SearchHistorySection = () => (
                             {label}
                         </TableCell>
                     ))}
-                    <TableCell sx={{fontWeight: 'bold', fontSize: 14}}>
+                    <TableCell
+                        sx={{fontWeight: 'bold', fontSize: 14}}
+                        align='center'
+                    >
                         솔루션 보기
                     </TableCell>
                 </TableRow>
