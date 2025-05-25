@@ -11,7 +11,7 @@ const ViewSearchHistoryPage = () => (
             >
                 <Stack
                     flex={2}
-                    spacing={3}
+                    spacing={10}
                     sx={{
                         p: 3,
                         backgroundColor: '#FFFFFF',
