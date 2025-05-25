@@ -37,16 +37,21 @@ const SearchHistorySection = () => {
                 솔루션 분석 히스토리
             </Typography>
 
-            <Table size='small'>
+            <Table>
                 <TableHead>
                     <TableRow>
                         {tableHeaders.map(({key, label}) => (
-                            <TableCell key={key} sx={{fontWeight: 'bold'}}>
+                            <TableCell
+                                key={key}
+                                sx={{fontSize: 16, fontWeight: 'bold'}}
+                            >
                                 {label}
                             </TableCell>
                         ))}
 
-                        <TableCell sx={{pl: 4, fontWeight: 'bold'}}>
+                        <TableCell
+                            sx={{fontSize: 16, pl: 4, fontWeight: 'bold'}}
+                        >
                             솔루션 보기
                         </TableCell>
                     </TableRow>
@@ -56,21 +61,14 @@ const SearchHistorySection = () => {
                     {mockRows.map((row, idx) => (
                         <TableRow key={idx}>
                             {tableHeaders.map(({key}) => (
-                                <TableCell
-                                    key={key}
-                                    align={
-                                        key === 'targetFacilities'
-                                            ? 'left'
-                                            : 'center'
-                                    }
-                                >
+                                <TableCell key={key} sx={{fontWeight: 'bold'}}>
                                     {Array.isArray(row[key])
                                         ? (row[key] as string[]).join(', ')
                                         : (row[key] ?? '-')}
                                 </TableCell>
                             ))}
 
-                            <TableCell sx={{pl: 4}}>
+                            <TableCell>
                                 <Button
                                     variant='contained'
                                     size='small'
