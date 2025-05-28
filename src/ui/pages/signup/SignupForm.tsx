@@ -35,16 +35,23 @@ const SignupForm = () => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
         }
 
+    // 유효성 검사
+    const idRegex = /^[A-Za-z0-9]{4,12}$/
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     const phoneRegex = /^\d{10,11}$/
 
-    const isEmpty = Object.values(form).some((v) => v.trim() === '')
+    // 검증 상태
+    const isUserIdInvalid = form.userId !== '' && !idRegex.test(form.userId)
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
     const isPhoneInvalid =
         form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
 
+    // 빈값 체크
+    const isEmpty = Object.values(form).some((v) => v.trim() === '')
+
+    // 전체 폼 유효 여부
     const isFormValid =
         !isEmpty && !isPasswordMismatch && !isEmailInvalid && !isPhoneInvalid
 
@@ -71,6 +78,10 @@ const SignupForm = () => {
             label: '아이디',
             placeholder: '아이디를 입력하세요', // 아이디 중복 여부 검사 필요
             icon: <PersonIcon color='action' />,
+            error: isUserIdInvalid,
+            helperText: isUserIdInvalid
+                ? '아이디는 4~12자 영문 및 숫자만 가능합니다.'
+                : undefined,
         },
         {
             name: 'password',
