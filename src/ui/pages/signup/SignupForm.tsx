@@ -151,25 +151,40 @@ const SignupForm = () => {
                                 icon,
                                 error,
                                 helperText,
-                            }) => (
-                                <CommonInput
-                                    key={name}
-                                    label={label}
-                                    placeholder={placeholder}
-                                    type={type}
-                                    value={form[name]}
-                                    onChange={handleChange(name)}
-                                    error={error}
-                                    helperText={helperText}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position='start'>
-                                                {icon}
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            )
+                            }) => {
+                                const isUserId = name === 'userId'
+                                return (
+                                    <CommonInput
+                                        key={name}
+                                        label={label}
+                                        placeholder={placeholder}
+                                        type={type}
+                                        value={form[name]}
+                                        onChange={handleChange(name)}
+                                        error={error}
+                                        helperText={helperText}
+                                        InputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position='start'>
+                                                    {icon}
+                                                </InputAdornment>
+                                            ),
+                                            ...(isUserId && {
+                                                endAdornment: (
+                                                    <InputAdornment position='end'>
+                                                        <Button
+                                                            variant='outlined'
+                                                            size='large'
+                                                        >
+                                                            중복확인
+                                                        </Button>
+                                                    </InputAdornment>
+                                                ),
+                                            }),
+                                        }}
+                                    />
+                                )
+                            }
                         )}
 
                         <Button
