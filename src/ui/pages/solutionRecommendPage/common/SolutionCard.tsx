@@ -7,6 +7,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn'
 import {SolutionItem} from '@/types/solution'
+import ScoreLabel from './ScoreLabel'
 
 interface SolutionProps {
     solution: SolutionItem
@@ -28,15 +29,27 @@ const SolutionCard = ({solution}: SolutionProps) => {
             <Box
                 sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
                 }}
             >
+                <Ranking rank={solution.rank} />
                 <Box>
-                    <Typography sx={{fontSize: '18px'}}>
+                    <Typography sx={{fontSize: '18px', ml: '14.62px'}}>
                         개선 구분: {solution.improvementType}
                     </Typography>
                 </Box>
-                <Ranking rank={solution.rank} />
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    mt: '12px',
+                }}
+            >
+                <ScoreLabel />
+                <Box>
+                    <Typography sx={{fontSize: '18px', ml: '14.62px'}}>
+                        {solution.score} 점
+                    </Typography>
+                </Box>
             </Box>
 
             <Stack spacing={'16px'} sx={{my: '36px'}}>

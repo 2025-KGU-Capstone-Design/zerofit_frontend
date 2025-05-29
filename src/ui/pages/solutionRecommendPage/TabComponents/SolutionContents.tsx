@@ -2,7 +2,7 @@ import {Box, Stack, Typography} from '@mui/material'
 import MainSolution from './MainSolution'
 import RadarChart from './RadarChart'
 import SolutionCard from '../common/SolutionCard'
-import {SolutionType} from '@/constants/solutionCategories'
+import {solutionCategories, SolutionType} from '@/constants/solutionCategories'
 import useSolutionStore from '@/store/useSolutionStore'
 
 interface CategoryProps {
@@ -11,17 +11,22 @@ interface CategoryProps {
 
 const SolutionContents = ({category}: CategoryProps) => {
     const solutions = useSolutionStore((state) => state.solutions)
-    const solutionsList = solutions[category]
+    const solutionsList = solutions[category] ?? []
 
     const topSolution = solutionsList.find((item) => item.rank === 1)
     const otherSolutions = solutionsList.filter((item) => item.rank !== 1)
+
+    const label =
+        solutionCategories.find((c) => c.key === category)?.label || ''
 
     return (
         <Box>
             <Stack sx={{my: '43px'}}>
                 <Stack direction='row' spacing='31px' sx={{height: '476px'}}>
                     {/* 종합 최적 솔루션 */}
-                    {topSolution && <MainSolution solution={topSolution} />}
+                    {topSolution && (
+                        <MainSolution solution={topSolution} label={label} />
+                    )}
                     {/* 종합 최적 솔루션 비교 */}
                     <Box
                         sx={{
@@ -34,7 +39,7 @@ const SolutionContents = ({category}: CategoryProps) => {
                     >
                         <Box sx={{padding: '24px'}}>
                             <Typography sx={{fontSize: '18px'}}>
-                                종합 최적 솔루션 비교
+                                {label} 비교
                             </Typography>
                             <RadarChart solution={solutionsList} />
                         </Box>

@@ -1,6 +1,6 @@
 import {Box, Typography} from '@mui/material'
 import SolutionTab from './SoutionTab'
-import SolutionLoader from './SolutionLoader'
+import SolutionLoader from './api/SolutionLoader'
 
 const SolutionRecommend = () => {
     return (

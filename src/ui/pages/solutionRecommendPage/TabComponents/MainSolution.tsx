@@ -7,9 +7,10 @@ import {SolutionItem} from '@/types/solution'
 
 interface TopSolutionProps {
     solution: SolutionItem
+    label: string
 }
 
-const MainSolution = ({solution}: TopSolutionProps) => {
+const MainSolution = ({solution, label}: TopSolutionProps) => {
     const industry = useCompanyInputStore((state) => state.industry)
     return (
         <Box
@@ -23,9 +24,7 @@ const MainSolution = ({solution}: TopSolutionProps) => {
         >
             <Box sx={{padding: '24px'}}>
                 <Stack direction='row' justifyContent='space-between'>
-                    <Typography sx={{fontSize: '18px'}}>
-                        종합 최적 솔루션
-                    </Typography>
+                    <Typography sx={{fontSize: '18px'}}>{label}</Typography>
                     <Bookmark />
                 </Stack>
                 <Box
