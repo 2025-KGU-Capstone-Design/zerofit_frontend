@@ -17,6 +17,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
+import http from '@/services/Http'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
@@ -29,6 +30,10 @@ const SignupForm = () => {
         phoneNumber: '',
         companyName: '',
     })
+
+    const [isUserIdAvailable, setIsUserIdAvailable] = useState<boolean | null>(
+        null
+    )
 
     const handleChange =
         (field: keyof SignupFormData) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +58,22 @@ const SignupForm = () => {
 
     // 전체 폼 유효 여부
     const isFormValid =
-        !isEmpty && !isPasswordMismatch && !isEmailInvalid && !isPhoneInvalid
+        !isEmpty &&
+        !isPasswordMismatch &&
+        !isEmailInvalid &&
+        !isPhoneInvalid &&
+        isUserIdAvailable === true
 
+    const handleCheckUserId = async () => {
+        if (!idRegex.test(form.userId)) {
+            setIsUserIdAvailable(null)
+            return
+        }
+        const {data} = await http.get<{Available: boolean}>(
+            `api/user/availability/${form.userId}`
+        )
+        setIsUserIdAvailable(data.Available)
+    }
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
 
@@ -76,12 +95,16 @@ const SignupForm = () => {
         {
             name: 'userId',
             label: '아이디',
-            placeholder: '아이디를 입력하세요', // 아이디 중복 여부 검사 필요
+            placeholder: '아이디를 입력하세요',
             icon: <PersonIcon color='action' />,
             error: isUserIdInvalid,
             helperText: isUserIdInvalid
-                ? '아이디는 4~12자 영문 및 숫자만 가능합니다.'
-                : undefined,
+                ? '4~12자 영문/숫자만 가능'
+                : isUserIdAvailable === true
+                  ? '✅ 사용 가능한 아이디입니다.'
+                  : isUserIdAvailable === false
+                    ? '❌ 이미 사용 중인 아이디입니다.'
+                    : undefined,
         },
         {
             name: 'password',
@@ -186,6 +209,14 @@ const SignupForm = () => {
                                                         <Button
                                                             variant='outlined'
                                                             size='large'
+                                                            onClick={
+                                                                handleCheckUserId
+                                                            }
+                                                            disabled={
+                                                                form.userId ===
+                                                                    '' ||
+                                                                isUserIdInvalid
+                                                            }
                                                         >
                                                             중복확인
                                                         </Button>
