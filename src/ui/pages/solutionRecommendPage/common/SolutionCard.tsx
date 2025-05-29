@@ -1,4 +1,4 @@
-import {Box, Button, Collapse, Stack, Typography} from '@mui/material'
+import {Box, Button, Collapse, Divider, Stack, Typography} from '@mui/material'
 import {useState} from 'react'
 import Ranking from './Ranking'
 import Bookmark from './Bookmark'
@@ -133,7 +133,9 @@ const SolutionCard = ({solution}: SolutionProps) => {
                     </Stack>
                 </Box>
             </Stack>
+
             <Collapse in={showDetails}>
+                <Divider sx={{my: 2, borderColor: '#E5E7EB'}} />
                 <Box sx={{mb: 3}}>
                     <Typography sx={{fontSize: 14, color: '#4B5563'}}>
                         🏭 산업군
