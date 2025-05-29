@@ -9,7 +9,7 @@ import {
     Link as MuiLink,
     InputAdornment,
 } from '@mui/material'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import CommonInput from '@/ui/CommonInput'
 import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
@@ -23,7 +23,9 @@ import {useSnackbar} from '@/ui/CommonSnackbar'
 type SignupFormData = UserData & {passwordConfirm: string}
 
 const SignupForm = () => {
+    const navigate = useNavigate()
     const {openSnackbar} = useSnackbar()
+
     const [form, setForm] = useState<SignupFormData>({
         userId: '',
         password: '',
@@ -87,6 +89,7 @@ const SignupForm = () => {
                 signupData
             )
             openSnackbar('✅ 회원가입이 완료되었습니다!', 'success')
+            navigate('/login')
             console.log('회원가입 성공, userId:', data.userId)
         } catch (err) {
             openSnackbar(
