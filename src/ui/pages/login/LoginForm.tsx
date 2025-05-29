@@ -1,4 +1,5 @@
 import {useState, ChangeEvent, FormEvent} from 'react'
+import {useLocation} from 'react-router-dom'
 import {
     Box,
     Card,
@@ -16,8 +17,18 @@ import LockIcon from '@mui/icons-material/Lock'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {LoginForm} from '@/types/auth'
 
+interface LocationState {
+    userId?: string
+}
+
 const LoginForm = () => {
-    const [form, setForm] = useState<LoginForm>({userId: '', password: ''})
+    const location = useLocation()
+    const {userId: prefillId = ''} = (location.state as LocationState) ?? {}
+
+    const [form, setForm] = useState<LoginForm>({
+        userId: prefillId,
+        password: '',
+    })
     const {openSnackbar} = useSnackbar()
 
     const handleChange =

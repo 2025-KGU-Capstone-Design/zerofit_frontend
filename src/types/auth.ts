@@ -7,7 +7,7 @@ type UserData = {
     userId: string
     password: string
     email: string
-    phoneNumber: string
+    phone: string
     companyName: string
 }
 

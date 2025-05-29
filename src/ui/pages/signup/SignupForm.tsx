@@ -9,7 +9,7 @@ import {
     Link as MuiLink,
     InputAdornment,
 } from '@mui/material'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import CommonInput from '@/ui/CommonInput'
 import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
@@ -17,17 +17,21 @@ import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
-import http from '@/services/Http'
+import {useSnackbar} from '@/ui/CommonSnackbar'
+import {authApi, SignupPayload} from '@/services/auth'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
 const SignupForm = () => {
+    const navigate = useNavigate()
+    const {openSnackbar} = useSnackbar()
+
     const [form, setForm] = useState<SignupFormData>({
         userId: '',
         password: '',
         passwordConfirm: '',
         email: '',
-        phoneNumber: '',
+        phone: '',
         companyName: '',
     })
 
@@ -38,6 +42,9 @@ const SignupForm = () => {
     const handleChange =
         (field: keyof SignupFormData) => (e: ChangeEvent<HTMLInputElement>) => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
+            if (field === 'userId') {
+                setIsUserIdAvailable(null)
+            }
         }
 
     // 유효성 검사
@@ -50,8 +57,7 @@ const SignupForm = () => {
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
-    const isPhoneInvalid =
-        form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
+    const isPhoneInvalid = form.phone !== '' && !phoneRegex.test(form.phone)
 
     // 빈값 체크
     const isEmpty = Object.values(form).some((v) => v.trim() === '')
@@ -69,18 +75,24 @@ const SignupForm = () => {
             setIsUserIdAvailable(null)
             return
         }
-        const {data} = await http.get<{Available: boolean}>(
-            `api/user/availability/${form.userId}`
-        )
+        const {data} = await authApi.checkUserId(form.userId)
         setIsUserIdAvailable(data.Available)
     }
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault()
 
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault()
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const {passwordConfirm, ...signupData} = form
-        // 회원가입 API 호출
-        console.log('회원가입 시도:', signupData)
+        const {passwordConfirm, ...rest} = form
+        const payload: SignupPayload = rest
+
+        try {
+            const {data} = await authApi.signup(payload)
+            openSnackbar('✅ 회원가입이 완료되었습니다!', 'success')
+            navigate('/login', {state: {userId: data.userId}})
+        } catch (err) {
+            openSnackbar('❌ 회원가입에 실패했습니다.', 'error')
+            console.error('회원가입 에러:', err)
+        }
     }
 
     const fields: {
@@ -98,13 +110,16 @@ const SignupForm = () => {
             placeholder: '아이디를 입력하세요',
             icon: <PersonIcon color='action' />,
             error: isUserIdInvalid,
-            helperText: isUserIdInvalid
-                ? '4~12자 영문/숫자만 가능'
-                : isUserIdAvailable === true
-                  ? '✅ 사용 가능한 아이디입니다.'
-                  : isUserIdAvailable === false
-                    ? '❌ 이미 사용 중인 아이디입니다.'
-                    : undefined,
+            helperText:
+                form.userId === ''
+                    ? undefined
+                    : isUserIdInvalid
+                      ? '4~12자 영문/숫자만 가능'
+                      : isUserIdAvailable === true
+                        ? '✅ 사용 가능한 아이디입니다.'
+                        : isUserIdAvailable === false
+                          ? '❌ 이미 사용 중인 아이디입니다.'
+                          : undefined,
         },
         {
             name: 'password',
@@ -135,7 +150,7 @@ const SignupForm = () => {
                 : undefined,
         },
         {
-            name: 'phoneNumber',
+            name: 'phone',
             label: '연락처',
             placeholder: '전화번호를 입력하세요',
             icon: <PhoneIcon color='action' />,
