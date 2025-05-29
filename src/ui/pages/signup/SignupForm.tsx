@@ -79,15 +79,15 @@ const SignupForm = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {passwordConfirm, ...signupData} = form
         // 회원가입 API 호출
-        // try {
-        //     const {data} = await http.post<{userId: string}>(
-        //         '/api/user',
-        //         signupData
-        //     )
-        //     console.log('회원가입 성공, userId:', data.userId)
-        // } catch (err) {
-        //     console.error('회원가입 에러:', err)
-        // }
+        try {
+            const {data} = await http.post<{userId: string}>(
+                '/api/user',
+                signupData
+            )
+            console.log('회원가입 성공, userId:', data.userId)
+        } catch (err) {
+            console.error('회원가입 에러:', err)
+        }
     }
 
     const fields: {
