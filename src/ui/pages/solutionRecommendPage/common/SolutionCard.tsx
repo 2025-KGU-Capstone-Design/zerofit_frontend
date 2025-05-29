@@ -134,7 +134,7 @@ const SolutionCard = ({solution}: SolutionProps) => {
                 </Box>
             </Stack>
             <Collapse in={showDetails}>
-                <Box sx={{mb: 2}}>
+                <Box sx={{mb: 3}}>
                     <Typography sx={{fontSize: 14, color: '#4B5563'}}>
                         🏭 산업군
                     </Typography>
