@@ -27,7 +27,7 @@ const SignupForm = () => {
         password: '',
         passwordConfirm: '',
         email: '',
-        phoneNumber: '',
+        phone: '',
         companyName: '',
     })
 
@@ -50,8 +50,7 @@ const SignupForm = () => {
     const isPasswordMismatch =
         form.passwordConfirm !== '' && form.passwordConfirm !== form.password
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
-    const isPhoneInvalid =
-        form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
+    const isPhoneInvalid = form.phone !== '' && !phoneRegex.test(form.phone)
 
     // 빈값 체크
     const isEmpty = Object.values(form).some((v) => v.trim() === '')
@@ -74,13 +73,21 @@ const SignupForm = () => {
         )
         setIsUserIdAvailable(data.Available)
     }
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {passwordConfirm, ...signupData} = form
         // 회원가입 API 호출
-        console.log('회원가입 시도:', signupData)
+        // try {
+        //     const {data} = await http.post<{userId: string}>(
+        //         '/api/user',
+        //         signupData
+        //     )
+        //     console.log('회원가입 성공, userId:', data.userId)
+        // } catch (err) {
+        //     console.error('회원가입 에러:', err)
+        // }
     }
 
     const fields: {
@@ -135,7 +142,7 @@ const SignupForm = () => {
                 : undefined,
         },
         {
-            name: 'phoneNumber',
+            name: 'phone',
             label: '연락처',
             placeholder: '전화번호를 입력하세요',
             icon: <PhoneIcon color='action' />,
