@@ -32,7 +32,7 @@ const ScoreInfoTooltip = () => {
                         variant='body2'
                         sx={{mb: 0.5, fontSize: '15px'}}
                     >
-                        이 점수는 투자비, 절감액, 회수기간, 감축량 등 다양한
+                        종합 점수는 투자비, 절감액, 회수기간, 감축량 등 다양한
                         지표를 중요도별로 가중합산해 종합적인 요소를 평가한
                         점수입니다.
                     </Typography>
@@ -52,7 +52,8 @@ const ScoreInfoTooltip = () => {
                             fontSize: '15px',
                         }}
                     >
-                        ✅ 이 점수는 ‘종합 최적 솔루션’ 탭 전용으로 제공됩니다.
+                        ✅ 종합 점수는 ‘종합 최적 솔루션’ 탭 전용으로
+                        제공됩니다.
                     </Typography>
                 </React.Fragment>
             }

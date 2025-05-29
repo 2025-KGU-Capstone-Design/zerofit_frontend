@@ -5,7 +5,7 @@ import Bookmark from '../common/Bookmark'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {SolutionItem} from '@/types/solution'
 import ScoreLabel from '../common/ScoreLabel'
-import ScoreInfoTooltip from '../common/CustomizedTooltips'
+import ScoreInfoTooltip from '../common/ScoreInfoTooltip'
 
 interface TopSolutionProps {
     solution: SolutionItem
@@ -71,25 +71,27 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                                 </Typography>
                             </Box>
                         </Box>
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                            }}
-                        >
-                            <ScoreLabel />
-                            <Box sx={{ml: '14.62px'}}>
-                                <Typography
-                                    sx={{
-                                        fontSize: '18px',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    {solution.score} 점
-                                </Typography>
+                        {solution.type === 'total_optimization' && (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <ScoreLabel />
+                                <Box sx={{ml: '14.62px'}}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: '18px',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {solution.score} 점
+                                    </Typography>
+                                </Box>
+                                <ScoreInfoTooltip />
                             </Box>
-                            <ScoreInfoTooltip />
-                        </Box>
+                        )}
                     </Box>
                     <Stack
                         direction='row'

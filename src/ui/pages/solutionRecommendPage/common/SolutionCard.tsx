@@ -38,19 +38,27 @@ const SolutionCard = ({solution}: SolutionProps) => {
                     </Typography>
                 </Box>
             </Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    mt: '12px',
-                }}
-            >
-                <ScoreLabel />
-                <Box>
-                    <Typography sx={{fontSize: '18px', ml: '14.62px'}}>
-                        {solution.score} 점
-                    </Typography>
+            {solution.type === 'total_optimization' && (
+                <Box
+                    sx={{
+                        display: 'flex',
+                        mt: '12px',
+                    }}
+                >
+                    <ScoreLabel />
+                    <Box>
+                        <Typography
+                            sx={{
+                                fontSize: '18px',
+                                ml: '14.62px',
+                                fontWeight: 700,
+                            }}
+                        >
+                            {solution.score} 점
+                        </Typography>
+                    </Box>
                 </Box>
-            </Box>
+            )}
 
             <Stack spacing={'16px'} sx={{my: '36px'}}>
                 <Box sx={{display: 'center', justifyContent: 'space-between'}}>
