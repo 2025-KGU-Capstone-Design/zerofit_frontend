@@ -89,7 +89,7 @@ const SignupForm = () => {
                 signupData
             )
             openSnackbar('✅ 회원가입이 완료되었습니다!', 'success')
-            navigate('/login')
+            navigate('/login', {state: {userId: data.userId}})
             console.log('회원가입 성공, userId:', data.userId)
         } catch (err) {
             openSnackbar(
