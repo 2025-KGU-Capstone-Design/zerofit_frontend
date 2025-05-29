@@ -5,7 +5,7 @@ const ScoreLabel = () => {
         <Box>
             <Box
                 sx={{
-                    bgcolor: '#04D9C4',
+                    bgcolor: '#25BECB',
                     width: '83px',
                     height: '28px',
                     borderRadius: 9999,
@@ -14,7 +14,7 @@ const ScoreLabel = () => {
                     alignItems: 'center',
                 }}
             >
-                <Typography fontSize='16px' sx={{color: '#FFFFFF'}}>
+                <Typography fontSize='15px' sx={{color: '#FFFFFF'}}>
                     종합 점수
                 </Typography>
             </Box>

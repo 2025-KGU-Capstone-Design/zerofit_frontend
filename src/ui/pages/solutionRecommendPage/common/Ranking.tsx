@@ -17,7 +17,7 @@ const Ranking = ({rank}: RankingProps) => {
                     alignItems: 'center',
                 }}
             >
-                <Typography fontSize='16px' sx={{color: '#FFFFFF'}}>
+                <Typography fontSize='15px' sx={{color: '#FFFFFF'}}>
                     Top {rank}
                 </Typography>
             </Box>

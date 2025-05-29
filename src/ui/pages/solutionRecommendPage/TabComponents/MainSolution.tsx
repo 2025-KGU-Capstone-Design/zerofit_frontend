@@ -4,6 +4,8 @@ import Ranking from '../common/Ranking'
 import Bookmark from '../common/Bookmark'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {SolutionItem} from '@/types/solution'
+import ScoreLabel from '../common/ScoreLabel'
+import ScoreInfoTooltip from '../common/CustomizedTooltips'
 
 interface TopSolutionProps {
     solution: SolutionItem
@@ -39,25 +41,55 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}
                     >
-                        <Box>
-                            <Typography
-                                sx={{fontWeight: 700, fontSize: '20px'}}
-                            >
-                                개선 구분: {solution.improvementType}
-                            </Typography>
-                            <Typography
-                                sx={{
-                                    pt: '8px',
-                                    color: '#4B5563',
-                                    fontSize: '14px',
-                                }}
-                            >
-                                {industry}
-                            </Typography>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Ranking rank={solution.rank} />
+                            <Box sx={{ml: '14.62px'}}>
+                                <Typography
+                                    sx={{
+                                        fontWeight: 700,
+                                        fontSize: '20px',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    개선 구분: {solution.improvementType}
+                                </Typography>
+                                <Typography
+                                    sx={{
+                                        color: '#4B5563',
+                                        fontSize: '14px',
+                                    }}
+                                >
+                                    {industry}
+                                </Typography>
+                            </Box>
                         </Box>
-                        <Ranking rank={solution.rank} />
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <ScoreLabel />
+                            <Box sx={{ml: '14.62px'}}>
+                                <Typography
+                                    sx={{
+                                        fontSize: '18px',
+                                        fontWeight: 'bold',
+                                    }}
+                                >
+                                    {solution.score} 점
+                                </Typography>
+                            </Box>
+                            <ScoreInfoTooltip />
+                        </Box>
                     </Box>
                     <Stack
                         direction='row'
