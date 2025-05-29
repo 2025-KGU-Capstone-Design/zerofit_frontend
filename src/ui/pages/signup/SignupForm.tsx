@@ -42,6 +42,9 @@ const SignupForm = () => {
     const handleChange =
         (field: keyof SignupFormData) => (e: ChangeEvent<HTMLInputElement>) => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
+            if (field === 'userId') {
+                setIsUserIdAvailable(null)
+            }
         }
 
     // 유효성 검사
@@ -115,13 +118,16 @@ const SignupForm = () => {
             placeholder: '아이디를 입력하세요',
             icon: <PersonIcon color='action' />,
             error: isUserIdInvalid,
-            helperText: isUserIdInvalid
-                ? '4~12자 영문/숫자만 가능'
-                : isUserIdAvailable === true
-                  ? '✅ 사용 가능한 아이디입니다.'
-                  : isUserIdAvailable === false
-                    ? '❌ 이미 사용 중인 아이디입니다.'
-                    : undefined,
+            helperText:
+                form.userId === ''
+                    ? undefined
+                    : isUserIdInvalid
+                      ? '4~12자 영문/숫자만 가능'
+                      : isUserIdAvailable === true
+                        ? '✅ 사용 가능한 아이디입니다.'
+                        : isUserIdAvailable === false
+                          ? '❌ 이미 사용 중인 아이디입니다.'
+                          : undefined,
         },
         {
             name: 'password',
