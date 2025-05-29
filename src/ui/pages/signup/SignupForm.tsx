@@ -17,8 +17,8 @@ import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
-import http from '@/services/Http'
 import {useSnackbar} from '@/ui/CommonSnackbar'
+import {authApi, SignupPayload} from '@/services/auth'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
@@ -75,30 +75,22 @@ const SignupForm = () => {
             setIsUserIdAvailable(null)
             return
         }
-        const {data} = await http.get<{Available: boolean}>(
-            `api/user/availability/${form.userId}`
-        )
+        const {data} = await authApi.checkUserId(form.userId)
         setIsUserIdAvailable(data.Available)
     }
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const {passwordConfirm, ...signupData} = form
-        // 회원가입 API 호출
+        const {passwordConfirm, ...rest} = form
+        const payload: SignupPayload = rest
+
         try {
-            const {data} = await http.post<{userId: string}>(
-                '/api/user',
-                signupData
-            )
+            const {data} = await authApi.signup(payload)
             openSnackbar('✅ 회원가입이 완료되었습니다!', 'success')
             navigate('/login', {state: {userId: data.userId}})
-            console.log('회원가입 성공, userId:', data.userId)
         } catch (err) {
-            openSnackbar(
-                '❌ 회원가입에 실패했습니다. 다시 시도해주세요.',
-                'error'
-            )
+            openSnackbar('❌ 회원가입에 실패했습니다.', 'error')
             console.error('회원가입 에러:', err)
         }
     }
