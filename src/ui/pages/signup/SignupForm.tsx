@@ -18,10 +18,12 @@ import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
 import http from '@/services/Http'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
 const SignupForm = () => {
+    const {openSnackbar} = useSnackbar()
     const [form, setForm] = useState<SignupFormData>({
         userId: '',
         password: '',
@@ -84,8 +86,13 @@ const SignupForm = () => {
                 '/api/user',
                 signupData
             )
+            openSnackbar('✅ 회원가입이 완료되었습니다!', 'success')
             console.log('회원가입 성공, userId:', data.userId)
         } catch (err) {
+            openSnackbar(
+                '❌ 회원가입에 실패했습니다. 다시 시도해주세요.',
+                'error'
+            )
             console.error('회원가입 에러:', err)
         }
     }
