@@ -1,15 +1,12 @@
 import {Box, Typography} from '@mui/material'
 
-type RankingProps = {
-    rank: number
-}
-const Ranking = ({rank}: RankingProps) => {
+const ScoreLabel = () => {
     return (
         <Box>
             <Box
                 sx={{
-                    bgcolor: 'secondary.main',
-                    width: '58.38px',
+                    bgcolor: '#25BECB',
+                    width: '83px',
                     height: '28px',
                     borderRadius: 9999,
                     display: 'flex',
@@ -18,11 +15,11 @@ const Ranking = ({rank}: RankingProps) => {
                 }}
             >
                 <Typography fontSize='15px' sx={{color: '#FFFFFF'}}>
-                    Top {rank}
+                    종합 점수
                 </Typography>
             </Box>
         </Box>
     )
 }
 
-export default Ranking
+export default ScoreLabel

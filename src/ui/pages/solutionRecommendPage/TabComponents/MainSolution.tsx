@@ -4,12 +4,15 @@ import Ranking from '../common/Ranking'
 import Bookmark from '../common/Bookmark'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {SolutionItem} from '@/types/solution'
+import ScoreLabel from '../common/ScoreLabel'
+import ScoreInfoTooltip from '../common/ScoreInfoTooltip'
 
 interface TopSolutionProps {
     solution: SolutionItem
+    label: string
 }
 
-const MainSolution = ({solution}: TopSolutionProps) => {
+const MainSolution = ({solution, label}: TopSolutionProps) => {
     const industry = useCompanyInputStore((state) => state.industry)
     return (
         <Box
@@ -23,9 +26,7 @@ const MainSolution = ({solution}: TopSolutionProps) => {
         >
             <Box sx={{padding: '24px'}}>
                 <Stack direction='row' justifyContent='space-between'>
-                    <Typography sx={{fontSize: '18px'}}>
-                        종합 최적 솔루션
-                    </Typography>
+                    <Typography sx={{fontSize: '18px'}}>{label}</Typography>
                     <Bookmark />
                 </Stack>
                 <Box
@@ -40,25 +41,57 @@ const MainSolution = ({solution}: TopSolutionProps) => {
                         sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
+                            alignItems: 'center',
                         }}
                     >
-                        <Box>
-                            <Typography
-                                sx={{fontWeight: 700, fontSize: '20px'}}
-                            >
-                                개선 구분: {solution.improvementType}
-                            </Typography>
-                            <Typography
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Ranking rank={solution.rank} />
+                            <Box sx={{ml: '14.62px'}}>
+                                <Typography
+                                    sx={{
+                                        fontWeight: 700,
+                                        fontSize: '20px',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    개선 구분: {solution.improvementType}
+                                </Typography>
+                                <Typography
+                                    sx={{
+                                        color: '#4B5563',
+                                        fontSize: '14px',
+                                    }}
+                                >
+                                    {industry}
+                                </Typography>
+                            </Box>
+                        </Box>
+                        {solution.type === 'total_optimization' && (
+                            <Box
                                 sx={{
-                                    pt: '8px',
-                                    color: '#4B5563',
-                                    fontSize: '14px',
+                                    display: 'flex',
+                                    alignItems: 'center',
                                 }}
                             >
-                                {industry}
-                            </Typography>
-                        </Box>
-                        <Ranking rank={solution.rank} />
+                                <ScoreLabel />
+                                <Box sx={{ml: '14.62px'}}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: '18px',
+                                            fontWeight: 'bold',
+                                        }}
+                                    >
+                                        {solution.score} 점
+                                    </Typography>
+                                </Box>
+                                <ScoreInfoTooltip />
+                            </Box>
+                        )}
                     </Box>
                     <Stack
                         direction='row'
