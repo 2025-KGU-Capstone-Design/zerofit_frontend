@@ -61,7 +61,11 @@ const SolutionContents = ({category}: CategoryProps) => {
                 <Stack
                     direction='row'
                     spacing='19px'
-                    sx={{display: 'flex', justifyContent: 'center'}}
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'flex-start',
+                    }}
                 >
                     {otherSolutions.map((item) => (
                         <SolutionCard solution={item} />

@@ -1,4 +1,5 @@
-import {Box, Button, Stack, Typography} from '@mui/material'
+import {Box, Button, Collapse, Stack, Typography} from '@mui/material'
+import {useState} from 'react'
 import Ranking from './Ranking'
 import Bookmark from './Bookmark'
 
@@ -14,6 +15,7 @@ interface SolutionProps {
 }
 
 const SolutionCard = ({solution}: SolutionProps) => {
+    const [showDetails, setShowDetails] = useState(false)
     return (
         <Box
             sx={{
@@ -131,22 +133,47 @@ const SolutionCard = ({solution}: SolutionProps) => {
                     </Stack>
                 </Box>
             </Stack>
+            <Collapse in={showDetails}>
+                <Box sx={{mb: 2}}>
+                    <Typography sx={{fontSize: 14, color: '#4B5563'}}>
+                        🏭 산업군
+                    </Typography>
+                    <Typography sx={{fontSize: 16, fontWeight: 700, mb: 2}}>
+                        산업군
+                    </Typography>
+
+                    <Typography sx={{fontSize: 14, color: '#4B5563'}}>
+                        🔧 대상 설비
+                    </Typography>
+                    <Typography sx={{fontSize: 16, fontWeight: 700, mb: 2}}>
+                        {solution.facility}
+                    </Typography>
+
+                    <Typography sx={{fontSize: 14, color: '#4B5563'}}>
+                        📝 개선활동명
+                    </Typography>
+                    <Typography sx={{fontSize: 16, fontWeight: 700}}>
+                        {solution.activity}
+                    </Typography>
+                </Box>
+            </Collapse>
             <Box
                 sx={{
-                    display: 'center',
+                    display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                 }}
             >
-                <Box>
-                    <Button variant='contained' sx={{width: 300, height: 44}}>
-                        상세보기
-                    </Button>
-                </Box>
+                <Button
+                    variant='contained'
+                    sx={{width: 300, height: 44}}
+                    onClick={() => setShowDetails((prev) => !prev)}
+                >
+                    {showDetails ? '간략히 보기' : '상세보기'}
+                </Button>
                 <Bookmark />
             </Box>
         </Box>
     )
 }
-
 export default SolutionCard
