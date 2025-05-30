@@ -6,12 +6,30 @@ import {
     Box,
     Link as MUILink,
 } from '@mui/material'
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
+import {useAuth} from '@/hooks/useAuth'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 
 const LandingPageHeader = () => {
     const resetState = useCompanyInputStore((state) => state.resetState)
+    const {isLoggedIn, logout} = useAuth()
+    const navigate = useNavigate()
+    const {openSnackbar} = useSnackbar()
+
+    const handleLogout = () => {
+        logout()
+        navigate('/')
+    }
+
+    const handleConsultingClick = () => {
+        if (!isLoggedIn) {
+            openSnackbar('로그인 후 이용할 수 있습니다.', 'info')
+        } else {
+            resetState()
+        }
+    }
 
     return (
         <AppBar position='static' color='primary'>
@@ -42,8 +60,8 @@ const LandingPageHeader = () => {
 
                 <MUILink
                     component={RouterLink}
-                    to='/company-info/step1'
-                    onClick={resetState}
+                    to={isLoggedIn ? '/company-info/step1' : '/login'}
+                    onClick={handleConsultingClick}
                     underline='none'
                     sx={{
                         ml: 6,
@@ -57,28 +75,62 @@ const LandingPageHeader = () => {
                 <Box sx={{flexGrow: 1}} />
 
                 <Stack direction='row' spacing={4} sx={{mr: 2}}>
-                    <MUILink
-                        component={RouterLink}
-                        to='/login'
-                        underline='none'
-                        sx={{
-                            color: 'grey.300',
-                            '&:hover': {color: 'white'},
-                        }}
-                    >
-                        로그인
-                    </MUILink>
-                    <MUILink
-                        component={RouterLink}
-                        to='/signup'
-                        underline='none'
-                        sx={{
-                            color: 'grey.300',
-                            '&:hover': {color: 'white'},
-                        }}
-                    >
-                        회원가입
-                    </MUILink>
+                    {isLoggedIn ? (
+                        <>
+                            <MUILink
+                                component={RouterLink}
+                                to='/mypage/search-history'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                마이페이지
+                            </MUILink>
+                            <MUILink
+                                component='button'
+                                onClick={handleLogout}
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                    background: 'none',
+                                    border: 'none',
+                                    padding: 0,
+                                    font: 'inherit',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                로그아웃
+                            </MUILink>
+                        </>
+                    ) : (
+                        <>
+                            <MUILink
+                                component={RouterLink}
+                                to='/login'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                로그인
+                            </MUILink>
+                            <MUILink
+                                component={RouterLink}
+                                to='/signup'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                회원가입
+                            </MUILink>
+                        </>
+                    )}
                 </Stack>
             </Toolbar>
         </AppBar>

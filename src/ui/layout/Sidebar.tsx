@@ -7,12 +7,16 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
+    Divider,
 } from '@mui/material'
-import {useLocation, Link} from 'react-router-dom'
+import {useLocation, Link, useNavigate} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import LogoutIcon from '@mui/icons-material/Logout'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
+import {useAuth} from '@/hooks/useAuth'
 
 const drawerWidth = 240
 
@@ -34,6 +38,14 @@ const navItems = [
 const Sidebar = () => {
     const location = useLocation()
     const resetState = useCompanyInputStore((state) => state.resetState)
+
+    const {isLoggedIn, logout} = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        logout()
+        navigate('/')
+    }
 
     return (
         <Drawer
@@ -106,6 +118,61 @@ const Sidebar = () => {
                     })}
                 </List>
             </Box>
+            {isLoggedIn && (
+                <>
+                    <Divider
+                        sx={{mt: 'auto', bgcolor: 'rgba(255,255,255,0.2)'}}
+                    />
+                    <List>
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                component={Link}
+                                to='/mypage/search-history'
+                                sx={{
+                                    color: 'white',
+                                    '&:hover': {
+                                        backgroundColor:
+                                            'rgba(255,255,255,0.1)',
+                                    },
+                                }}
+                            >
+                                <ListItemIcon sx={{color: 'inherit'}}>
+                                    <AccountCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary='마이페이지'
+                                    slotProps={{
+                                        primary: {sx: {color: 'inherit'}},
+                                    }}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+
+                        <ListItem disablePadding>
+                            <ListItemButton
+                                onClick={handleLogout}
+                                sx={{
+                                    color: 'white',
+                                    '&:hover': {
+                                        backgroundColor:
+                                            'rgba(255,255,255,0.1)',
+                                    },
+                                }}
+                            >
+                                <ListItemIcon sx={{color: 'inherit'}}>
+                                    <LogoutIcon />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary='로그아웃'
+                                    slotProps={{
+                                        primary: {sx: {color: 'inherit'}},
+                                    }}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
+                </>
+            )}
         </Drawer>
     )
 }
