@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {useState, ChangeEvent, FormEvent} from 'react'
-import {useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 import {
     Box,
     Card,
@@ -25,6 +25,8 @@ interface LocationState {
 
 const LoginForm = () => {
     const location = useLocation()
+    const navigate = useNavigate()
+
     const {userId: prefillId = ''} = (location.state as LocationState) ?? {}
 
     const [form, setForm] = useState<LoginForm>({
@@ -48,6 +50,7 @@ const LoginForm = () => {
         try {
             const {data} = await authApi.login(form)
             openSnackbar('로그인 성공!', 'success')
+            navigate('/')
             console.log('로그인 성공:', data)
         } catch (error: unknown) {
             if (axios.isAxiosError(error) && error.response) {
