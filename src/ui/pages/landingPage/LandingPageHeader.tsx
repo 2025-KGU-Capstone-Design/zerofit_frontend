@@ -9,9 +9,14 @@ import {
 import {Link as RouterLink} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
+import {useAuth} from '@/hooks/useAuth'
 
 const LandingPageHeader = () => {
     const resetState = useCompanyInputStore((state) => state.resetState)
+    const {isLoggedIn, logout} = useAuth()
+    const handleLogout = () => {
+        logout()
+    }
 
     return (
         <AppBar position='static' color='primary'>
@@ -57,28 +62,62 @@ const LandingPageHeader = () => {
                 <Box sx={{flexGrow: 1}} />
 
                 <Stack direction='row' spacing={4} sx={{mr: 2}}>
-                    <MUILink
-                        component={RouterLink}
-                        to='/login'
-                        underline='none'
-                        sx={{
-                            color: 'grey.300',
-                            '&:hover': {color: 'white'},
-                        }}
-                    >
-                        로그인
-                    </MUILink>
-                    <MUILink
-                        component={RouterLink}
-                        to='/signup'
-                        underline='none'
-                        sx={{
-                            color: 'grey.300',
-                            '&:hover': {color: 'white'},
-                        }}
-                    >
-                        회원가입
-                    </MUILink>
+                    {isLoggedIn ? (
+                        <>
+                            <MUILink
+                                component={RouterLink}
+                                to='/mypage'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                마이페이지
+                            </MUILink>
+                            <MUILink
+                                component='button'
+                                onClick={handleLogout}
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                    background: 'none',
+                                    border: 'none',
+                                    padding: 0,
+                                    font: 'inherit',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                로그아웃
+                            </MUILink>
+                        </>
+                    ) : (
+                        <>
+                            <MUILink
+                                component={RouterLink}
+                                to='/login'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                로그인
+                            </MUILink>
+                            <MUILink
+                                component={RouterLink}
+                                to='/signup'
+                                underline='none'
+                                sx={{
+                                    color: 'grey.300',
+                                    '&:hover': {color: 'white'},
+                                }}
+                            >
+                                회원가입
+                            </MUILink>
+                        </>
+                    )}
                 </Stack>
             </Toolbar>
         </AppBar>
