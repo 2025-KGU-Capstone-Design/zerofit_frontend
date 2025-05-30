@@ -19,6 +19,7 @@ const LandingPageHeader = () => {
     const {openSnackbar} = useSnackbar()
 
     const handleLogout = () => {
+        openSnackbar('로그아웃되었습니다.', 'info')
         logout()
         navigate('/')
     }

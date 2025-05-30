@@ -17,6 +17,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {useAuth} from '@/hooks/useAuth'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 
 const drawerWidth = 240
 
@@ -41,8 +42,10 @@ const Sidebar = () => {
 
     const {isLoggedIn, logout} = useAuth()
     const navigate = useNavigate()
+    const {openSnackbar} = useSnackbar()
 
     const handleLogout = () => {
+        openSnackbar('로그아웃되었습니다.', 'info')
         logout()
         navigate('/')
     }
