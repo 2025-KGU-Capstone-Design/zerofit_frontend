@@ -49,7 +49,7 @@ const LoginForm = () => {
 
         try {
             const {data} = await authApi.login(form)
-            openSnackbar('로그인 성공!', 'success')
+            openSnackbar('로그인 성공!', 'success', 1500)
             navigate('/')
             console.log('로그인 성공:', data)
         } catch (error: unknown) {
