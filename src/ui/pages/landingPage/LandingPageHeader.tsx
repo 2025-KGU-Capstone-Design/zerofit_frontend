@@ -6,7 +6,7 @@ import {
     Box,
     Link as MUILink,
 } from '@mui/material'
-import {Link as RouterLink} from 'react-router-dom'
+import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {useAuth} from '@/hooks/useAuth'
@@ -14,8 +14,11 @@ import {useAuth} from '@/hooks/useAuth'
 const LandingPageHeader = () => {
     const resetState = useCompanyInputStore((state) => state.resetState)
     const {isLoggedIn, logout} = useAuth()
+    const navigate = useNavigate()
+
     const handleLogout = () => {
         logout()
+        navigate('/')
     }
 
     return (
@@ -66,7 +69,7 @@ const LandingPageHeader = () => {
                         <>
                             <MUILink
                                 component={RouterLink}
-                                to='/mypage'
+                                to='/mypage/search-history'
                                 underline='none'
                                 sx={{
                                     color: 'grey.300',
