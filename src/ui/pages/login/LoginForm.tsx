@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {useState, ChangeEvent, FormEvent} from 'react'
+import {useState, ChangeEvent, FormEvent, useEffect} from 'react'
 import {useLocation, useNavigate} from 'react-router-dom'
 import {
     Box,
@@ -17,7 +17,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {LoginForm} from '@/types/auth'
-import {authApi} from '@/services/auth'
+import {useAuth} from '@/hooks/useAuth'
 
 interface LocationState {
     userId?: string
@@ -34,6 +34,11 @@ const LoginForm = () => {
         password: '',
     })
     const {openSnackbar} = useSnackbar()
+    const {login, isLoggedIn} = useAuth()
+
+    useEffect(() => {
+        if (isLoggedIn) navigate('/')
+    }, [isLoggedIn, navigate])
 
     const handleChange =
         (field: keyof LoginForm) => (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,22 +47,22 @@ const LoginForm = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
+
         if (!form.userId.trim() || !form.password.trim()) {
             openSnackbar('아이디와 비밀번호를 모두 입력해주세요.', 'warning')
             return
         }
 
         try {
-            const {data} = await authApi.login(form)
+            await login(form)
             openSnackbar('로그인 성공!', 'success', 1500)
-            navigate('/')
-            console.log('로그인 성공:', data)
         } catch (error: unknown) {
             if (axios.isAxiosError(error) && error.response) {
                 const msg =
                     typeof error.response.data === 'string'
                         ? error.response.data
                         : error.response.data?.message
+
                 if (msg === 'User not found') {
                     openSnackbar('아이디가 존재하지 않습니다.', 'error')
                 } else if (msg === 'Invalid credentials') {
@@ -70,7 +75,6 @@ const LoginForm = () => {
             }
         }
     }
-
     return (
         <Box
             component='form'
