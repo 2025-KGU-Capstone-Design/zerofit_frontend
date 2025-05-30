@@ -46,8 +46,10 @@ const LoginForm = () => {
 
         try {
             const {data} = await authApi.login(form)
+            openSnackbar('로그인 성공!', 'success')
             console.log('로그인 성공:', data)
         } catch (err) {
+            openSnackbar('아이디 또는 비밀번호를 다시 입력해주세요.', 'warning')
             console.log('로그인 실패:', err)
         }
     }
