@@ -16,6 +16,7 @@ import PersonIcon from '@mui/icons-material/Person'
 import LockIcon from '@mui/icons-material/Lock'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {LoginForm} from '@/types/auth'
+import {authApi} from '@/services/auth'
 
 interface LocationState {
     userId?: string
@@ -36,14 +37,19 @@ const LoginForm = () => {
             setForm((prev) => ({...prev, [field]: e.target.value}))
         }
 
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
-        if (form.userId.trim() === '' || form.password.trim() === '') {
+        if (!form.userId.trim() || !form.password.trim()) {
             openSnackbar('아이디와 비밀번호를 모두 입력해주세요.', 'warning')
             return
         }
-        // 로그인 API 호출
-        console.log('로그인 시도:', form)
+
+        try {
+            const {data} = await authApi.login(form)
+            console.log('로그인 성공:', data)
+        } catch (err) {
+            console.log('로그인 실패:', err)
+        }
     }
 
     return (
