@@ -10,15 +10,25 @@ import {Link as RouterLink, useNavigate} from 'react-router-dom'
 import Logo from '@/assets/icons/logo1.png'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {useAuth} from '@/hooks/useAuth'
+import {useSnackbar} from '@/ui/CommonSnackbar'
 
 const LandingPageHeader = () => {
     const resetState = useCompanyInputStore((state) => state.resetState)
     const {isLoggedIn, logout} = useAuth()
     const navigate = useNavigate()
+    const {openSnackbar} = useSnackbar()
 
     const handleLogout = () => {
         logout()
         navigate('/')
+    }
+
+    const handleConsultingClick = () => {
+        if (!isLoggedIn) {
+            openSnackbar('로그인 후 이용할 수 있습니다.', 'info')
+        } else {
+            resetState()
+        }
     }
 
     return (
@@ -50,8 +60,8 @@ const LandingPageHeader = () => {
 
                 <MUILink
                     component={RouterLink}
-                    to='/company-info/step1'
-                    onClick={resetState}
+                    to={isLoggedIn ? '/company-info/step1' : '/login'}
+                    onClick={handleConsultingClick}
                     underline='none'
                     sx={{
                         ml: 6,
