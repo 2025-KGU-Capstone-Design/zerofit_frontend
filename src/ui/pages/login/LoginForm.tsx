@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {useState, ChangeEvent, FormEvent} from 'react'
 import {useLocation} from 'react-router-dom'
 import {
@@ -48,9 +49,22 @@ const LoginForm = () => {
             const {data} = await authApi.login(form)
             openSnackbar('로그인 성공!', 'success')
             console.log('로그인 성공:', data)
-        } catch (err) {
-            openSnackbar('아이디 또는 비밀번호를 다시 입력해주세요.', 'warning')
-            console.log('로그인 실패:', err)
+        } catch (error: unknown) {
+            if (axios.isAxiosError(error) && error.response) {
+                const msg =
+                    typeof error.response.data === 'string'
+                        ? error.response.data
+                        : error.response.data?.message
+                if (msg === 'User not found') {
+                    openSnackbar('아이디가 존재하지 않습니다.', 'error')
+                } else if (msg === 'Invalid credentials') {
+                    openSnackbar('비밀번호가 일치하지 않습니다.', 'error')
+                } else {
+                    openSnackbar('로그인 중 오류가 발생했습니다.', 'error')
+                }
+            } else {
+                openSnackbar('알 수 없는 오류가 발생했습니다.', 'error')
+            }
         }
     }
 
