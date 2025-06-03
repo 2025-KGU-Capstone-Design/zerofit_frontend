@@ -3,6 +3,7 @@ export type SolutionItem = {
     type: 'total_optimization' | 'emission_reduction' | 'cost_saving' | 'roi'
     rank: number
     score: number | null
+    industry: string
     improvementType: string
     facility: string
     activity: string
