@@ -16,6 +16,7 @@ import {Link as RouterLink} from 'react-router-dom'
 
 import {userApi} from '@/services/userApi'
 import type {UserData} from '@/types/auth'
+import profileImg from '@/assets/icons/profileImg.png'
 
 const UserInfoSection = () => {
     const [user, setUser] = useState<UserData | null>(null)
@@ -75,15 +76,17 @@ const UserInfoSection = () => {
                         sx={{ml: 2}}
                     >
                         <Avatar
+                            src={profileImg}
                             sx={{
-                                width: 80,
-                                height: 80,
+                                width: 150,
+                                height: 150,
                                 fontSize: 36,
                                 bgcolor: 'primary.main',
                                 color: 'white',
+                                borderRadius: '16px',
                             }}
                         >
-                            {user.userId.charAt(0).toUpperCase()}
+                            {!profileImg && user.userId.charAt(0).toUpperCase()}
                         </Avatar>
 
                         <Stack spacing={0.5}>
