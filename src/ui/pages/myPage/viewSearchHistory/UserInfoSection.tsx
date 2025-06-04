@@ -81,7 +81,7 @@ const UserInfoSection = () => {
                                 width: 150,
                                 height: 150,
                                 fontSize: 36,
-                                bgcolor: 'primary.main',
+                                bgcolor: 'transparent',
                                 color: 'white',
                                 borderRadius: '16px',
                             }}
