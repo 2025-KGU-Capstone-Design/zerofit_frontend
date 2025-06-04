@@ -1,9 +1,10 @@
-import {useState, ChangeEvent, FormEvent} from 'react'
+import {useEffect, useState, useRef, ChangeEvent, FormEvent} from 'react'
 import {
     Box,
     Card,
     CardContent,
     Typography,
+    CircularProgress,
     Button,
     Stack,
     InputAdornment,
@@ -15,14 +16,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import PhoneIcon from '@mui/icons-material/Phone'
 import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
-
-const mockUser: UserData = {
-    userId: 'onsilonsil',
-    password: '',
-    email: 'onsilonsil@gmail.com',
-    phone: '01012345678',
-    companyName: '최강맨시티',
-}
+import {userApi} from '@/services/userApi'
 
 type EditProfileFormData = Omit<UserData, 'password'> & {
     currentPassword: string
@@ -32,14 +26,65 @@ type EditProfileFormData = Omit<UserData, 'password'> & {
 
 const EditProfileForm = () => {
     const [form, setForm] = useState<EditProfileFormData>({
-        userId: mockUser.userId,
-        email: mockUser.email,
-        phone: mockUser.phone,
-        companyName: mockUser.companyName,
+        userId: '',
+        email: '',
+        phone: '',
+        companyName: '',
         currentPassword: '',
         newPassword: '',
         newPasswordConfirm: '',
     })
+
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    const calledOnce = useRef(false)
+
+    useEffect(() => {
+        if (calledOnce.current) return
+        calledOnce.current = true
+
+        const fetchProfile = async () => {
+            try {
+                const response = await userApi.fetchProfile()
+                const userData: UserData = response.data
+
+                // 가져온 userData를 form에 채워 넣기
+                setForm({
+                    userId: userData.userId,
+                    email: userData.email,
+                    phone: userData.phone,
+                    companyName: userData.companyName,
+                    currentPassword: '',
+                    newPassword: '',
+                    newPasswordConfirm: '',
+                })
+            } catch (err) {
+                console.error(err)
+                setError('프로필 정보를 불러오는 데 실패했습니다.')
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchProfile()
+    }, [])
+
+    if (loading) {
+        return (
+            <Box display='flex' justifyContent='center' mt={4}>
+                <CircularProgress />
+            </Box>
+        )
+    }
+
+    if (error) {
+        return (
+            <Typography color='error' align='center' mt={4}>
+                {error}
+            </Typography>
+        )
+    }
 
     const handleChange =
         (field: keyof EditProfileFormData) =>
