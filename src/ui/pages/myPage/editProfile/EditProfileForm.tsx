@@ -20,7 +20,7 @@ const mockUser: UserData = {
     userId: 'onsilonsil',
     password: '',
     email: 'onsilonsil@gmail.com',
-    phoneNumber: '01012345678',
+    phone: '01012345678',
     companyName: '최강맨시티',
 }
 
@@ -34,7 +34,7 @@ const EditProfileForm = () => {
     const [form, setForm] = useState<EditProfileFormData>({
         userId: mockUser.userId,
         email: mockUser.email,
-        phoneNumber: mockUser.phoneNumber,
+        phone: mockUser.phone,
         companyName: mockUser.companyName,
         currentPassword: '',
         newPassword: '',
@@ -51,8 +51,7 @@ const EditProfileForm = () => {
     const phoneRegex = /^\d{10,11}$/
 
     const isEmailInvalid = form.email !== '' && !emailRegex.test(form.email)
-    const isPhoneInvalid =
-        form.phoneNumber !== '' && !phoneRegex.test(form.phoneNumber)
+    const isPhoneInvalid = form.phone !== '' && !phoneRegex.test(form.phone)
     const isPasswordMismatch =
         form.newPasswordConfirm !== '' &&
         form.newPasswordConfirm !== form.newPassword
@@ -170,14 +169,14 @@ const EditProfileForm = () => {
                         <CommonInput
                             label='연락처'
                             placeholder='전화번호를 입력하세요'
-                            value={form.phoneNumber}
+                            value={form.phone}
                             error={isPhoneInvalid}
                             helperText={
                                 isPhoneInvalid
                                     ? '전화번호는 숫자만 10~11자리여야 합니다.'
                                     : undefined
                             }
-                            onChange={handleChange('phoneNumber')}
+                            onChange={handleChange('phone')}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
