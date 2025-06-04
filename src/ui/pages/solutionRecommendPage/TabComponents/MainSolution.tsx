@@ -13,7 +13,6 @@ interface TopSolutionProps {
 }
 
 const MainSolution = ({solution, label}: TopSolutionProps) => {
-    const industry = useCompanyInputStore((state) => state.industry)
     return (
         <Box
             sx={{
@@ -67,7 +66,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                                         fontSize: '14px',
                                     }}
                                 >
-                                    {industry}
+                                    {solution.industry}
                                 </Typography>
                             </Box>
                         </Box>

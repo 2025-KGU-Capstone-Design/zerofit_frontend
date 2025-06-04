@@ -141,7 +141,7 @@ const SolutionCard = ({solution}: SolutionProps) => {
                         🏭 산업군
                     </Typography>
                     <Typography sx={{fontSize: 16, fontWeight: 700, mb: 2}}>
-                        산업군
+                        {solution.industry}
                     </Typography>
 
                     <Typography sx={{fontSize: 14, color: '#4B5563'}}>

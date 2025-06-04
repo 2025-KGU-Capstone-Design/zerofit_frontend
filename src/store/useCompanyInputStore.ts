@@ -5,7 +5,7 @@ import {CompanyInput} from '@/types/companyInput'
 type CompanyInputStore = CompanyInput & {
     setIndustry: (industry: string) => void
     setTargetFacilities: (targetFacilities: string[]) => void
-    setInvestmentBudget: (investmentBudget: number) => void
+    setAvailableInvestment: (availableInvestment: number) => void
     setCurrentEmission: (currentEmission?: number) => void
     setTargetEmission: (targetEmission?: number) => void
     setTargetRoiPeriod: (targetRoiPeriod: number) => void
@@ -18,7 +18,7 @@ const useCompanyInputStore = create<CompanyInputStore>()(
             // 초기값
             industry: '',
             targetFacilities: [],
-            investmentBudget: 50,
+            availableInvestment: 50,
             currentEmission: undefined,
             targetEmission: undefined,
             targetRoiPeriod: 2.5,
@@ -26,7 +26,8 @@ const useCompanyInputStore = create<CompanyInputStore>()(
             // 액션
             setIndustry: (industry) => set({industry}),
             setTargetFacilities: (targetFacilities) => set({targetFacilities}),
-            setInvestmentBudget: (investmentBudget) => set({investmentBudget}),
+            setAvailableInvestment: (availableInvestment) =>
+                set({availableInvestment}),
             setCurrentEmission: (currentEmission) => set({currentEmission}),
             setTargetEmission: (targetEmission) => set({targetEmission}),
             setTargetRoiPeriod: (targetRoiPeriod) => set({targetRoiPeriod}),
@@ -36,7 +37,7 @@ const useCompanyInputStore = create<CompanyInputStore>()(
                 set({
                     industry: '',
                     targetFacilities: [],
-                    investmentBudget: 50,
+                    availableInvestment: 50,
                     currentEmission: undefined,
                     targetEmission: undefined,
                     targetRoiPeriod: 2.5,

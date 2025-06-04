@@ -18,11 +18,11 @@ const CompanyInputPage2 = () => {
     const setCurrentEmission = useCompanyInputStore(
         (state) => state.setCurrentEmission
     )
-    const investmentBudget = useCompanyInputStore(
-        (state) => state.investmentBudget
+    const availableInvestment = useCompanyInputStore(
+        (state) => state.availableInvestment
     )
-    const setInvestmentBudget = useCompanyInputStore(
-        (state) => state.setInvestmentBudget
+    const setAvailableInvestment = useCompanyInputStore(
+        (state) => state.setAvailableInvestment
     )
 
     const handleNext = () => {
@@ -47,8 +47,8 @@ const CompanyInputPage2 = () => {
                             unit='백만 원'
                             min={0}
                             max={100}
-                            value={investmentBudget}
-                            onChange={setInvestmentBudget}
+                            value={availableInvestment}
+                            onChange={setAvailableInvestment}
                         />
                         <CommonInput
                             label='현재배출량 입력'

@@ -29,7 +29,7 @@ export default function BasicTabs() {
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange}>
                     {solutionCategories.map((category) => (
-                        <Tab label={category.label} sx={{fontSize: '17px'}} />
+                        <Tab label={category.label} sx={{fontSize: '23px'}} />
                     ))}
                 </Tabs>
             </Box>

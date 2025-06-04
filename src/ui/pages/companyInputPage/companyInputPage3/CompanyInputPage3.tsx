@@ -7,11 +7,25 @@ import BaseSliderInput from '@/ui/pages/companyInputPage/common/BaseSliderInput'
 import CommonInput from '@/ui/CommonInput'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
+import {useRequestSolution} from '@/hooks/useRequestSolution'
 
 const CompanyInputPage3 = () => {
     const navigate = useNavigate()
     const resetState = useCompanyInputStore((state) => state.resetState)
     const {openSnackbar, closeSnackbar} = useSnackbar()
+    const {requestSolution} = useRequestSolution()
+
+    // 입력값
+    const industry = useCompanyInputStore((state) => state.industry)
+    const targetFacilities = useCompanyInputStore(
+        (state) => state.targetFacilities
+    )
+    const availableInvestment = useCompanyInputStore(
+        (state) => state.availableInvestment
+    )
+    const currentEmission = useCompanyInputStore(
+        (state) => state.currentEmission
+    )
 
     const targetEmission = useCompanyInputStore((state) => state.targetEmission)
     const setTargetEmission = useCompanyInputStore(
@@ -24,14 +38,27 @@ const CompanyInputPage3 = () => {
         (state) => state.setTargetRoiPeriod
     )
 
-    const handleNext = () => {
+    const handleNext = async () => {
         if (targetEmission === undefined || targetEmission === null) {
             openSnackbar(' 목표 배출량을 입력해주세요.', 'error')
             return
         }
-        closeSnackbar()
-        resetState()
-        navigate('/solution')
+        try {
+            const requestData = {
+                industry,
+                targetFacilities,
+                availableInvestment,
+                currentEmission,
+                targetEmission,
+                targetRoiPeriod,
+            }
+            await requestSolution(requestData)
+            closeSnackbar()
+            resetState()
+            navigate('/solution')
+        } catch (error) {
+            openSnackbar('분석 요청에 실패했습니다.', 'error')
+        }
     }
     return (
         <Container sx={{mt: 14}}>

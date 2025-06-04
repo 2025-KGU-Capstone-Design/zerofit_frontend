@@ -12,7 +12,8 @@
       "costSaving": 3000.0,
       "roiPeriod": 2.5,
       "investmentCost": 750.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 2,
@@ -26,7 +27,8 @@
       "costSaving": 2500.0,
       "roiPeriod": 3.0,
       "investmentCost": 600.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 3,
@@ -40,7 +42,8 @@
       "costSaving": 2200.0,
       "roiPeriod": 3.5,
       "investmentCost": 500.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 4,
@@ -54,9 +57,9 @@
       "costSaving": 2000.0,
       "roiPeriod": 4.0,
       "investmentCost": 450.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
-
     {
       "id": 5,
       "type": "emission_reduction",
@@ -69,7 +72,8 @@
       "costSaving": 3100.0,
       "roiPeriod": 2.0,
       "investmentCost": 700.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 6,
@@ -83,7 +87,8 @@
       "costSaving": 2600.0,
       "roiPeriod": 2.8,
       "investmentCost": 620.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 7,
@@ -97,7 +102,8 @@
       "costSaving": 2100.0,
       "roiPeriod": 3.2,
       "investmentCost": 540.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 8,
@@ -111,9 +117,9 @@
       "costSaving": 1900.0,
       "roiPeriod": 3.8,
       "investmentCost": 470.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
-
     {
       "id": 9,
       "type": "cost_saving",
@@ -126,7 +132,8 @@
       "costSaving": 3200.0,
       "roiPeriod": 2.3,
       "investmentCost": 720.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 10,
@@ -140,7 +147,8 @@
       "costSaving": 2700.0,
       "roiPeriod": 2.9,
       "investmentCost": 610.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 11,
@@ -154,7 +162,8 @@
       "costSaving": 2300.0,
       "roiPeriod": 3.4,
       "investmentCost": 530.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 12,
@@ -168,9 +177,9 @@
       "costSaving": 2100.0,
       "roiPeriod": 3.9,
       "investmentCost": 460.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
-
     {
       "id": 13,
       "type": "roi",
@@ -183,7 +192,8 @@
       "costSaving": 2900.0,
       "roiPeriod": 2.4,
       "investmentCost": 710.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 14,
@@ -197,7 +207,8 @@
       "costSaving": 2400.0,
       "roiPeriod": 3.1,
       "investmentCost": 590.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 15,
@@ -211,7 +222,8 @@
       "costSaving": 2200.0,
       "roiPeriod": 3.6,
       "investmentCost": 520.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     },
     {
       "id": 16,
@@ -225,7 +237,8 @@
       "costSaving": 2000.0,
       "roiPeriod": 4.1,
       "investmentCost": 450.0,
-      "bookmark": false
+      "bookmark": false,
+      "industry": "제조업"
     }
   ]
 }
