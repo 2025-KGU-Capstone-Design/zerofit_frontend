@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useRef} from 'react'
 import {
     Card,
     CardContent,
@@ -22,7 +22,14 @@ const UserInfoSection = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
+    const calledOnce = useRef(false)
+
     useEffect(() => {
+        if (calledOnce.current) {
+            // 이미 한 번 호출했으면 더 이상 실행하지 않음
+            return
+        }
+        calledOnce.current = true
         const fetchProfile = async () => {
             try {
                 const response = await userApi.fetchProfile()
