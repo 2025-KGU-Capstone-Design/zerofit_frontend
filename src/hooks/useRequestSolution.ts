@@ -11,10 +11,11 @@ export function useRequestSolution() {
     const requestSolution = async (requestData: CompanyInput) => {
         const token = cookies.access_token
         const response = await solutionApi.requestSolution(requestData, token)
-        const grouped = groupSolutionsByType(
-            Array.isArray(response.data) ? response.data : [response.data]
-        )
+        console.log(response.data)
+        const solutionsArray = response.data.solution ?? []
+        const grouped = groupSolutionsByType(solutionsArray)
         setAllSolutions(grouped)
+
         return response
     }
 
