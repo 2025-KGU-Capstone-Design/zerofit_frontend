@@ -8,7 +8,9 @@ export function useAuth() {
 
     // 초기 마운트 시 쿠키 체크
     useEffect(() => {
-        if (cookies.access_token) {
+        const cookieToken = cookies.access_token
+        const storageToken = localStorage.getItem('access_token')
+        if (cookieToken || storageToken) {
             setIsLoggedIn(true)
         }
     }, [cookies])
@@ -22,13 +24,22 @@ export function useAuth() {
             sameSite: 'strict',
             secure: true, // HTTPS 전용
         })
+
+        localStorage.setItem('access_token', data.token)
+
         setIsLoggedIn(true)
     }
 
     const logout = () => {
         removeCookie('access_token', {path: '/'})
+        localStorage.removeItem('access_token')
         setIsLoggedIn(false)
     }
 
-    return {isLoggedIn, login, logout, token: cookies.access_token}
+    return {
+        isLoggedIn,
+        login,
+        logout,
+        token: localStorage.getItem('access_token') || cookies.access_token,
+    }
 }
