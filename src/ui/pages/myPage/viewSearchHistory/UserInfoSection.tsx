@@ -1,3 +1,4 @@
+import {useEffect, useState} from 'react'
 import {
     Card,
     CardContent,
@@ -5,20 +6,56 @@ import {
     Typography,
     Stack,
     Link as MuiLink,
+    CircularProgress,
+    Box,
 } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
 import BusinessIcon from '@mui/icons-material/Business'
 import EmailIcon from '@mui/icons-material/Email'
 import {Link as RouterLink} from 'react-router-dom'
 
-const mockUser = {
-    userId: 'onsilonsil',
-    companyName: '최강맨시티',
-    email: 'onsilonsil@gmail.com',
-}
+import {userApi} from '@/services/userApi'
+import type {UserData} from '@/types/auth'
 
 const UserInfoSection = () => {
-    const user = mockUser
+    const [user, setUser] = useState<UserData | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const response = await userApi.fetchProfile()
+                setUser(response.data)
+            } catch (err) {
+                console.error(err)
+                setError('프로필 정보를 불러오는 데 실패했습니다.')
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchProfile()
+    }, [])
+
+    if (loading) {
+        return (
+            <Box display='flex' justifyContent='center' mt={4}>
+                <CircularProgress />
+            </Box>
+        )
+    }
+
+    if (error) {
+        return (
+            <Typography color='error' align='center' mt={4}>
+                {error}
+            </Typography>
+        )
+    }
+
+    if (!user) {
+        return null
+    }
 
     return (
         <Stack>
