@@ -114,7 +114,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '10%',
                                         }}
                                     >
@@ -123,7 +123,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '15%',
                                         }}
                                     >
@@ -132,7 +132,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '12%',
                                         }}
                                         align='center'
@@ -142,7 +142,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '14%',
                                         }}
                                         align='center'
@@ -152,7 +152,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '14%',
                                         }}
                                         align='center'
@@ -162,7 +162,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '14%',
                                         }}
                                         align='center'
@@ -172,8 +172,8 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
-                                            width: '16%',
+                                            fontSize: 14,
+                                            width: '18%',
                                         }}
                                         align='center'
                                     >
@@ -182,7 +182,7 @@ const SearchHistorySection = () => {
                                     <TableCell
                                         sx={{
                                             fontWeight: 'bold',
-                                            fontSize: 13,
+                                            fontSize: 14,
                                             width: '6%',
                                         }}
                                         align='center'
