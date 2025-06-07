@@ -11,9 +11,11 @@ import {
     TableCell,
     TableBody,
     Button,
+    IconButton,
     Pagination,
     Alert,
 } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
 import type {CompanyInput} from '@/types/companyInput'
 import http from '@/services/Http'
 import axios, {AxiosError} from 'axios'
@@ -50,7 +52,6 @@ const SearchHistorySection = () => {
             )
             setRows(response.data)
             setError(null)
-            // 페이지 범위 체크
             const totalPages = Math.ceil(response.data.length / ROWS_PER_PAGE)
             if (page > totalPages && totalPages > 0) {
                 setPage(1)
@@ -69,24 +70,15 @@ const SearchHistorySection = () => {
         }
     }
 
-    // ────────────────
-    // ⑥ 페이지 변경 핸들러
-    // ────────────────
     const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
         setPage(value)
     }
 
-    // ────────────────
-    // ⑦ 마운트 시 데이터 로드
-    // ────────────────
     useEffect(() => {
         fetchSearchHistory()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // ────────────────
-    // ⑧ 페이지 슬라이스 & 전체 페이지 수
-    // ────────────────
     const paginatedRows = rows.slice(
         (page - 1) * ROWS_PER_PAGE,
         (page - 1) * ROWS_PER_PAGE + ROWS_PER_PAGE
@@ -187,6 +179,16 @@ const SearchHistorySection = () => {
                                     >
                                         솔루션 보기
                                     </TableCell>
+                                    <TableCell
+                                        sx={{
+                                            fontWeight: 'bold',
+                                            fontSize: 13,
+                                            width: '6%',
+                                        }}
+                                        align='center'
+                                    >
+                                        삭제
+                                    </TableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -214,9 +216,7 @@ const SearchHistorySection = () => {
                                             </TableCell>
 
                                             <TableCell
-                                                sx={{
-                                                    fontWeight: 'bold',
-                                                }}
+                                                sx={{fontWeight: 'bold'}}
                                             >
                                                 <Stack
                                                     spacing={1}
@@ -244,40 +244,28 @@ const SearchHistorySection = () => {
                                             </TableCell>
 
                                             <TableCell
-                                                sx={{
-                                                    fontWeight: 'bold',
-                                                    pr: 1,
-                                                }}
+                                                sx={{fontWeight: 'bold', pr: 1}}
                                                 align='center'
                                             >
                                                 {row.availableInvestment}
                                             </TableCell>
 
                                             <TableCell
-                                                sx={{
-                                                    fontWeight: 'bold',
-                                                    pr: 1,
-                                                }}
+                                                sx={{fontWeight: 'bold', pr: 1}}
                                                 align='center'
                                             >
                                                 {row.currentEmission}
                                             </TableCell>
 
                                             <TableCell
-                                                sx={{
-                                                    fontWeight: 'bold',
-                                                    pr: 1,
-                                                }}
+                                                sx={{fontWeight: 'bold', pr: 1}}
                                                 align='center'
                                             >
                                                 {row.targetEmission}
                                             </TableCell>
 
                                             <TableCell
-                                                sx={{
-                                                    fontWeight: 'bold',
-                                                    pr: 1,
-                                                }}
+                                                sx={{fontWeight: 'bold', pr: 1}}
                                                 align='center'
                                             >
                                                 {row.targetRoiPeriod}
@@ -294,6 +282,15 @@ const SearchHistorySection = () => {
                                                 >
                                                     솔루션 보러가기
                                                 </Button>
+                                            </TableCell>
+
+                                            <TableCell align='center'>
+                                                <IconButton size='small'>
+                                                    <DeleteIcon
+                                                        fontSize='small'
+                                                        color='error'
+                                                    />
+                                                </IconButton>
                                             </TableCell>
                                         </TableRow>
                                     ))
