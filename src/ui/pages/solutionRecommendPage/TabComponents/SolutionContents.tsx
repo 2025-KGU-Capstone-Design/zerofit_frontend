@@ -5,6 +5,7 @@ import SolutionCard from '../common/SolutionCard'
 import {solutionCategories, SolutionType} from '@/constants/solutionCategories'
 import useSolutionStore from '@/store/useSolutionStore'
 
+import AiConsultant from './AiConsultant'
 interface CategoryProps {
     category: SolutionType
 }
@@ -28,6 +29,7 @@ const SolutionContents = ({category}: CategoryProps) => {
                         <MainSolution solution={topSolution} label={label} />
                     )}
                     {/* 종합 최적 솔루션 비교 */}
+
                     <Box
                         sx={{
                             bgcolor: '#FFFFFF',
@@ -46,6 +48,10 @@ const SolutionContents = ({category}: CategoryProps) => {
                     </Box>
                 </Stack>
             </Stack>
+            <AiConsultant
+                question={'🤖 AI 컨설턴트: Top 1 솔루션이 왜 최적일까요?'}
+            />
+
             <Box
                 sx={{
                     bgcolor: '#FFFFFF',
@@ -72,6 +78,9 @@ const SolutionContents = ({category}: CategoryProps) => {
                     ))}
                 </Stack>
             </Box>
+            <AiConsultant
+                question={'🤖 AI 컨설턴트: Top1과 Top2~4와의 전략적 비교 🔍'}
+            />
         </Box>
     )
 }
