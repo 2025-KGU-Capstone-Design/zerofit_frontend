@@ -110,7 +110,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                             <Typography sx={{color: '#4B5563', fontSize: 14}}>
                                 대상 설비
                             </Typography>
-                            <Typography sx={{fontSize: 16}}>
+                            <Typography sx={{fontSize: 18}}>
                                 {solution.facility}
                             </Typography>
                         </Box>
@@ -125,7 +125,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                             <Typography sx={{color: '#4B5563', fontSize: 14}}>
                                 개선 활동명
                             </Typography>
-                            <Typography sx={{fontSize: 16}}>
+                            <Typography sx={{fontSize: 18}}>
                                 {solution.activity}
                             </Typography>
                         </Box>
