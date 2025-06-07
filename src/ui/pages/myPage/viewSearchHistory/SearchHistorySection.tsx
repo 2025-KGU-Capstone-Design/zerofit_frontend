@@ -111,7 +111,6 @@ const SearchHistorySection = () => {
                 <>
                     <TableContainer
                         sx={{
-                            maxHeight: 300,
                             border: '1px solid',
                             borderColor: 'divider',
                             borderRadius: 1,
