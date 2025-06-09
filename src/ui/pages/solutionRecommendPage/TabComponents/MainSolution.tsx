@@ -69,27 +69,6 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                                 </Typography>
                             </Box>
                         </Box>
-                        {solution.type === 'total_optimization' && (
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <ScoreLabel />
-                                <Box sx={{ml: '14.62px'}}>
-                                    <Typography
-                                        sx={{
-                                            fontSize: '18px',
-                                            fontWeight: 'bold',
-                                        }}
-                                    >
-                                        {solution.score} 점
-                                    </Typography>
-                                </Box>
-                                <ScoreInfoTooltip />
-                            </Box>
-                        )}
                     </Box>
                     <Stack
                         direction='row'
