@@ -8,6 +8,7 @@ import {useCookies} from 'react-cookie'
 import AiConsultant from './AiConsultant'
 import {useSolutionComment} from '@/hooks/useSolutionComment'
 import {useEffect} from 'react'
+
 interface CategoryProps {
     category: SolutionType
 }

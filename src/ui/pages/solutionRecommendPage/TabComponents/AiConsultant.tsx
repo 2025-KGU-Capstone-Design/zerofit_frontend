@@ -7,7 +7,6 @@ import {
 } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import earth from '@/assets/icons/earth.svg'
-// import aiSolution from '../api/aiSolution.json'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 interface AiConsultantProps {
