@@ -22,7 +22,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
         >
             <Box sx={{padding: '24px'}}>
                 <Stack direction='row' justifyContent='space-between'>
-                    <Typography sx={{fontSize: '18px'}}>{label}</Typography>
+                    <Typography sx={{fontSize: '20px'}}>{label}</Typography>
                     <Bookmark />
                 </Stack>
                 <Box
