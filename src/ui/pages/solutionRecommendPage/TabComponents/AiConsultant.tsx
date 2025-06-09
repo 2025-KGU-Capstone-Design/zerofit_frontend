@@ -7,13 +7,23 @@ import {
 } from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import earth from '@/assets/icons/earth.svg'
-import aiSolution from '../api/aiSolution.json'
+// import aiSolution from '../api/aiSolution.json'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 interface AiConsultantProps {
     question: string
+    top1?: string
+    comparison?: string
+    loading?: boolean
+    error?: string | null
 }
-const AiConsultant = ({question}: AiConsultantProps) => {
+const AiConsultant = ({
+    question,
+    top1,
+    comparison,
+    loading,
+    error,
+}: AiConsultantProps) => {
     return (
         <div>
             <Box sx={{my: '43px'}}>
@@ -72,7 +82,35 @@ const AiConsultant = ({question}: AiConsultantProps) => {
                                         borderRight: '8px solid white',
                                     }}
                                 />
-                                <ReactMarkdown>{aiSolution.top1}</ReactMarkdown>
+                                {loading && (
+                                    <Typography
+                                        color='text.secondary'
+                                        fontSize={'18px'}
+                                    >
+                                        AI가 분석 중입니다...
+                                    </Typography>
+                                )}
+                                {error && (
+                                    <Typography color='error'>
+                                        {error}
+                                    </Typography>
+                                )}
+                                {/* top1 해설 */}
+                                {top1 && <ReactMarkdown>{top1}</ReactMarkdown>}
+                                {/* comparison 해설 */}
+                                {comparison && (
+                                    <Box mt={2}>
+                                        <ReactMarkdown>
+                                            {comparison}
+                                        </ReactMarkdown>
+                                    </Box>
+                                )}
+                                {/* 아무 데이터도 없을 때 */}
+                                {!loading && !error && !top1 && !comparison && (
+                                    <Typography color='text.secondary'>
+                                        AI 해설이 없습니다.
+                                    </Typography>
+                                )}
                             </Box>
                         </Box>
                     </AccordionDetails>
