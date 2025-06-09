@@ -19,7 +19,8 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import type {CompanyInput} from '@/types/companyInput'
 import http from '@/services/Http'
 import axios, {AxiosError} from 'axios'
-
+import {handleShowSolution} from './utils/handleShowSolution'
+import {useNavigate} from 'react-router-dom'
 interface SearchHistoryItem extends CompanyInput {
     id: number
 }
@@ -43,6 +44,7 @@ const SearchHistorySection = () => {
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
     const [page, setPage] = useState<number>(1)
+    const navigate = useNavigate()
 
     const fetchSearchHistory = async () => {
         try {
@@ -279,6 +281,12 @@ const SearchHistorySection = () => {
                                                     variant='contained'
                                                     size='small'
                                                     sx={{pl: 2, pr: 2}}
+                                                    onClick={() =>
+                                                        handleShowSolution(
+                                                            row.id,
+                                                            navigate
+                                                        )
+                                                    }
                                                 >
                                                     솔루션 보러가기
                                                 </Button>
