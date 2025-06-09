@@ -11,8 +11,8 @@ interface CategoryProps {
 }
 
 const SolutionContents = ({category}: CategoryProps) => {
-    const solutions = useSolutionStore((state) => state.solutions)
-    const solutionsList = solutions[category] ?? []
+    const current = useSolutionStore((state) => state.current)
+    const solutionsList = current?.solutions[category] ?? []
 
     const topSolution = solutionsList.find((item) => item.rank === 1)
     const otherSolutions = solutionsList.filter((item) => item.rank !== 1)
