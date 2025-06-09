@@ -3,8 +3,6 @@ import {Typography, Box, Stack} from '@mui/material'
 import Ranking from '../common/Ranking'
 import Bookmark from '../common/Bookmark'
 import {SolutionItem} from '@/types/solution'
-import ScoreLabel from '../common/ScoreLabel'
-import ScoreInfoTooltip from '../common/ScoreInfoTooltip'
 
 interface TopSolutionProps {
     solution: SolutionItem
