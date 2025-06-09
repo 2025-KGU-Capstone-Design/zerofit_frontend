@@ -2,7 +2,6 @@ export type SolutionItem = {
     id: number
     type: 'total_optimization' | 'emission_reduction' | 'cost_saving' | 'roi'
     rank: number
-    score: number | null
     industry: string
     improvementType: string
     facility: string
@@ -19,4 +18,9 @@ export type SolutionGroup = {
     emission_reduction: SolutionItem[]
     cost_saving: SolutionItem[]
     roi: SolutionItem[]
+}
+
+export type SolutionResponse = {
+    requestId: number
+    solution: SolutionGroup
 }
