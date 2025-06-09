@@ -6,15 +6,18 @@ import {useCookies} from 'react-cookie'
 
 export function useRequestSolution() {
     const [cookies] = useCookies(['access_token'])
-    const setAllSolutions = useSolutionStore((state) => state.setAllSolutions)
+    const setCurrent = useSolutionStore((state) => state.setCurrent)
 
     const requestSolution = async (requestData: CompanyInput) => {
         const token = cookies.access_token
         const response = await solutionApi.requestSolution(requestData, token)
+        const {requestId, solution} = response.data
         console.log(response.data)
-        const solutionsArray = response.data.solution ?? []
-        const grouped = groupSolutionsByType(solutionsArray)
-        setAllSolutions(grouped)
+
+        const grouped = groupSolutionsByType(
+            Array.isArray(solution) ? solution : []
+        )
+        setCurrent({requestId, solutions: grouped})
 
         return response
     }

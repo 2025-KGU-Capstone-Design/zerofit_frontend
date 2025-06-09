@@ -8,7 +8,6 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf'
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn'
 import {SolutionItem} from '@/types/solution'
-import ScoreLabel from './ScoreLabel'
 
 interface SolutionProps {
     solution: SolutionItem
@@ -40,27 +39,6 @@ const SolutionCard = ({solution}: SolutionProps) => {
                     </Typography>
                 </Box>
             </Box>
-            {solution.type === 'total_optimization' && (
-                <Box
-                    sx={{
-                        display: 'flex',
-                        mt: '12px',
-                    }}
-                >
-                    <ScoreLabel />
-                    <Box>
-                        <Typography
-                            sx={{
-                                fontSize: '18px',
-                                ml: '14.62px',
-                                fontWeight: 700,
-                            }}
-                        >
-                            {solution.score} 점
-                        </Typography>
-                    </Box>
-                </Box>
-            )}
 
             <Stack spacing={'16px'} sx={{my: '36px'}}>
                 <Box sx={{display: 'center', justifyContent: 'space-between'}}>

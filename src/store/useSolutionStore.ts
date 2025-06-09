@@ -1,29 +1,58 @@
 import {create} from 'zustand'
-import {SolutionGroup} from '@/types/solution'
 import {persist, createJSONStorage} from 'zustand/middleware'
+import {SolutionGroup} from '@/types/solution'
+import {SolutionType} from '@/constants/solutionCategories'
+import {SolutionCommentResponse} from '@/types/solutionComment'
 
-type SolutionStore = {
-    solutions: SolutionGroup //저장할 상태 데이터
-    setAllSolutions: (data: SolutionGroup) => void //전체 솔루션 데이터 한 번에 업데이트
-    resetSolutions: () => void //솔루션 데이터를 빈 상태로 초기화
+type SolutionHistoryItem = {
+    requestId: number
+    solutions: SolutionGroup
 }
 
-const initialSolutions: SolutionGroup = {
-    total_optimization: [],
-    emission_reduction: [],
-    cost_saving: [],
-    roi: [],
+type CommentsCacheType = {
+    [requestId: string]: {
+        [category in SolutionType]?: SolutionCommentResponse
+    }
+}
+
+type SolutionStore = {
+    current: SolutionHistoryItem | null
+    setCurrent: (item: SolutionHistoryItem) => void
+    resetCurrent: () => void
+    commentsCache: CommentsCacheType
+    setComment: (
+        requestId: number,
+        category: SolutionType,
+        comment: SolutionCommentResponse
+    ) => void
+    resetCommentsCache: () => void
 }
 
 const useSolutionStore = create<SolutionStore>()(
     persist(
         (set) => ({
-            solutions: initialSolutions,
-            setAllSolutions: (data) => set({solutions: data}),
-            resetSolutions: () => set({solutions: initialSolutions}),
+            current: null,
+            setCurrent: (item) => set({current: item}),
+            resetCurrent: () => set({current: null}),
+            commentsCache: {},
+            setComment: (requestId, category, comment) =>
+                set((state) => {
+                    const key = requestId.toString()
+                    return {
+                        commentsCache: {
+                            ...state.commentsCache,
+                            [key]: {
+                                ...(state.commentsCache[key] || {}),
+                                [category]: comment,
+                            },
+                        },
+                    }
+                }),
+
+            resetCommentsCache: () => set({commentsCache: {}}),
         }),
         {
-            name: 'solution-storage', // localStorage key 이름
+            name: 'solution-storage',
             storage: createJSONStorage(() => localStorage),
         }
     )

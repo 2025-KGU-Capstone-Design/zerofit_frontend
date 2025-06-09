@@ -3,8 +3,6 @@ import {Typography, Box, Stack} from '@mui/material'
 import Ranking from '../common/Ranking'
 import Bookmark from '../common/Bookmark'
 import {SolutionItem} from '@/types/solution'
-import ScoreLabel from '../common/ScoreLabel'
-import ScoreInfoTooltip from '../common/ScoreInfoTooltip'
 
 interface TopSolutionProps {
     solution: SolutionItem
@@ -24,7 +22,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
         >
             <Box sx={{padding: '24px'}}>
                 <Stack direction='row' justifyContent='space-between'>
-                    <Typography sx={{fontSize: '18px'}}>{label}</Typography>
+                    <Typography sx={{fontSize: '20px'}}>{label}</Typography>
                     <Bookmark />
                 </Stack>
                 <Box
@@ -69,27 +67,6 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                                 </Typography>
                             </Box>
                         </Box>
-                        {solution.type === 'total_optimization' && (
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <ScoreLabel />
-                                <Box sx={{ml: '14.62px'}}>
-                                    <Typography
-                                        sx={{
-                                            fontSize: '18px',
-                                            fontWeight: 'bold',
-                                        }}
-                                    >
-                                        {solution.score} 점
-                                    </Typography>
-                                </Box>
-                                <ScoreInfoTooltip />
-                            </Box>
-                        )}
                     </Box>
                     <Stack
                         direction='row'
@@ -110,7 +87,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                             <Typography sx={{color: '#4B5563', fontSize: 14}}>
                                 대상 설비
                             </Typography>
-                            <Typography sx={{fontSize: 16}}>
+                            <Typography sx={{fontSize: 18}}>
                                 {solution.facility}
                             </Typography>
                         </Box>
@@ -125,7 +102,7 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
                             <Typography sx={{color: '#4B5563', fontSize: 14}}>
                                 개선 활동명
                             </Typography>
-                            <Typography sx={{fontSize: 16}}>
+                            <Typography sx={{fontSize: 18}}>
                                 {solution.activity}
                             </Typography>
                         </Box>
