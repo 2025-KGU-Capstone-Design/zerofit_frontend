@@ -13,6 +13,7 @@ import {useLocation, Link, useNavigate} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
 import ApartmentIcon from '@mui/icons-material/Apartment'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
+import BookmarkIcon from '@mui/icons-material/Bookmark'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import LogoutIcon from '@mui/icons-material/Logout'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
@@ -33,6 +34,11 @@ const navItems = [
         label: 'AI 탄소 감축 솔루션 분석',
         to: '/solution',
         icon: <QueryStatsIcon />,
+    },
+    {
+        label: '내 북마크',
+        to: '/bookmark',
+        icon: <BookmarkIcon />,
     },
 ]
 
@@ -84,7 +90,7 @@ const Sidebar = () => {
                                     sx={{
                                         color: 'white',
                                         '&.Mui-selected': {
-                                            backgroundColor: '#1F2937', // theme으로 뺄까?
+                                            backgroundColor: '#1F2937',
                                             '&:hover': {
                                                 backgroundColor: '#1F2937',
                                             },

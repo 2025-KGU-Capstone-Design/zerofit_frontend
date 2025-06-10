@@ -38,6 +38,7 @@ const router = createBrowserRouter([
                     {path: 'company-info/step2', Component: CompanyInputPage2},
                     {path: 'company-info/step3', Component: CompanyInputPage3},
                     {path: 'solution', Component: SolutionRecommend},
+                    {path: 'bookmark'},
                 ],
             },
         ],
