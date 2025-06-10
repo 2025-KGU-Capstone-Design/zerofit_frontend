@@ -18,8 +18,8 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const targetFacilities = useCompanyInputStore(
         (state) => state.targetFacilities
     )
-    const investmentBudget = useCompanyInputStore(
-        (state) => state.investmentBudget
+    const availableInvestment = useCompanyInputStore(
+        (state) => state.availableInvestment
     )
     const currentEmission = useCompanyInputStore(
         (state) => state.currentEmission
@@ -84,9 +84,9 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                                 <ListItem disableGutters>
                                     <Typography variant='body1'>
                                         •{' '}
-                                        {investmentBudget != null
-                                            ? investmentBudget
-                                                ? `${investmentBudget.toLocaleString()} 백만 원`
+                                        {availableInvestment != null
+                                            ? availableInvestment
+                                                ? `${availableInvestment.toLocaleString()} 백만 원`
                                                 : '0원'
                                             : '입력되지 않음'}
                                     </Typography>
