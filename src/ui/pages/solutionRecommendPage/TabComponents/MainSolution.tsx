@@ -23,7 +23,10 @@ const MainSolution = ({solution, label}: TopSolutionProps) => {
             <Box sx={{padding: '24px'}}>
                 <Stack direction='row' justifyContent='space-between'>
                     <Typography sx={{fontSize: '20px'}}>{label}</Typography>
-                    <Bookmark />
+                    <Bookmark
+                        bookmarked={solution.bookmark}
+                        solId={solution.id}
+                    />
                 </Stack>
                 <Box
                     sx={{
