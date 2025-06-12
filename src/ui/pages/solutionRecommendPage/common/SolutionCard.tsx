@@ -151,7 +151,7 @@ const SolutionCard = ({solution}: SolutionProps) => {
                 >
                     {showDetails ? '간략히 보기' : '상세보기'}
                 </Button>
-                <Bookmark />
+                <Bookmark bookmarked={solution.bookmark} solId={solution.id} />
             </Box>
         </Box>
     )

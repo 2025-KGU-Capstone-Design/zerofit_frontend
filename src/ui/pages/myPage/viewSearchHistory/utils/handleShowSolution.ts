@@ -1,25 +1,15 @@
 // handleShowSolution.ts
 import useSolutionStore from '@/store/useSolutionStore'
-import http from '@/services/Http'
-import {SolutionItem, SolutionGroup} from '@/types/solution'
+import {SolutionGroup} from '@/types/solution'
 import {groupSolutionsByType} from '@/ui/pages/solutionRecommendPage/utils/groupSolutionsByType'
-import {SolutionCommentResponse} from '@/types/solutionComment'
 import {SolutionType} from '@/constants/solutionCategories'
-
-type SolutionHistoryApiResponse = {
-    comment: SolutionCommentResponse[]
-    solution: SolutionItem[]
-}
-
+import {getSolutionHistory} from '@/services/getSolutionHistory'
 export const handleShowSolution = async (
     requestId: number,
     navigate: (path: string) => void
 ) => {
     try {
-        const response = await http.get<SolutionHistoryApiResponse>(
-            `/api/solution/history/${requestId}`
-        )
-        const {comment, solution} = response.data
+        const {comment, solution} = await getSolutionHistory(requestId)
 
         // 빈 객체 등 유효하지 않은 솔루션 제거
         const validSolutions = solution.filter(
