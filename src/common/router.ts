@@ -9,6 +9,7 @@ import CompanyInputPage1 from '@/ui/pages/companyInputPage/companyInputPage1/Com
 import CompanyInputPage2 from '@/ui/pages/companyInputPage/companyInputPage2/CompanyInputPage2'
 import CompanyInputPage3 from '@/ui/pages/companyInputPage/companyInputPage3/CompanyInputPage3'
 import SolutionRecommend from '@/ui/pages/solutionRecommendPage/SolutionRecommend'
+import myBookMark from '@/ui/pages/myBookmarkPage/myBookMark'
 
 const router = createBrowserRouter([
     {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
                     {path: 'company-info/step2', Component: CompanyInputPage2},
                     {path: 'company-info/step3', Component: CompanyInputPage3},
                     {path: 'solution', Component: SolutionRecommend},
-                    {path: 'bookmark'},
+                    {path: 'bookmark', Component: myBookMark},
                 ],
             },
         ],
