@@ -67,7 +67,7 @@ const UserInfoSection = () => {
 
     return (
         <Stack>
-            <Card>
+            <Card elevation={0} sx={{borderRadius: 1, border: '1px solid #E5E7EB'}}>
                 <CardContent>
                     <Stack
                         direction='row'

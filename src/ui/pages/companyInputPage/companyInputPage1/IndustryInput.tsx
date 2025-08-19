@@ -12,23 +12,23 @@ const IndustryInput = () => {
         (event: SelectChangeEvent<string>) => {
             setIndustry(event.target.value)
         },
-        [setIndustry]
+        [setIndustry],
     )
 
     return (
         <>
-            <Typography variant='subtitle1' fontWeight='bold'>
+            <Typography variant="subtitle1" fontWeight="bold">
                 산업군 선택
             </Typography>
             <FormControl fullWidth>
-                <InputLabel id='industry-label'>산업군</InputLabel>
+                <InputLabel id="industry-label">산업군</InputLabel>
                 <Select
-                    labelId='industry-label'
-                    label='산업군'
+                    labelId="industry-label"
+                    label="산업군"
                     value={industry}
                     onChange={handleChange}
                 >
-                    <MenuItem value=''>
+                    <MenuItem value="">
                         <em>산업군을 선택하세요</em>
                     </MenuItem>
                     {industries.map((item) => (

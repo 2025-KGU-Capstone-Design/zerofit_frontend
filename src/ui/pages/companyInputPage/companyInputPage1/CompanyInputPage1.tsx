@@ -7,6 +7,7 @@ import StepHeader from '@/ui/pages/companyInputPage/common/StepHeader'
 import InfoPreviewCard from '@/ui/pages/companyInputPage/common/InfoPreviewCard'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
+import FadeContent from '@/ui/bits/FadeContent.tsx'
 
 const CompanyInputPage1 = () => {
     const navigate = useNavigate()
@@ -14,7 +15,7 @@ const CompanyInputPage1 = () => {
 
     const industry = useCompanyInputStore((state) => state.industry)
     const targetFacilities = useCompanyInputStore(
-        (state) => state.targetFacilities
+        (state) => state.targetFacilities,
     )
 
     const handleNext = () => {
@@ -30,31 +31,39 @@ const CompanyInputPage1 = () => {
         navigate('/company-info/step2')
     }
     return (
-        <Container sx={{mt: 14}}>
-            <Stack spacing={4}>
-                <StepHeader title='산업군 및 대상설비 선택' step={1} />
-                <Stack
-                    direction={{xs: 'column', md: 'row'}}
-                    justifyContent='space-between'
-                >
-                    <FormContainer>
-                        <IndustryInput />
-                        <FacilityInput />
-                        <Stack direction='row' justifyContent='flex-end'>
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                size='large'
-                                onClick={handleNext}
-                            >
-                                다음
-                            </Button>
-                        </Stack>
-                    </FormContainer>
-                    <InfoPreviewCard step={1} />
+        <FadeContent>
+            <Container sx={{mt: 10}}>
+                <Stack spacing={4}>
+                    <StepHeader title="산업군 및 대상설비 선택" step={1} />
+                    <Stack
+                        direction={{xs: 'column', md: 'row'}}
+                        justifyContent="space-between"
+                    >
+                        <FormContainer>
+                            <IndustryInput />
+                            <FacilityInput />
+                            <Stack direction="row" justifyContent="flex-end">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="large"
+                                    onClick={handleNext}
+                                    disableElevation
+                                    sx={{
+                                        '&:hover': {
+                                            boxShadow: 4,
+                                        },
+                                    }}
+                                >
+                                    다음
+                                </Button>
+                            </Stack>
+                        </FormContainer>
+                        <InfoPreviewCard step={1} />
+                    </Stack>
                 </Stack>
-            </Stack>
-        </Container>
+            </Container>
+        </FadeContent>
     )
 }
 
