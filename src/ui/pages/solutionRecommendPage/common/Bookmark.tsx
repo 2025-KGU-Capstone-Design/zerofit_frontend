@@ -1,19 +1,10 @@
-import {
-    Box,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions,
-    Button,
-    Snackbar,
-    Alert,
-} from '@mui/material'
+import {Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@mui/material'
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import {useState} from 'react'
 import {updateSolutionBookmark} from '@/services/updateSolutionBookmark'
 import useSolutionStore from '@/store/useSolutionStore'
+import {useSnackbar} from '@/ui/CommonSnackbar.tsx'
 
 interface BookmarkProps {
     bookmarked: boolean
@@ -22,15 +13,14 @@ interface BookmarkProps {
 }
 
 const Bookmark = ({
-    bookmarked: initialBookmarked,
-    solId,
-    onToggle,
-}: BookmarkProps) => {
+                      bookmarked: initialBookmarked,
+                      solId,
+                      onToggle,
+                  }: BookmarkProps) => {
     const [bookmarked, setBookmarked] = useState(initialBookmarked)
     const [confirmOpen, setConfirmOpen] = useState(false)
     const [pendingState, setPendingState] = useState<boolean | null>(null)
-    const [snackbarOpen, setSnackbarOpen] = useState(false)
-    const [snackbarMsg, setSnackbarMsg] = useState('')
+    const {openSnackbar} = useSnackbar()
     const [loading, setLoading] = useState(false)
 
     const updateBookmark = useSolutionStore((state) => state.updateBookmark)
@@ -50,13 +40,9 @@ const Bookmark = ({
             setBookmarked(pendingState)
             updateBookmark(solId, pendingState)
             onToggle && onToggle(pendingState)
-            setSnackbarMsg(
-                pendingState ? '북마크 되었습니다.' : '북마크가 해제되었습니다.'
-            )
-            setSnackbarOpen(true)
+            openSnackbar(pendingState ? '북마크 되었습니다.' : '북마크가 해제되었습니다.', 'success')
         } catch (e) {
-            setSnackbarMsg('요청에 실패했습니다.')
-            setSnackbarOpen(true)
+            openSnackbar("요청에 실패했습니다.", 'error')
         } finally {
             setLoading(false)
             setConfirmOpen(false)
@@ -68,11 +54,6 @@ const Bookmark = ({
     const handleCancel = () => {
         setConfirmOpen(false)
         setPendingState(null)
-    }
-
-    // 4. 스낵바 닫기
-    const handleSnackbarClose = () => {
-        setSnackbarOpen(false)
     }
 
     return (
@@ -99,9 +80,9 @@ const Bookmark = ({
             <Dialog
                 open={confirmOpen}
                 onClose={handleCancel}
-                aria-labelledby='bookmark-confirm-dialog'
+                aria-labelledby="bookmark-confirm-dialog"
             >
-                <DialogTitle id='bookmark-confirm-dialog'>
+                <DialogTitle id="bookmark-confirm-dialog">
                     북마크 확인
                 </DialogTitle>
                 <DialogContent>
@@ -114,14 +95,14 @@ const Bookmark = ({
                 <DialogActions>
                     <Button
                         onClick={handleConfirm}
-                        color='primary'
+                        color="primary"
                         disabled={loading}
                     >
                         예
                     </Button>
                     <Button
                         onClick={handleCancel}
-                        color='primary'
+                        color="primary"
                         autoFocus
                         disabled={loading}
                     >
@@ -129,22 +110,6 @@ const Bookmark = ({
                     </Button>
                 </DialogActions>
             </Dialog>
-
-            {/* 알림 스낵바 */}
-            <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={2000}
-                onClose={handleSnackbarClose}
-                anchorOrigin={{vertical: 'top', horizontal: 'center'}}
-            >
-                <Alert
-                    onClose={handleSnackbarClose}
-                    severity='success'
-                    sx={{width: '100%'}}
-                >
-                    {snackbarMsg}
-                </Alert>
-            </Snackbar>
         </>
     )
 }

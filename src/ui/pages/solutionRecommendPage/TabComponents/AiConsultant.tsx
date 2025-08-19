@@ -1,10 +1,4 @@
-import {
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Box,
-    Typography,
-} from '@mui/material'
+import {Accordion, AccordionDetails, AccordionSummary, Box, Typography} from '@mui/material'
 import ReactMarkdown from 'react-markdown'
 import earth from '@/assets/icons/earth.svg'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -16,41 +10,43 @@ interface AiConsultantProps {
     loading?: boolean
     error?: string | null
 }
+
 const AiConsultant = ({
-    question,
-    top1,
-    comparison,
-    loading,
-    error,
-}: AiConsultantProps) => {
+                          question,
+                          top1,
+                          comparison,
+                          loading,
+                          error,
+                      }: AiConsultantProps) => {
     return (
         <div>
-            <Box sx={{my: '43px'}}>
+            <Box sx={{mb: '2rem'}}>
                 {/* 🤖 AI 해설 아코디언 */}
                 <Accordion
                     // defaultExpanded
+                    elevation={0}
                     sx={{
                         bgcolor: '#F3F4F6',
                         borderRadius: 2,
-                        boxShadow: 1,
                         border: '1px solid #E5E7EB',
                     }}
                 >
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <Typography
+                            variant="h6"
                             fontSize={20}
                             fontWeight={500}
-                            color='text.primary'
+                            color="text.primary"
                         >
                             {question}
                         </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Box display='flex' gap={2}>
+                        <Box display="flex" gap={2}>
                             <Box
-                                component='img'
+                                component="img"
                                 src={earth}
-                                alt='마스코트'
+                                alt="마스코트"
                                 sx={{
                                     width: 80,
                                     height: 80,
@@ -63,7 +59,7 @@ const AiConsultant = ({
                                     backgroundColor: '#fff',
                                     p: 2,
                                     borderRadius: '8px',
-                                    border: '1px solid #D1D5DB',
+                                    border: '1px solid #E5E7EB',
                                     position: 'relative',
                                     flex: 1,
                                 }}
@@ -83,14 +79,14 @@ const AiConsultant = ({
                                 />
                                 {loading && (
                                     <Typography
-                                        color='text.secondary'
+                                        color="text.secondary"
                                         fontSize={'18px'}
                                     >
                                         AI가 분석 중입니다...
                                     </Typography>
                                 )}
                                 {error && (
-                                    <Typography color='error'>
+                                    <Typography color="error">
                                         {error}
                                     </Typography>
                                 )}
@@ -106,7 +102,7 @@ const AiConsultant = ({
                                 )}
                                 {/* 아무 데이터도 없을 때 */}
                                 {!loading && !error && !top1 && !comparison && (
-                                    <Typography color='text.secondary'>
+                                    <Typography color="text.secondary">
                                         AI 해설이 없습니다.
                                     </Typography>
                                 )}

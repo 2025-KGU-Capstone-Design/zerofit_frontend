@@ -25,7 +25,7 @@ export default function BasicTabs() {
     }
 
     return (
-        <Box sx={{width: '100%', mt: '54px'}}>
+        <Box sx={{width: '100%', mt: 10}}>
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange}>
                     {solutionCategories.map((category) => (

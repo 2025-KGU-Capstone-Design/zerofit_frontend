@@ -1,5 +1,4 @@
 import {Stack} from '@mui/material'
-import LandingPageHeader from '@/ui/pages/landingPage/LandingPageHeader.tsx'
 import HeroSection from '@/ui/pages/landingPage/HeroSection.tsx'
 import {useLoaderData} from 'react-router-dom'
 
@@ -15,7 +14,7 @@ const LandingPage = () => {
                 color: 'white',
             }}
         >
-            <LandingPageHeader />
+            {/*<LandingPageHeader />*/}
             <HeroSection />
         </Stack>
     )

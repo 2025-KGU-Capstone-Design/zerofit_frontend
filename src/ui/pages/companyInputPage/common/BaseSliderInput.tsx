@@ -46,7 +46,7 @@ const BaseSliderInput = ({
 
     return (
         <Box sx={{width: '100%', mb: 2}}>
-            <Typography variant='subtitle1' fontWeight='bold' sx={{mb: 5}}>
+            <Typography variant='subtitle1' fontWeight='bold' sx={{mb: 2}}>
                 {label}
             </Typography>
             <StyledSlider

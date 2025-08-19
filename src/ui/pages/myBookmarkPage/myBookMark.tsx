@@ -11,6 +11,7 @@ import {useEffect, useState} from 'react'
 import {SolutionItem} from '@/types/solution'
 import {fetchBookmarkedSolutions} from '@/services/BookmarkApi'
 import BookmarkListComponent from './BookmarkListComponent'
+import FadeContent from '@/ui/bits/FadeContent.tsx'
 
 interface MyBookMarkProps {
     requestId: number
@@ -53,8 +54,8 @@ const MyBookMark = ({requestId}: MyBookMarkProps) => {
     }
 
     return (
-        <div>
-            <Container sx={{mt: 14}}>
+        <FadeContent>
+            <Container sx={{mt: 10}}>
                 <Box>
                     <Typography
                         sx={{
@@ -111,7 +112,7 @@ const MyBookMark = ({requestId}: MyBookMarkProps) => {
                     </>
                 )}
             </Container>
-        </div>
+        </FadeContent>
     )
 }
 

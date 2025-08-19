@@ -16,17 +16,17 @@ interface InfoPreviewCardProps {
 const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
     const industry = useCompanyInputStore((state) => state.industry)
     const targetFacilities = useCompanyInputStore(
-        (state) => state.targetFacilities
+        (state) => state.targetFacilities,
     )
     const availableInvestment = useCompanyInputStore(
-        (state) => state.availableInvestment
+        (state) => state.availableInvestment,
     )
     const currentEmission = useCompanyInputStore(
-        (state) => state.currentEmission
+        (state) => state.currentEmission,
     )
     const targetEmission = useCompanyInputStore((state) => state.targetEmission)
     const targetRoiPeriod = useCompanyInputStore(
-        (state) => state.targetRoiPeriod
+        (state) => state.targetRoiPeriod,
     )
 
     const facilitiesDisplay = useMemo(
@@ -34,16 +34,22 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
             targetFacilities.length > 0
                 ? targetFacilities.join(', ')
                 : '입력된 설비 없음',
-        [targetFacilities]
+        [targetFacilities],
     )
 
     return (
         <Stack flex={1} sx={{maxWidth: 260, mb: 6}}>
-            <Card sx={{p: 2}}>
+            <Card
+                elevation={0}
+                sx={{
+                    p: 2,
+                    border: '1px solid #E5E7EB',
+                    borderRadius: '3px',
+                }}>
                 <CardContent>
                     <Typography
-                        variant='subtitle1'
-                        fontWeight='bold'
+                        variant="subtitle1"
+                        fontWeight="bold"
                         sx={{mb: 3}}
                     >
                         입력된 정보
@@ -51,23 +57,23 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
 
                     {step >= 1 && (
                         <>
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 산업군
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         • {industry || '선택 안됨'}
                                     </Typography>
                                 </ListItem>
                             </List>
 
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 대상설비
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         • {facilitiesDisplay}
                                     </Typography>
                                 </ListItem>
@@ -77,12 +83,12 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
 
                     {step >= 2 && (
                         <>
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 투자가능금액
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         •{' '}
                                         {availableInvestment != null
                                             ? availableInvestment
@@ -93,12 +99,12 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                                 </ListItem>
                             </List>
 
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 현재배출량
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         •{' '}
                                         {currentEmission
                                             ? `${currentEmission.toLocaleString()} tCO₂`
@@ -111,12 +117,12 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
 
                     {step >= 3 && (
                         <>
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 목표배출량
                             </Typography>
                             <List dense disablePadding sx={{mb: 2, pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         •{' '}
                                         {targetEmission
                                             ? `${targetEmission.toLocaleString()} tCO₂`
@@ -125,12 +131,12 @@ const InfoPreviewCard = ({step}: InfoPreviewCardProps) => {
                                 </ListItem>
                             </List>
 
-                            <Typography variant='body2' fontWeight='bold'>
+                            <Typography variant="body2" fontWeight="bold">
                                 목표ROI기간
                             </Typography>
                             <List dense disablePadding sx={{pl: 1}}>
                                 <ListItem disableGutters>
-                                    <Typography variant='body1'>
+                                    <Typography variant="body1">
                                         •{' '}
                                         {targetRoiPeriod != null
                                             ? targetRoiPeriod

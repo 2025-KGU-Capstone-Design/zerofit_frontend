@@ -7,7 +7,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Divider,
+    Divider, Typography,
 } from '@mui/material'
 import {useLocation, Link, useNavigate} from 'react-router-dom'
 import HomeIcon from '@mui/icons-material/Home'
@@ -19,6 +19,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import useCompanyInputStore from '@/store/useCompanyInputStore'
 import {useAuth} from '@/hooks/useAuth'
 import {useSnackbar} from '@/ui/CommonSnackbar'
+import Logo from '@/assets/icons/logo1.png'
 
 const drawerWidth = 240
 
@@ -58,7 +59,7 @@ const Sidebar = () => {
 
     return (
         <Drawer
-            variant='permanent'
+            variant="permanent"
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
@@ -69,7 +70,40 @@ const Sidebar = () => {
                 },
             }}
         >
-            <Toolbar />
+            <Toolbar
+                disableGutters
+                sx={{
+                    backgroundColor: (theme) => theme.palette.primary.main,
+                    pl: 2,
+                }}
+            >
+                <Typography
+                    variant="h6"
+                    component={Link}
+                    to="/"
+                    onClick={resetState}
+                    sx={{
+                        color: 'inherit',
+                        fontWeight: 'bold',
+                        textDecoration: 'none',
+                        ml: 2,
+                    }}
+                >
+                    <Box display="flex" alignItems="center">
+                        <Box
+                            component="img"
+                            src={Logo}
+                            sx={{width: 27, height: 27, mr: 0.3}}
+                        />
+                        <Box component="span" sx={{
+                            color: 'white',
+                        }}>Zero</Box>
+                        <Box component="span" color="secondary.main">
+                            Fit
+                        </Box>
+                    </Box>
+                </Typography>
+            </Toolbar>
             <Box sx={{overflow: 'auto'}}>
                 <List>
                     {navItems.map((item) => {
@@ -136,7 +170,7 @@ const Sidebar = () => {
                         <ListItem disablePadding>
                             <ListItemButton
                                 component={Link}
-                                to='/mypage/search-history'
+                                to="/mypage/search-history"
                                 sx={{
                                     color: 'white',
                                     '&:hover': {
@@ -149,7 +183,7 @@ const Sidebar = () => {
                                     <AccountCircleIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary='마이페이지'
+                                    primary="마이페이지"
                                     slotProps={{
                                         primary: {sx: {color: 'inherit'}},
                                     }}
@@ -172,7 +206,7 @@ const Sidebar = () => {
                                     <LogoutIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary='로그아웃'
+                                    primary="로그아웃"
                                     slotProps={{
                                         primary: {sx: {color: 'inherit'}},
                                     }}

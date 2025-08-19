@@ -23,7 +23,7 @@ const SolutionContents = ({category}: CategoryProps) => {
     const setComment = useSolutionStore((state) => state.setComment)
 
     const {loading, error, requestComment} = useSolutionComment(
-        cookies.access_token
+        cookies.access_token,
     )
 
     const cacheKey = requestId !== undefined ? requestId.toString() : undefined
@@ -51,14 +51,13 @@ const SolutionContents = ({category}: CategoryProps) => {
 
     return (
         <Box>
-            <Stack sx={{my: '43px'}}>
-                <Stack direction='row' spacing='31px' sx={{height: '476px'}}>
+            <Stack sx={{my: '1rem'}}>
+                <Stack direction="row" spacing="31px" sx={{height: '476px'}}>
                     {/* 종합 최적 솔루션 */}
                     {topSolution && (
                         <MainSolution solution={topSolution} label={label} />
                     )}
                     {/* 종합 최적 솔루션 비교 */}
-
                     <Box
                         sx={{
                             bgcolor: '#FFFFFF',
@@ -91,14 +90,15 @@ const SolutionContents = ({category}: CategoryProps) => {
                     border: '1px solid',
                     borderColor: '#E5E7EB',
                     padding: '24px',
+                    mb: "1rem"
                 }}
             >
-                <Box sx={{pb: '48px'}}>
+                <Box sx={{pb: '1rem'}}>
                     <Typography sx={{fontSize: '20px'}}>추가 솔루션</Typography>
                 </Box>
                 <Stack
-                    direction='row'
-                    spacing='19px'
+                    direction="row"
+                    spacing="19px"
                     sx={{
                         display: 'flex',
                         justifyContent: 'center',
