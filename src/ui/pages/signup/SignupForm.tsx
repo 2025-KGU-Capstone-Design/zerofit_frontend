@@ -19,6 +19,7 @@ import BusinessIcon from '@mui/icons-material/Business'
 import type {UserData} from '@/types/auth'
 import {useSnackbar} from '@/ui/CommonSnackbar'
 import {authApi, SignupPayload} from '@/services/auth'
+import FadeContent from '@/ui/bits/FadeContent.tsx'
 
 type SignupFormData = UserData & {passwordConfirm: string}
 
@@ -36,7 +37,7 @@ const SignupForm = () => {
     })
 
     const [isUserIdAvailable, setIsUserIdAvailable] = useState<boolean | null>(
-        null
+        null,
     )
 
     const handleChange =
@@ -108,32 +109,32 @@ const SignupForm = () => {
             name: 'userId',
             label: '아이디',
             placeholder: '아이디를 입력하세요',
-            icon: <PersonIcon color='action' />,
+            icon: <PersonIcon color="action" />,
             error: isUserIdInvalid,
             helperText:
                 form.userId === ''
                     ? undefined
                     : isUserIdInvalid
-                      ? '4~12자 영문/숫자만 가능'
-                      : isUserIdAvailable === true
-                        ? '✅ 사용 가능한 아이디입니다.'
-                        : isUserIdAvailable === false
-                          ? '❌ 이미 사용 중인 아이디입니다.'
-                          : undefined,
+                        ? '4~12자 영문/숫자만 가능'
+                        : isUserIdAvailable === true
+                            ? '✅ 사용 가능한 아이디입니다.'
+                            : isUserIdAvailable === false
+                                ? '❌ 이미 사용 중인 아이디입니다.'
+                                : undefined,
         },
         {
             name: 'password',
             label: '비밀번호',
             placeholder: '비밀번호를 입력하세요',
             type: 'password',
-            icon: <LockIcon color='action' />,
+            icon: <LockIcon color="action" />,
         },
         {
             name: 'passwordConfirm',
             label: '비밀번호 확인',
             placeholder: '비밀번호를 다시 입력하세요',
             type: 'password',
-            icon: <LockIcon color='action' />,
+            icon: <LockIcon color="action" />,
             error: isPasswordMismatch,
             helperText: isPasswordMismatch
                 ? '비밀번호가 일치하지 않습니다.'
@@ -143,7 +144,7 @@ const SignupForm = () => {
             name: 'email',
             label: '이메일',
             placeholder: '이메일을 입력하세요',
-            icon: <EmailIcon color='action' />,
+            icon: <EmailIcon color="action" />,
             error: isEmailInvalid,
             helperText: isEmailInvalid
                 ? '올바른 이메일 주소를 입력해주세요.'
@@ -153,7 +154,7 @@ const SignupForm = () => {
             name: 'phone',
             label: '연락처',
             placeholder: '전화번호를 입력하세요',
-            icon: <PhoneIcon color='action' />,
+            icon: <PhoneIcon color="action" />,
             error: isPhoneInvalid,
             helperText: isPhoneInvalid
                 ? '전화번호는 숫자만 10~11자리여야 합니다.'
@@ -163,13 +164,13 @@ const SignupForm = () => {
             name: 'companyName',
             label: '업체명',
             placeholder: '업체명을 입력하세요',
-            icon: <BusinessIcon color='action' />,
+            icon: <BusinessIcon color="action" />,
         },
     ]
 
     return (
         <Box
-            component='form'
+            component="form"
             onSubmit={handleSubmit}
             sx={{
                 flex: 1,
@@ -179,90 +180,95 @@ const SignupForm = () => {
                 py: 6,
             }}
         >
-            <Card sx={{width: 500, p: 3, my: 4}}>
-                <CardContent>
-                    <Typography
-                        variant='h4'
-                        align='center'
-                        gutterBottom
-                        sx={{fontWeight: 'bold', color: 'primary.main'}}
-                    >
-                        회원가입
-                    </Typography>
-
-                    <Stack spacing={2} sx={{mt: 2}}>
-                        {fields.map(
-                            ({
-                                name,
-                                label,
-                                placeholder,
-                                type,
-                                icon,
-                                error,
-                                helperText,
-                            }) => {
-                                const isUserId = name === 'userId'
-                                return (
-                                    <CommonInput
-                                        key={name}
-                                        label={label}
-                                        placeholder={placeholder}
-                                        type={type}
-                                        value={form[name]}
-                                        onChange={handleChange(name)}
-                                        error={error}
-                                        helperText={helperText}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position='start'>
-                                                    {icon}
-                                                </InputAdornment>
-                                            ),
-                                            ...(isUserId && {
-                                                endAdornment: (
-                                                    <InputAdornment position='end'>
-                                                        <Button
-                                                            variant='outlined'
-                                                            size='large'
-                                                            onClick={
-                                                                handleCheckUserId
-                                                            }
-                                                            disabled={
-                                                                form.userId ===
-                                                                    '' ||
-                                                                isUserIdInvalid
-                                                            }
-                                                        >
-                                                            중복확인
-                                                        </Button>
-                                                    </InputAdornment>
-                                                ),
-                                            }),
-                                        }}
-                                    />
-                                )
-                            }
-                        )}
-
-                        <Button
-                            type='submit'
-                            variant='contained'
-                            size='large'
-                            sx={{py: 1.5}}
-                            disabled={!isFormValid}
+            <FadeContent>
+                <Card sx={{
+                    width: 500, p: 3, my: 4,
+                    border: '1px solid #E0E0E0', borderRadius: 2,
+                }} elevation={0}>
+                    <CardContent>
+                        <Typography
+                            variant="h4"
+                            align="center"
+                            gutterBottom
+                            sx={{fontWeight: 'bold', color: 'primary.main'}}
                         >
                             회원가입
-                        </Button>
-
-                        <Typography variant='body2' align='center' sx={{mt: 1}}>
-                            이미 계정이 있으신가요?{' '}
-                            <MuiLink component={Link} to='/login'>
-                                로그인
-                            </MuiLink>
                         </Typography>
-                    </Stack>
-                </CardContent>
-            </Card>
+
+                        <Stack spacing={2} sx={{mt: 2}}>
+                            {fields.map(
+                                ({
+                                     name,
+                                     label,
+                                     placeholder,
+                                     type,
+                                     icon,
+                                     error,
+                                     helperText,
+                                 }) => {
+                                    const isUserId = name === 'userId'
+                                    return (
+                                        <CommonInput
+                                            key={name}
+                                            label={label}
+                                            placeholder={placeholder}
+                                            type={type}
+                                            value={form[name]}
+                                            onChange={handleChange(name)}
+                                            error={error}
+                                            helperText={helperText}
+                                            InputProps={{
+                                                startAdornment: (
+                                                    <InputAdornment position="start">
+                                                        {icon}
+                                                    </InputAdornment>
+                                                ),
+                                                ...(isUserId && {
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <Button
+                                                                variant="outlined"
+                                                                size="large"
+                                                                onClick={
+                                                                    handleCheckUserId
+                                                                }
+                                                                disabled={
+                                                                    form.userId ===
+                                                                    '' ||
+                                                                    isUserIdInvalid
+                                                                }
+                                                            >
+                                                                중복확인
+                                                            </Button>
+                                                        </InputAdornment>
+                                                    ),
+                                                }),
+                                            }}
+                                        />
+                                    )
+                                },
+                            )}
+
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                size="large"
+                                sx={{py: 1.5}}
+                                disabled={!isFormValid}
+                            >
+                                회원가입
+                            </Button>
+
+                            <Typography variant="body2" align="center" sx={{mt: 1}}>
+                                이미 계정이 있으신가요?{' '}
+                                <MuiLink component={Link} to="/login">
+                                    로그인
+                                </MuiLink>
+                            </Typography>
+                        </Stack>
+                    </CardContent>
+                </Card>
+            </FadeContent>
         </Box>
     )
 }

@@ -9,6 +9,7 @@ import {useSnackbar} from '@/ui/CommonSnackbar'
 import type {LoginForm} from '@/types/auth'
 import {useAuth} from '@/hooks/useAuth'
 import Logo from '@/assets/icons/logo1.png'
+import FadeContent from '@/ui/bits/FadeContent.tsx'
 
 interface LocationState {
     userId?: string
@@ -77,91 +78,98 @@ const LoginForm = () => {
                 justifyContent: 'center',
             }}
         >
-            <Card sx={{width: 500, p: 3}}>
-                <CardContent>
-                    <Box
-                        sx={{
-                            display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3,
-                        }}>
+            <FadeContent>
+                <Card sx={{
+                    width: 500,
+                    p: 3,
+                    border: '1px solid #E0E0E0',
+                    borderRadius: 2,
+                }} elevation={0}>
+                    <CardContent>
                         <Box
-                            component="img"
-                            src={Logo}
-                            sx={{height: '2rem', mr: 0.3}}
-                        />
-                        <Typography
-                            variant="h4"
-                            fontWeight="bold"
-                            color="black"
-                        >
-                            Zero
-                        </Typography>
-                        <Typography
-                            variant="h4"
-                            fontWeight="bold"
-                            color="secondary.main"
-                        >
-                            Fit
-                        </Typography>
-                    </Box>
-
-                    <Stack spacing={2} sx={{mt: 2}}>
-                        <CommonInput
-                            label="아이디"
-                            placeholder="아이디를 입력하세요"
-                            value={form.userId}
-                            onChange={handleChange('userId')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <PersonIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <CommonInput
-                            label="비밀번호"
-                            placeholder="비밀번호를 입력하세요"
-                            type="password"
-                            value={form.password}
-                            onChange={handleChange('password')}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockIcon color="action" />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            size="large"
-                            sx={{py: 1.5}}
-                        >
-                            로그인
-                        </Button>
-
-                        <Stack direction="row" justifyContent="space-between">
-                            <MuiLink
-                                component={Link}
-                                to="/find-password"
-                                variant="body2"
+                            sx={{
+                                display: 'flex', justifyContent: 'center', alignItems: 'center', mb: 3,
+                            }}>
+                            <Box
+                                component="img"
+                                src={Logo}
+                                sx={{height: '2rem', mr: 0.3}}
+                            />
+                            <Typography
+                                variant="h4"
+                                fontWeight="bold"
+                                color="black"
                             >
-                                비밀번호 찾기
-                            </MuiLink>
-                            <MuiLink
-                                component={Link}
-                                to="/signup"
-                                variant="body2"
+                                Zero
+                            </Typography>
+                            <Typography
+                                variant="h4"
+                                fontWeight="bold"
+                                color="secondary.main"
                             >
-                                회원가입
-                            </MuiLink>
+                                Fit
+                            </Typography>
+                        </Box>
+
+                        <Stack spacing={2} sx={{mt: 2}}>
+                            <CommonInput
+                                label="아이디"
+                                placeholder="아이디를 입력하세요"
+                                value={form.userId}
+                                onChange={handleChange('userId')}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <PersonIcon color="action" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+
+                            <CommonInput
+                                label="비밀번호"
+                                placeholder="비밀번호를 입력하세요"
+                                type="password"
+                                value={form.password}
+                                onChange={handleChange('password')}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <LockIcon color="action" />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+
+                            <Button
+                                type="submit"
+                                variant="contained"
+                                size="large"
+                                sx={{py: 1.5}}
+                            >
+                                로그인
+                            </Button>
+
+                            <Stack direction="row" justifyContent="space-between">
+                                <MuiLink
+                                    component={Link}
+                                    to="/find-password"
+                                    variant="body2"
+                                >
+                                    비밀번호 찾기
+                                </MuiLink>
+                                <MuiLink
+                                    component={Link}
+                                    to="/signup"
+                                    variant="body2"
+                                >
+                                    회원가입
+                                </MuiLink>
+                            </Stack>
                         </Stack>
-                    </Stack>
-                </CardContent>
-            </Card>
+                    </CardContent>
+                </Card>
+            </FadeContent>
         </Box>
     )
 }
